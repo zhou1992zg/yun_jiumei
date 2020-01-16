@@ -1,0 +1,243 @@
+/* pages/my/order/order.wxss */
+
+page {
+    width: 100%;
+    /*height: 100%;*/
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #000;
+    padding-top: 88rpx;
+}
+
+.tab {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    height: 88rpx;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 16rpx 32rpx 0px rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+    /* overflow-x: scroll; */
+}
+
+.tab::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.tab .tabItem {
+    position: relative;
+    width: 20%;
+    text-align: center;
+    display: inline-block;
+    height: 88rpx;
+    line-height: 88rpx;
+    /*padding: 0 30rpx;*/
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    color: rgba(53, 53, 53, 1);
+    background: #fff;
+}
+
+.tab .active {
+    color: #cda69e;
+    position: relative;
+}
+
+.tab .active::after {
+    content: '';
+    display: block;
+    width: 68rpx;
+    height: 6rpx;
+    background: #cda69e;
+    position: absolute;
+    left: 50%;
+    margin-left: -34rpx;
+    bottom: 0;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    margin-top: 88rpx;
+    padding: 0;
+    background: #F5F5F6;
+    /* overflow-y: scroll; */
+}
+
+
+/* 选择取消理由列表样式 */
+
+.cancel-reason-box {
+    width: 100%;
+    padding: 0 40rpx;
+    padding-top: 30rpx;
+    margin-top: 30rpx;
+    box-sizing: border-box;
+    border-top: 2rpx solid rgba(216, 216, 216, 1);
+}
+
+.reason-list {
+    display: flex;
+    justify-content: space-between;
+    height: 40rpx;
+    padding-bottom: 34rpx;
+    font-size: 14px;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    line-height: 40rpx;
+}
+
+.reason-img {
+    display: inline-block;
+    width: 44rpx;
+    height: 44rpx;
+}
+
+
+/* 新订单样式 */
+
+.order-box {
+    width: 100%;
+    background: rgb(240, 238, 238);
+}
+
+.order-list-box {
+    width: 100%;
+    overflow: hidden;
+    background: rgb(240, 238, 238);
+    padding: 16rpx 20rpx;
+    box-sizing: border-box;
+}
+
+.order-list-box .order-content {
+    width: 710rpx;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 28rpx;
+}
+
+.order-list-box .order-content .order-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 650rpx;
+    padding: 24rpx 0 16rpx 0;
+    margin: 0 30rpx;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid rgb(230, 222, 222);
+}
+
+.order-list-box .order-content .order-name .name {
+    font-size: 28rpx;
+    color: #101010;
+    margin-left: 10rpx;
+}
+
+.order-list-box .order-content .order-name .type-text {
+    font-size: 28rpx;
+    color: #CA3F3F;
+    margin-right: 10rpx;
+}
+
+.order-list-box .order-content .server-contenr-box {
+    width: 650rpx;
+    padding: 14rpx 0 16rpx 0;
+    margin: 0 30rpx;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid rgb(230, 222, 222);
+}
+
+.order-list-box .order-content .server-contenr-box .server-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rpx 0;
+    font-size: 24rpx;
+    color: #C1BABA;
+}
+
+.order-list-box .order-content .server-contenr-box .server-list .text-left {
+    margin-left: 10rpx;
+    width: 100rpx;
+}
+
+.order-list-box .order-content .server-contenr-box .server-list .text-right {
+    margin: 0 10rpx;
+    text-align: right;
+    flex: 1;
+}
+
+.order-list-box .order-content .order-name .type-text .money-icon {
+    font-size: 20rpx;
+}
+
+.order-list-box .order-content .goods-btn-box {
+    text-align: right;
+    padding: 10rpx 30rpx 20rpx 30rpx;
+    overflow: hidden;
+}
+
+.order-list-box .order-content .goods-btn-box view {
+    /* width: 148rpx; */
+    height: 50rpx;
+    float: right;
+    margin-left: 16rpx;
+    margin-top: 6rpx;
+    padding: 0 30rpx;
+    font-size: 26rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(53, 53, 53, 1);
+    line-height: 50rpx;
+    border: 2rpx solid rgba(53, 53, 53, 1);
+    text-align: center;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+}
+
+.empty_big_box {
+    display: flex;
+    align-items: center;
+    width: 750rpx;
+    /* height: 750rpx; */
+}
+
+.empty_big_box .empty_box {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    border-radius: 20rpx;
+}
+
+.empty_big_box .empty_box .i {
+    margin: 0 auto;
+    margin-top: 80rpx;
+    color: rgba(153, 153, 153, 1);
+    font-size: 250rpx;
+}
+
+.empty_big_box .empty_box .empty_text {
+    width: 610rpx;
+    margin-top: 50rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: rgba(153, 153, 153, 1);
+}
+
+.emptybtn_text {
+    width: 290rpx;
+    padding: 20rpx 70rpx 18rpx 70rpx;
+    margin: 50rpx auto 0 auto;
+    font-size: 30rpx;
+    color: #fff;
+    font-weight: 500;
+    line-height: 42rpx;
+    text-align: center;
+    background: #0070ce;
+    border-radius: 56rpx;
+    box-sizing: border-box;
+}

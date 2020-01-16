@@ -1,0 +1,125 @@
+<!--index.wxml-->
+<view class="index_page">
+	<view class="swiper_box">
+		<swiper
+		 class="swiper"
+		 indicator-dots="true"
+		 autoplay="true"
+		 circular="true"
+		 indicator-color="#FFF"
+		 indicator-active-color="#000"
+		 v-if="bannerList.length>0"
+		 bindchange="swiperChange"
+		>
+			<swiper-item>
+				<image
+				 src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}"
+				 class="slide-image"
+				 lazy-load="true"
+				 bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)"
+				/>
+			</swiper-item>
+			<swiper-item>
+				<image
+				 src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}"
+				 class="slide-image"
+				 lazy-load="true"
+				 bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)"
+				/>
+			</swiper-item>
+			<swiper-item>
+				<image
+				 src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}"
+				 class="slide-image"
+				 lazy-load="true"
+				 bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)"
+				/>
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<view class="banner_box">
+		<block
+		 wx:for="{{bannerList}}"
+		 wx:for-index="index"
+		 wx:for-item="item"
+		 wx:key="index"
+		>
+			<view class="category_list" bindtap="jumpToProductList(item.type,item.name,0)">
+				<span class="sprite_box">
+					<span class="sprite_img sprite {{'sprite'+index}}" />
+				</span>
+				<view class="category_name">{{ item.name }}</view>
+			</view>
+			<br v-if="{{index+1 == blockListStyleLength}}" />
+		</block>
+	</view>
+
+	<view class="recommended_box">
+		<view class="title">醇臻推荐
+			<span>RECOMMEND</span>
+		</view>
+		<scroll-view class="scroll_view" bindscroll="bindscrollFn(index,false)" scroll-x="true">
+			<view class="scroll_box">
+				<block
+				 wx:for="{{one_product_list}}"
+				 wx:for-index="index"
+				 wx:for-item="item"
+				 wx:key="index"
+				>
+					<view class="new-product-plate" bindtap="getId">
+						<view class="goods-img" style="width:152px;height:152px">
+							<image src="{{item.pic}}" lazy-load="true" class="img" />
+						</view>
+					</view>
+				</block>
+			</view>
+		</scroll-view>
+	</view>
+  <view class="recommended_box">
+		<view class="title">新品首发
+			<span>THE NEWS STARTING</span>
+		</view>
+		<scroll-view class="scroll_view" bindscroll="bindscrollFn(index,false)" scroll-x="true">
+			<view class="scroll_box">
+				<block
+				 wx:for="{{two_product_list}}"
+				 wx:for-index="index"
+				 wx:for-item="item"
+				 wx:key="index"
+				>
+					<view class="new-product-plate" bindtap="getId">
+						<view class="goods-img" style="width:214px;height:102px">
+							<image src="{{item.pic}}" lazy-load="true" class="img" />
+						</view>
+					</view>
+				</block>
+			</view>
+		</scroll-view>
+	</view>
+  <view class="recommended_box">
+		<view class="title">高分精品
+			<span>HIGH QUALITY PRODUCTS</span>
+		</view>
+		<scroll-view class="scroll_view" bindscroll="bindscrollFn(index,false)" scroll-x="true">
+			<view class="scroll_box">
+				<block
+				 wx:for="{{three_product_list}}"
+				 wx:for-index="index"
+				 wx:for-item="item"
+				 wx:key="index"
+				>
+					<view class="new-product-plate" bindtap="getId">
+						<view class="goods-img" style="width:314px;height:102px">
+							<image src="{{item.pic}}" lazy-load="true" class="img" />
+						</view>
+					</view>
+				</block>
+			</view>
+		</scroll-view>
+	</view>
+  <view class="recommended_box">
+		<view class="title">店铺信息</view>
+	</view>
+</view>
+

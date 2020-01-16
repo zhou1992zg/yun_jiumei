@@ -1,0 +1,465 @@
+/* pages/my/my.wxss */
+
+page {
+  font-size: 26rpx;
+  color: #000;
+}
+
+.user-crad-box {
+  width: 690rpx;
+  position: relative;
+}
+
+.user-card {
+  height: 265rpx;
+  width: 100%;
+  background: #fff;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+.user-card .conetnt {
+  display: flex;
+  align-items: center;
+  padding: 55rpx 36rpx;
+}
+
+.login-box {
+  box-sizing: border-box;
+  padding-top: 20%;
+  text-align: center;
+}
+
+.login-box .login-tip {
+  /* width:216px; */
+  height: 50rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular;
+  /* font-weight:400; */
+  color: rgba(0, 0, 0, 1);
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.name {
+  font-size: 36rpx;
+  color: #000;
+  margin-bottom: 24rpx;
+}
+
+.attention {
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.attention text {
+  color: #888;
+}
+
+.user-img {
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 32rpx;
+  border-radius: 160rpx;
+}
+
+.tab-icons {
+  width: 690rpx;
+  height: 156rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 16rpx 48rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 108rpx auto 38rpx auto;
+}
+
+.tab-icons .icon {
+  position: relative;
+  width: 33%;
+  font-size: 26rpx;
+  color: #353535;
+}
+
+.icon .num {
+  position: absolute;
+  top: 0;
+  right: 20%;
+  display: inline-block;
+  height: 28rpx;
+  font-size: 20rpx;
+  padding: 0 6rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  line-height: 28rpx;
+  background: rgba(239, 53, 53, 1);
+  border-radius: 50%;
+  text-align: center;
+}
+
+.tab-icons image {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  margin: auto;
+  margin-bottom: 12rpx;
+}
+
+.vip {
+  position: absolute;
+  z-index: 9;
+  bottom: -114rpx;
+  left: 0;
+  border-radius: 0 0 40rpx 40rpx;
+  height: 166px;
+  right: 0;
+  overflow: hidden;
+  background: -webkit-linear-gradient(right, #353535, #000000);
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+
+/*.vip image {*/
+
+
+/*    width: 100%;*/
+
+
+/*    height: 166rpx;*/
+
+
+/*}*/
+
+.items {
+  font-size: 34rpx;
+  color: #000;
+  margin-bottom: 30rpx;
+}
+
+.items image {
+  width: 16rpx;
+  height: 26rpx;
+}
+
+.line {
+  color: #b2b2b2;
+  margin: 0 36rpx;
+}
+
+.items .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 30rpx;
+  position: relative;
+}
+
+.item::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  left: 30rpx;
+  right: 30rpx;
+  bottom: 0;
+  background: rgba(216, 216, 216, 1);
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.login-box button {
+  width: 268rpx;
+  height: 80rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 55rpx;
+  padding: 0;
+  margin-top: 60rpx;
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  line-height: 80rpx;
+  border: 1px solid rgba(142, 27, 255, 1);
+  color: rgba(142, 27, 255, 1);
+}
+
+.icontex {
+  width: 340rpx;
+}
+
+.qees {
+  margin-left: 5px;
+}
+
+.iconqr {
+  width: 68rpx;
+  height: 36rpx;
+  background-color: rgba(0, 0, 0, 0)!important;
+  opacity: 1!important;
+}
+
+.notLogin-img {
+  width: 60%;
+}
+
+.hongr {
+  background: linear-gradient(to right, #FF3F89, #FF8169);
+  padding: 2px 12px;
+  color: #fff!important;
+  font-size: 12px;
+  border-radius: 50px;
+}
+
+.v_left {
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  width: 40%;
+  overflow: hidden;
+  top: 100px;
+}
+
+.v_left image {
+  width: 80%;
+  height: 38rpx;
+  margin-left: 10%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 30px;
+}
+
+.v_right {
+  height: 80px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  top: 100px;
+  overflow: hidden;
+}
+
+.nocard {
+  width: 80%;
+  display: block;
+  line-height: 80px;
+  height: 80px;
+  margin-left: 10%;
+  color: #C09B58;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.yescard {
+  width: 80%;
+  display: block;
+  line-height: 40px;
+  height: 36px;
+  margin-left: 10%;
+  color: #C09B58;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.gopay {
+  position: absolute;
+  right: 10%;
+  background-color: #C09B58;
+  padding: 2px 12px;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 50px;
+}
+
+.my-gopay {
+  position: absolute;
+  right: 10%;
+  bottom: 60rpx;
+  display: inline-block;
+  width: 144rpx;
+  height: 44rpx;
+  background: rgba(192, 155, 88, 1);
+  border-radius: 22rpx;
+  font-size: 22rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  line-height: 44rpx;
+  text-align: center;
+}
+
+.version {
+  width: 100%;
+  font-size: 24rpx;
+  text-align: center;
+  margin: 30rpx 0;
+  letter-spacing: 4rpx;
+}
+
+.my-box {
+  width: 100%;
+  min-height: 100vh-170px;
+  background: #eef0ed;
+}
+
+.my-box .user-box {
+  width: 100%;
+  height: 340rpx;
+  background: #9c2732;
+  overflow:hidden;
+}
+
+.my-box .user-box .userinfo-avatar {
+  margin: 20rpx auto 0 auto;
+}
+
+.my-box .user-box .user-name {
+  width: 100vw;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin: 20rpx 0 0 0;
+  text-align: center;
+  float: left;
+}
+
+.my-box .user-box .user-phone {
+  width: 100vw;
+  color: #fff;
+  font-size: 26rpx;
+  text-align: center;
+  margin: 10rpx 0 0 0;
+  float: left;
+}
+
+.my-box .list-box {
+  width: 690rpx;
+  padding: 20rpx;
+  margin: -60rpx 30rpx 30rpx 30rpx;
+  border-radius: 24rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.my-box .list-box .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 30rpx;
+  position: relative;
+}
+
+.my-box .list-box .item .text-box {
+  display: flex;
+  align-items: center;
+  width: 590rpx;
+  line-height:54rpx;
+}
+
+.my-box .list-box .item .text-box text {
+  display: inline-block;
+  width: 390rpx;
+  text-align: right;
+  color: #ccc;
+}
+
+.my-box .list-box .item::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  /* left: 30rpx; */
+  /* right: 30rpx; */
+  bottom: 0;
+  background: rgba(216, 216, 216, 1);
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.list-box {
+  overflow: hidden;
+  position: relative;
+}
+
+.my-box .list-box .item .right {
+  width: 16rpx;
+}
+
+.my-box .list-box .item .img {
+  margin-right: 10rpx;
+  width: 46rpx;
+  height: 46rpx;
+  font-size: 42rpx;
+}
+
+.list-box .list-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+  width: 25%;
+}
+
+.list-box .list-list .list-text {
+  width: 100%;
+  text-align: center;
+}
+
+.list-box .list-list .img {
+  margin: 0 auto;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 50rpx;
+}
+
+.flex-h {
+  display: flex;
+  justify-content: space-around;
+}
+
+.list-box .all-order {
+  display: flex;
+  justify-content: space-between;
+  width: 600rpx;
+  box-sizing: border-box;
+  margin: 0 30rpx 20rpx 30rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx solid rgba(216, 216, 216, 1);
+  line-height: 50rpx;
+}
+
+.list-box .all-order .my-order {
+  font-size: 30rpx;
+}
+
+.list-box .all-order .look-order {
+  font-size: 28rpx;
+}
+
+
+/* button默认样式 */
+
+button {
+  width: 650rpx;
+  height: 90rpx;
+  padding: 0;
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium;
+  line-height: 80rpx;
+  background: #fff;
+  border-radius: 0;
+  color: #666;
+}
+
+button::after {
+  border: none;
+}
+
+button::after {
+  height: 0!important;
+}

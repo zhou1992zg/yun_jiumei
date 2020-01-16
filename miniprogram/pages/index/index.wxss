@@ -1,0 +1,186 @@
+/**index.wxss**/
+
+.index_page {
+  background: #fff;
+}
+
+/* 轮播 */
+.swiper_box {
+  height: 350rpx;
+}
+.swiper {
+  height: 350rpx;
+  background-color: #fff;
+  overflow: hidden;
+  
+}
+.slide-image {
+  width: 750rpx;
+  height: 350rpx;
+  background: rgb(117, 36, 35);
+}
+
+/* 几大板块 */
+.banner_box{
+  padding-top: 20rpx;
+}
+.category_list {
+  display: inline-block;
+  text-align: center;
+  font-size: 0;
+  flex: 1;
+  width: 25%;
+  padding-bottom: 30rpx;
+  padding-top: 10rpx;
+  position: relative;
+}
+
+.category_list .sprite_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 136rpx;
+  height: 136rpx;
+  margin: 0 auto;
+}
+
+.category_list .sprite_box .sprite_img {
+  display: inline-block;
+  width: 136rpx;
+  height: 136rpx;
+}
+.category_list .sprite_box .sprite {
+  background-image: url("https://oss.lewan6.ren/uploads/html/20191225/f22c3f117239e265345ddcce200bf4dc025f2b66png");
+  background-repeat: no-repeat;
+  background-size: 615px 169px;
+  width: 54px;
+  height: 54px;
+}
+
+.sprite0 {
+  background-position: -14px -14px;
+}
+.sprite1 {
+  background-position: -88px -14px;
+}
+.sprite2 {
+  background-position: -161px -14px;
+}
+.sprite3 {
+  background-position: -235px -14px;
+}
+.sprite4 {
+  background-position: -309px -14px;
+}
+.sprite5 {
+  background-position: -383px -14px;
+}
+.sprite6 {
+  background-position: -456px -14px;
+}
+.sprite7 {
+  background-position: -530px -14px;
+}
+.sprite8 {
+  background-position: -24px -106px;
+  width: 37px;
+  height: 39px;
+}
+.sprite9 {
+  background-position: -100px -106px;
+  width: 37px;
+  height: 39px;
+}
+.sprite10 {
+  background-position: -171px -106px;
+  width: 37px;
+  height: 39px;
+}
+.sprite11 {
+  background-position: -244px -106px;
+  width: 37px;
+  height: 39px;
+}
+.sprite12 {
+  background-position: -322px -107px;
+  width: 37px;
+  height: 39px;
+}
+.sprite13 {
+  background-position: -392px -103px;
+  width: 37px;
+  height: 39px;
+}
+.sprite14 {
+  background-position: -466px -105px;
+  width: 37px;
+  height: 39px;
+}
+
+
+.category_list view {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-top: -14rpx;
+}
+
+/* 活动板块 */
+.recommended_box{
+  padding-top: 40rpx;
+}
+
+.recommended_box .title{
+  height: 40rpx;
+  width: 750rpx;
+  padding: 0 48rpx;
+  color: #060506;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+}
+
+.recommended_box .title span{
+  font-size: 24rpx;
+  color: #868485;
+  font-weight: bold;
+}
+
+/* 左滑商品盒子 */
+.scroll_view {
+  box-sizing: border-box;
+  padding: 0 0 0 18rpx;
+}
+
+.scroll_view .scroll_box {
+  white-space: nowrap;
+}
+
+.new-product-plate {
+  background: #fff;
+  position: relative;
+  flex-shrink: 0;
+  display: inline-block;
+  margin: 28rpx 14rpx 0 14rpx;
+}
+
+.new-product-plate .goods-img {
+  position: relative;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow:0 0 16rpx rgba(0, 0, 0, .4);
+}
+
+.new-product-plate .goods-img .img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
