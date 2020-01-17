@@ -125,11 +125,17 @@ Page({
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
       }
     })
+  },
+
+  /**
+   * 暂不登陆
+   */
+  noLoginFn:function(){
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
   },
 
   /**

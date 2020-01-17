@@ -1,0 +1,148 @@
+/* 轮播 */
+.swiper_box {
+  height: 700rpx;
+}
+.swiper {
+  height: 700rpx;
+  background-color: #fff;
+  overflow: hidden;
+  
+}
+.slide-image {
+  width: 750rpx;
+  height: 700rpx;
+  background: rgb(117, 36, 35);
+}
+
+.goods_name{
+  width: 100%;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 60rpx;
+  padding: 10rpx 20rpx;
+}
+
+.money{
+  margin: 0 20rpx;
+  padding: 20rpx 0;
+  font-weight: bold;
+  font-size: 24rpx;
+  color: #9c2732;
+  border-bottom: 2rpx solid #eee;
+}
+
+.money span{
+  font-size: 34rpx;
+}
+
+.one{
+  margin: 0 20rpx;
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  color: #ccc;
+  border-bottom: 2rpx solid #eee;
+  overflow: hidden;
+}
+
+.one .left{
+  margin-left: 20rpx;
+  float: left;
+}
+
+.one .right{
+  margin-right: 20rpx;
+  float: right;
+}
+
+.goods_D{
+  display: block;
+  width: 100%;
+  padding-bottom: 100rpx;
+}
+
+/* 购买按钮 */
+
+.buyBtn {
+  width: 750rpx;
+  /* height: 98rpx; */
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px -8rpx 52rpx 0px rgba(0, 0, 0, 0.11);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.buyBtn .left {
+  box-sizing: border-box;
+  padding-top: 24rpx;
+}
+
+.buyBtn .left text:nth-child(1) {
+  height: 36px;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(136, 136, 136, 1);
+  margin-right: 14rpx;
+}
+
+.buyBtn .left text:nth-child(2) {
+  height: 36rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  color: #0070ce;
+  line-height: 36rpx;
+}
+
+.buyBtn .left text:nth-child(3) {
+  height: 56rpx;
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: #0070ce;
+  line-height: 56rpx;
+}
+
+.buyBtn .btn {
+  position: relative;
+  flex: 1;
+  height: 100rpx;
+  background: #c5201f;
+  font-size: 34prx;
+  font-family: PingFangSC-Regular;
+  color: rgba(255, 255, 255, 1);
+  line-height: 100rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.buyBtn .btn .card_num{
+  position: absolute;
+  top: -20rpx;
+  right: 60rpx;
+  padding: 16rpx;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: bold;
+  background-color: #9c2732;
+  border-radius: 50%;
+}
+
+.buyBtn .btn-box {
+  display: flex;
+  width: 750rpx;
+  height: 100rpx;
+  background: #0070ce;
+  font-size: 34prx;
+  font-family: PingFangSC-Regular;
+  color: rgba(255, 255, 255, 1);
+  line-height: 100rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.buyBtn .no_total {
+  background: #ccc;
+}

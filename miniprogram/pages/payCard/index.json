@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "购物车",
+  "navigationBarBackgroundColor": "#9c2732",
+  "usingComponents": {
+    "tty-stepper": "../../../components/num-choose/num-choose"
+  }
 }

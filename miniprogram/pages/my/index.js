@@ -5,17 +5,15 @@ Page({
    */
   data: {
     bgHeight: 0,
-    userInfo: {}
+    userInfo: {},
+    isLogin: wx.getStorageSync("USERINFO")
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onShow: function (options) {
     if (!wx.getStorageSync("USERINFO")) {
-      var pages = getCurrentPages();    //获取加载的页面
-      var currentPage = pages[pages.length - 1];  //获取当前页面的对象
-      var url = currentPage.route;  //当前页面url
+      var pages = getCurrentPages(); //获取加载的页面
+      var currentPage = pages[pages.length - 1]; //获取当前页面的对象
+      var url = currentPage.route; //当前页面url
       console.log(url)
       wx.navigateTo({
         url: '../login/login' + "?url=" + url,
@@ -62,13 +60,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

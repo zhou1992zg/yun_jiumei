@@ -1,72 +1,65 @@
 <!--index.wxml-->
-    <view class="my-box" style="min-height:{{bgHeight}}px;">
-    
-    <view class="user-box">
-    <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="background-image: url({{userInfo.avatarUrl||'./user-unlogin.png'}})"
-      size="default"
-    ></button>
-            <view class="user-name">{{userInfo.nickName||'亲'}} 欢迎光临</view>
-            <view class="user-phone">{{userInfo.mobile||"点击头像同步个人信息"}}</view>
-        </view>
-        <view class="list-box">
-            <view class="all-order" hover-class="none" hover-stop-propagation="false">
-                <view class="my-order" hover-class="none" hover-stop-propagation="false">我的订单</view>
-                <view bindtap="switchTabPage" data-listname='allOrder' class="look-order" hover-class="none" hover-stop-propagation="false">
-                    查看全部订单
-                    <i class="iconfont icon-jiantou-copy right"></i>
-                </view>
-            </view>
-            <view class="flex-h">
-                <view bindtap="switchTabPage" class="list-list" data-listname='stayPayOrder'>
-                    <i class="iconfont icon-fukuan img"></i>
-                    <view class="list-text">待付款</view>
-                </view>
-                <view bindtap="switchTabPage" class="list-list" data-listname='stayDelivery'>
-                    <i class="iconfont icon-yifukuan img"></i>
-                    <view class="list-text">已付款</view>
-                </view>
-                <view bindtap="switchTabPage" class="list-list"  data-listname='okOrder'>
-                    <i class="iconfont icon-yifahuo img"></i>
-                    <view class="list-text">已发货</view>
-                </view>
-                <navigator class="list-list" hover-class="none" url='/pages/serverOrder/serverOrder'>
-                   <i class="iconfont icon-yiwancheng img"></i>
-                    <view class="list-text">已收货</view>
-                </navigator>
-            </view>
-        </view>
-        <view class="list-box" style="margin-top:6px;">
-            <navigator url='/pages/address_list/address_list?pagetype="my"' class='item'>
-                <view class="text-box">
-                    <i class="iconfont icon-shouhuodizhi img"></i>
-                    收货地址
-                </view>
-                    <i class="iconfont icon-jiantou-copy right"></i>
-            </navigator>
-            <navigator url='/pages/serviceIntr/serviceIntr' class='item'>
-                <view class="text-box">
-                    <i class="iconfont icon-fuwujieshao img"></i>
-                    服务介绍
-                </view>
-                <i class="iconfont icon-jiantou-copy right"></i>
-            </navigator>
-            <view class='item' bindtap="makePhoneCall" data-tell="400-002-2699">
-                <view class="text-box">
-                <i class="iconfont icon-kefudianhua img"></i>
-                    电话客服 <text>400-002-2699</text>
-                </view>
-                <i class="iconfont icon-jiantou-copy right"></i>
-            </view>
-            <button open-type="contact" class='item'>
-                <view class="text-box">
-                   <i class="iconfont icon-kefu img"></i>
-                    在线客服
-                </view>
-                <i class="iconfont icon-jiantou-copy right"></i>
-            </button>
-        </view>
+<view class="my-box" style="min-height:{{bgHeight}}px;" wx:if="isLogin">
+	<view class="user-box">
+		<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{userInfo.avatarUrl||'./user-unlogin.png'}})" size="default"></button>
+		<view class="user-name">{{userInfo.nickName||'亲'}} 欢迎光临</view>
+		<view class="user-phone">{{userInfo.mobile||"点击头像同步个人信息"}}</view>
+	</view>
+	<view class="list-box">
+		<view class="all-order" hover-class="none" hover-stop-propagation="false">
+			<view class="my-order" hover-class="none" hover-stop-propagation="false">我的订单</view>
+			<view bindtap="switchTabPage" data-listname='allOrder' class="look-order" hover-class="none" hover-stop-propagation="false">
+				查看全部订单
+				<i class="iconfont icon-jiantou-copy right"></i>
+			</view>
+		</view>
+		<view class="flex-h">
+			<view bindtap="switchTabPage" class="list-list" data-listname='stayPayOrder'>
+				<i class="iconfont icon-fukuan img"></i>
+				<view class="list-text">待付款</view>
+			</view>
+			<view bindtap="switchTabPage" class="list-list" data-listname='stayDelivery'>
+				<i class="iconfont icon-yifukuan img"></i>
+				<view class="list-text">已付款</view>
+			</view>
+			<view bindtap="switchTabPage" class="list-list" data-listname='okOrder'>
+				<i class="iconfont icon-yifahuo img"></i>
+				<view class="list-text">已发货</view>
+			</view>
+			<navigator class="list-list" hover-class="none" url='/pages/serverOrder/serverOrder'>
+				<i class="iconfont icon-yiwancheng img"></i>
+				<view class="list-text">已收货</view>
+			</navigator>
+		</view>
+	</view>
+	<view class="list-box" style="margin-top:6px;">
+		<navigator url='/pages/address_list/address_list?pagetype="my"' class='item'>
+			<view class="text-box">
+				<i class="iconfont icon-shouhuodizhi img"></i>
+				收货地址
+			</view>
+			<i class="iconfont icon-jiantou-copy right"></i>
+		</navigator>
+		<navigator url='/pages/serviceIntr/serviceIntr' class='item'>
+			<view class="text-box">
+				<i class="iconfont icon-fuwujieshao img"></i>
+				服务介绍
+			</view>
+			<i class="iconfont icon-jiantou-copy right"></i>
+		</navigator>
+		<view class='item' bindtap="makePhoneCall" data-tell="400-002-2699">
+			<view class="text-box">
+				<i class="iconfont icon-kefudianhua img"></i>
+				电话客服 <text>400-002-2699</text>
+			</view>
+			<i class="iconfont icon-jiantou-copy right"></i>
+		</view>
+		<button open-type="contact" class='item'>
+			<view class="text-box">
+				<i class="iconfont icon-kefu img"></i>
+				在线客服
+			</view>
+			<i class="iconfont icon-jiantou-copy right"></i>
+		</button>
+	</view>
 </view>

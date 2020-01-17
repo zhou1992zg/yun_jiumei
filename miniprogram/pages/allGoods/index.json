@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "全部商品",
+  "navigationBarBackgroundColor": "#9c2732",
+  "usingComponents": {
+    "tty-linkage": "../../../components/linkage/linkage",
+    "tty-sh-basket": "../../../components/shopping-basket/shopping-basket",
+    "tty-dialog": "../../../components/tty-ui/dialog/index"
+  }
 }

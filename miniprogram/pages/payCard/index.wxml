@@ -1,59 +1,94 @@
-<!--index.wxml-->
 <view class="container">
+  <view class='no_shop' wx:if="{{carisShow}}">
+    <view class='no_shop_only'>
+      <image class='shop_show_only' src='../../images/03gouwuche_kong.png'></image>
+      <text class='on_shop_txt'>购物车空空如也</text>
+      <navigator url="/pages/index/index" open-type='switchTab' hover-class="none">
+        <view class='btn_return'>
 
-  <!-- 用户 openid -->
-  <view class="userinfo">
-    <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})"
-      size="default"
-    ></button>
-    <view class="userinfo-nickname-wrapper">
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+          <text class='txt_btn_return'>去首页逛逛吧</text>
+        </view>
+      </navigator>
     </view>
   </view>
-
-
-  <!-- 上传图片 -->
-  <view class="uploader">
-    <view class="uploader-text" bindtap="doUpload">
-      <text>上传图片</text>
+  <view class='has_shop' wx:else>
+    <!-- 第一排 -->
+    <view class='has_shop_title'>
+      <view class='position_title'>
+        <view class='has_shop_circleunchecked' wx:if="{{!isChecked}}" bindtap='checkAll'></view>
+        <view class='position_shop_circlechecked' wx:else bindtap='checkAll'>
+          <image class='has_shop_circlechecked1' src='../../assets/images/gou.png'></image>
+        </view>
+        <image class='has_shop_icon1' src='../../images/03gouwuche_icon_dianpu.png'></image>
+        <text class='has_shop_smalltxt'>酒槑 (配送/自提)</text>
+      </view>
+      <text class='btn_shop_change' wx:if="{{isEdit}}" bindtap='editGood'>编辑</text>
+      <text class='btn_shop_change' wx:else bindtap='editComplete'>完成</text>
     </view>
-    <view class="uploader-container" wx:if="{{imgUrl}}">
-      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    <!-- 循环的商品列表 -->
+    <view class='has_shop_list'>
+      <!-- 循环商品列表 -->
+      <block wx:key="key{{goods_car_index}}" wx:for="{{goodsCar}}">
+        <view class='has_shop_item'>
+          <view class='btn_ischeck'>
+            <!-- 判断是否为选中状态 -->
+            <view class='img_icon_ischeck' wx:if="{{!item.selected}}" bindtap='selectShop' data-index='{{index}}'></view>
+            <view class='position_shop_circlechecked' wx:else data-index='{{index}}' bindtap='selectShop'>
+              <image class='has_shop_circlechecked1' src='../../assets/images/gou.png'></image>
+            </view>
+            <view class='position_hasshop_item'>
+              <view class='position_hasshop_img'>
+                <!-- 商品图片 -->
+                <image class='shop_img' src='{{item.url}}'></image>
+                <image class='icon_vip' src='../../images/vip.png'></image>
+              </view>
+              <view class='menu_right_txt'>
+                <!-- 商品名称和描述 -->
+                <text class='menu_right_name'>{{item.goods_name}}</text>
+                <view class='menu_right_down'>
+                  <!-- 商品最新价格 -->
+                  <text class='menu_right_nprice'>¥{{item.price}}</text>
+                  <!-- 商品以往价格 -->
+                  <view class='has_shop_num'>
+                    <!-- 商品数量减少按钮 -->
+                    <tty-stepper size="small" goodsId="{{item.goods_id}}" typeOneIndex="{{typeOneIndex}}" typeTwoIndex="{{typeTwoIndex}}" goodsIndex="{{index}}" totalStock="{{item.stock}}" totalNum="{{item.count}}" bindStepperEvent="stepperEvent"></tty-stepper>
+
+                    <!-- <image class='btn_sub' src='../../images/jian.png' bindtap='subNum' data-index='{{index}}'></image> -->
+                    <!-- <text class='goods_num'>{{item.count}}</text> -->
+                    <!-- 增加商品数量按钮 -->
+                    <!-- <image class='btn_add' src='../../images/jia.png' bindtap='addNum' data-index='{{index}}'></image> -->
+                  </view>
+                </view>
+              </view>
+              <view class='btn_delete_shop' wx:if="{{!isEdit}}" bindtap='deteleGood' data-index='{{index}}'>删除</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- 底部选择栏 -->
+    <view class='shop_car_total'>
+      <view class='car_total_left'>
+        <view class='has_shop_circleunchecked' wx:if="{{!isChecked}}" bindtap='checkAll'></view>
+        <image class='has_shop_circlechecked' src='../../assets/images/gou.png' wx:else bindtap='checkAll'></image>
+        <text class='total_txt'>全选</text>
+      </view>
+      <view class='shop_total_right'>
+        <view class='shop_total_freight'>
+          <view class='position_total'>
+            <text class='total_name'>合计:</text>
+            <text class='total_name_num'>￥{{totalPrice}}</text>
+          </view>
+          <view class='position_total_freight'>
+            <text class='total_freight'>不含运费</text>
+          </view>
+        </view>
+        <!-- 一个都没选择，展示灰色结算按钮 -->
+        <view class='btn_detele_all' wx:if="{{isSettlement}}">结算</view>
+        <view class='btn_detele_all_red' wx:if="{{isSettlementRed}}" bindtap='goOrder'>结算</view>
+        <view class='btn_detele_all_red' wx:if="{{idDeteleRed}}" bindtap='deteleMore'>删除</view>
+        <view class='btn_detele_all' wx:if="{{idDetel}}">删除</view>
+      </view>
     </view>
   </view>
-
-
-  <!-- 操作数据库 -->
-  <view class="uploader">
-    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
-      <text>前端操作数据库</text>
-    </navigator>
-  </view>
-
-  <!-- 即时通信 -->
-  <view class="uploader">
-    <navigator url="../im/im" open-type="navigate" class="uploader-text">
-      <text>即时通信 Demo</text>
-    </navigator>
-  </view>
-
-  <!-- 新建云函数 -->
-  <view class="uploader">
-    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
-    </navigator>
-  </view>
-
-  <!-- 云调用 -->
-  <view class="uploader">
-    <navigator url="../openapi/openapi" open-type="navigate" class="uploader-text">
-      <text>云调用</text>
-    </navigator>
-  </view>
-
-
 </view>

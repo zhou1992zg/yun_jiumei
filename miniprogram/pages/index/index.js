@@ -15,6 +15,11 @@ Page({
   onLoad: function () {
   },
 
+  jumpToProductList(e){
+    let classid = e.currentTarget.dataset.classid;
+    console.log(classid);
+  },
+
   swiperChange(e) {
     let _this = this;
     if (_this.data.bannerList.length > _this.data.currentNum) {
