@@ -17,23 +17,40 @@
     background: #F2F2F2;
     height: 100%;
 }
-.container-linkpage .nav .nav-scroll{
+
+.container-linkpage .nav .nav-scroll {
     overflow: scroll;
 }
 
 .container-linkpage .nav .nav-item {
-    text-align: center;
+    text-align: left;
     width: 100%;
     display: block;
-    /*min-height: 100rpx;*/
-    /*line-height: 100rpx;*/
+    height: 58rpx;
+    line-height: 58rpx;
     color: #313131;
     padding: 32rpx 0;
-    font-size: 32rpx;
+    font-size: 28rpx;
+    padding-left: 16rpx;
 }
 
 .container-linkpage .nav .active {
+    position: relative;
     background: #ffffff;
+    font-size: 32rpx;
+}
+
+.container-linkpage .nav .active text{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-left: -10rpx;
+    margin-top: -16rpx;
+    height: 32rpx;
+    width: 18rpx;
+    background-color: #ef2a26;
+    display: block;
+    z-index: 999;
 }
 
 .container-linkpage .content {
@@ -41,21 +58,31 @@
     background: #fff;
     height: 100%;
 }
-.container-linkpage .content .content-scroll{
+
+.container-linkpage .content .content-scroll {
+    overflow: hidden;
+}
+
+.container-linkpage .pesticide{
     overflow: hidden;
 }
 
 .container-linkpage .pesticide .type-name {
     display: flex;
-    justify-content: center;
     height: 72rpx;
+    margin-left: 28rpx;
     align-items: center;
 }
 
-.container-linkpage .pesticide .type-name .line {
-    width: 40rpx;
-    height: 2rpx;
-    border-bottom: solid 1rpx #ddd;
+.container-linkpage .pesticide .pesticide_img {
+    display: block;
+    width: 546rpx;
+    height: 172rpx;
+    padding-bottom: 24rpx;
+    margin-top: 24rpx;
+    margin-left: 24rpx;
+    margin-right: 24rpx;
+    background-color: pink;
 }
 
 .container-linkpage .pesticide .type-name .name {
@@ -75,8 +102,9 @@
 }
 
 .pesticide .pesticide-item image {
-    width: 136rpx;
-    height: 136rpx;
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 16rpx;
     margin-right: 24rpx;
 }
 
@@ -84,11 +112,12 @@
     flex: 1;
     position: relative;
 }
-.pesticide .pesticide-item .management-item-content{
-  min-height: 136rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+.pesticide .pesticide-item .management-item-content {
+    min-height: 136rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .pesticide .pesticide-item .describe {
@@ -103,21 +132,17 @@
 }
 
 .pesticide .pesticide-item .inventory {
-    font-size: 24rpx;
-    color: #999;
+    font-size: 22rpx;
+    color: #aaa;
     margin-top: 8rpx;
     display: inline;
 }
 
 .pesticide .pesticide-item .price {
-    color: #FF8200;
+    color: #ef2a26;
     margin-top: 16rpx;
-  font-size: 28rpx;
-}
-.pesticide .pesticide-item .price .init{
-  margin-left: 8rpx;
-  color: #999;
-  font-size: 24rpx;
+    font-size: 28rpx;
+    font-weight: 600;
 }
 
 .pesticide .pesticide-item .amount {
@@ -132,20 +157,21 @@
     right: 30rpx;
     bottom: 0;
 }
+
 .content .has-no-more {
-  display: flex;
-  justify-content: center;
-  padding: 30rpx 0;
-  color: #ccc;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 30rpx 0;
+    color: #ccc;
+    align-items: center;
 }
 
 .content .has-no-more .line {
-  width: 40rpx;
-  height: 2rpx;
-  border-bottom: solid 1rpx #ddd;
+    width: 40rpx;
+    height: 2rpx;
+    border-bottom: solid 1rpx #ddd;
 }
 
 .content .has-no-more .name {
-  margin: 0 16rpx;
+    margin: 0 16rpx;
 }

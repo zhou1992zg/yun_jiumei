@@ -44,7 +44,7 @@
               </view>
               <view class='menu_right_txt'>
                 <!-- 商品名称和描述 -->
-                <text class='menu_right_name'>{{item.goods_name}}</text>
+                <text class='menu_right_name zx-warp-2'>{{item.goods_name}}</text>
                 <view class='menu_right_down'>
                   <!-- 商品最新价格 -->
                   <text class='menu_right_nprice'>¥{{item.price}}</text>
@@ -52,11 +52,6 @@
                   <view class='has_shop_num'>
                     <!-- 商品数量减少按钮 -->
                     <tty-stepper size="small" goodsId="{{item.goods_id}}" typeOneIndex="{{typeOneIndex}}" typeTwoIndex="{{typeTwoIndex}}" goodsIndex="{{index}}" totalStock="{{item.stock}}" totalNum="{{item.count}}" bindStepperEvent="stepperEvent"></tty-stepper>
-
-                    <!-- <image class='btn_sub' src='../../images/jian.png' bindtap='subNum' data-index='{{index}}'></image> -->
-                    <!-- <text class='goods_num'>{{item.count}}</text> -->
-                    <!-- 增加商品数量按钮 -->
-                    <!-- <image class='btn_add' src='../../images/jia.png' bindtap='addNum' data-index='{{index}}'></image> -->
                   </view>
                 </view>
               </view>

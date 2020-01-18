@@ -6,7 +6,8 @@ Page({
    */
   data: {
     classid:0,
-
+    sel_sort:1,
+    goodsClassList:[{},{},{},{},{},{},{},{}]
   },
 
   /**
@@ -20,6 +21,15 @@ Page({
     this.classid = options.index;
   },
 
+  viewDetailFunc(e) {
+    let {
+      id
+    } = e.detail;
+    wx.navigateTo({
+      url: '/pages/goodsDetail/goodsDetail?id='+id
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

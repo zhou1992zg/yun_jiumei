@@ -60,6 +60,20 @@
 					"id": -1,
 					"name": "pages/goodsClass/goodsClass",
 					"pathName": "pages/goodsClass/goodsClass",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/allGoods/index",
+					"pathName": "pages/allGoods/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/payCard/index",
+					"pathName": "pages/payCard/index",
 					"scene": null
 				}
 			]

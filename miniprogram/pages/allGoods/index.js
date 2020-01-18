@@ -148,7 +148,7 @@ Page({
       id
     } = e.detail;
     wx.navigateTo({
-      url: '/pages/goodsDetail/goodsDetail'
+      url: '/pages/goodsDetail/goodsDetail?id='+id
     })
   },
   /*商品列表添加事件*/
