@@ -45,7 +45,7 @@
 		 wx:for-item="item"
 		 wx:key="index"
 		>
-			<view class="category_list" bindtap="jumpToProductList" data-classid="{{index}}">
+			<view class="category_list" bindtap="jumpToProductList" data-title="{{item.name}}" data-classid="{{index}}">
 				<span class="sprite_box">
 					<span class="sprite_img sprite {{'sprite'+index}}" />
 				</span>

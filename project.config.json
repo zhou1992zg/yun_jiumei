@@ -24,7 +24,7 @@
 	},
 	"appid": "wx449120aad9db406a",
 	"projectname": "yun_wx",
-	"libVersion": "2.8.1",
+	"libVersion": "2.10.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -43,13 +43,24 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/goodsClass/goodsClass",
+					"pathName": "pages/goodsClass/goodsClass",
+					"scene": null
 				}
 			]
 		}

@@ -3,7 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    bannerList: [{ name: "红葡萄酒" }, { name: "白葡萄酒" }, { name: "甜葡萄酒" }, { name: "起泡酒" }, { name: "精品名庄" }, { name: "百元畅饮" }, { name: "人气爆款" }, { name: "理念新作" }],
+    bannerList: [{ name: "红葡萄酒" }, { name: "白葡萄酒" }, { name: "甜葡萄酒" }, { name: "起泡酒" }, { name: "百元畅饮" }, { name: "人气爆款" }, { name: "精品酒具" }, { name: "店主优选" }],
     currentNum: 0,
     blockListStyleLength: 4,
     one_product_list: [{ pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }],
@@ -16,8 +16,11 @@ Page({
   },
 
   jumpToProductList(e){
+    let title = e.currentTarget.dataset.title;
     let classid = e.currentTarget.dataset.classid;
-    console.log(classid);
+    wx.navigateTo({
+      url: '/pages/goodsClass/goodsClass?classid='+classid+"&title="+title,
+    })
   },
 
   swiperChange(e) {

@@ -6,7 +6,8 @@
     "pages/my/index",
     "pages/login/login",
     "pages/shopOrder/shopOrder",
-    "pages/goodsDetail/goodsDetail"
+    "pages/goodsDetail/goodsDetail",
+    "pages/goodsClass/goodsClass"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
