@@ -32,12 +32,14 @@
     padding: 32rpx 0;
     font-size: 28rpx;
     padding-left: 16rpx;
+    color: #aaa
 }
 
 .container-linkpage .nav .active {
     position: relative;
     background: #ffffff;
     font-size: 32rpx;
+    color: #000;
 }
 
 .container-linkpage .nav .active text{

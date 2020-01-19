@@ -184,3 +184,63 @@
   width: 100%;
   height: 100%;
 }
+
+.all_goods{
+  margin-top: 20rpx;
+}
+
+.goods_class_list {
+  overflow: hidden;
+  padding: 0 22rpx;
+}
+
+.goods_img {
+  width: 270rpx;
+  height: 270rpx;
+  margin: 12rpx 0;
+  border-radius: 20rpx;
+  float: left;
+}
+
+.right {
+  float: right;
+  width: 418rpx;
+  font-size: 28rpx;
+  padding-top: 12rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.title {
+  padding-top: 16rpx;
+}
+
+.feature {
+  padding-top: 20rpx;
+}
+
+.feature span {
+  color: #777778;
+  font-size: 28rpx;
+  padding: 0 18rpx;
+  background-color: #fefefe;
+  border-radius: 30rpx;
+  margin-right: 10rpx;
+}
+
+.money {
+  padding-top: 20rpx;
+  font-size: 22rpx;
+  color: #ef2a26;
+  font-weight: 600;
+}
+
+.money span {
+  font-size: 32rpx;
+}
+
+.type {
+  padding-top: 14rpx;
+  font-size: 20rpx;
+  color: #aaa;
+}

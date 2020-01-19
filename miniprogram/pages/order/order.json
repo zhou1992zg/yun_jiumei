@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "navigationBarBackgroundColor": "#9c2732",
+  "usingComponents": {
+    "tty-stepper": "../../../components/num-choose/num-choose"
+  }
+}

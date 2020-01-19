@@ -1,0 +1,81 @@
+<!-- 地址填写/选择 -->
+<view class='address noAddress' data-addressid="{{addressData.address_id||''}}" bindtap="{{addressData?'toAddAddressPage':'toaddressPage'}}">
+	<i class="iconfont icon-dizhi address-icon"></i>
+	<view class='address-right'>
+		<view class='name'>{{addressData.realname||'联系人姓名'}} · {{addressData.mobile||'电话'}}</view>
+		<view class='addess-detail'>{{addressData.info||'请选择详细的地址'}}</view>
+	</view>
+	<i class="iconfont icon-jiantou-copy address-icon"></i>
+</view>
+
+<picker bindchange="bindPickerChange" value="{{payTypeArray[payTypeIndex]}}" range="{{payTypeArray}}">
+	<view class='pay_style' bindtap="payType">
+		<view class='address-right'>
+			<view class='name'>配送方式 : {{payTypeArray[payTypeIndex]}}</view>
+		</view>
+		<i class="iconfont icon-sandian address-icon"></i>
+	</view>
+</picker>
+
+
+<!-- 循环的商品列表 -->
+<view class='has_shop_list'>
+	<!-- 循环商品列表 -->
+	<block wx:key="key{{goods_car_index}}" wx:for="{{orderinfo}}">
+		<view class='has_shop_item'>
+			<view class='btn_ischeck'>
+				<!-- 判断是否为选中状态 -->
+				<view class='img_icon_ischeck' wx:if="{{!item.selected}}" bindtap='selectShop' data-index='{{index}}'></view>
+				<view class='position_hasshop_item'>
+					<view class='position_hasshop_img'>
+						<!-- 商品图片 -->
+						<image class='shop_img' src='{{item.url}}'></image>
+					</view>
+					<view class='menu_right_txt'>
+						<!-- 商品名称和描述 -->
+						<text class='menu_right_name zx-warp-2'>{{item.goods_name}}</text>
+						<view class='menu_right_down'>
+							<!-- 商品最新价格 -->
+							<text class='menu_right_nprice'>¥{{item.price}}</text>
+							<!-- 商品以往价格 -->
+							<view class='has_shop_num'>
+								<!-- 商品数量减少按钮 -->
+								<tty-stepper size="small" goodsId="{{item.goods_id}}" typeOneIndex="{{typeOneIndex}}" typeTwoIndex="{{typeTwoIndex}}" goodsIndex="{{index}}" totalStock="{{item.stock}}" totalNum="{{item.count}}" bindStepperEvent="stepperEvent"></tty-stepper>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>
+
+<view class='pay_style'>
+	<view class='address-right'>
+		<view class='name'>商品金额</view>
+	</view>
+	<view class='address-right'>
+		<view class='name'>￥11098.50</view>
+	</view>
+</view>
+
+<view class='pay_style'>
+	<view class='address-right'>
+		<view class='name'>运费</view>
+	</view>
+	<view class='address-right color_them'>
+		<view class='name'>+ ￥11.50</view>
+	</view>
+</view>
+
+<!-- 购买按钮 -->
+<view class='buyBtn'>
+	<view class='btn-box'>
+		<view class="btn" style="width:50%;background:#fff;color:#9c2732;" hover-class="none" hover-stop-propagation="false" bindtap="" data-goodid="1">
+			￥<text>11088.50</text>
+		</view>
+		<view class="btn" style="width:50%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuyCard">
+			提交订单
+		</view>
+	</view>
+</view>

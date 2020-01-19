@@ -1,35 +1,45 @@
-// pages/goodsClass/goodsClass.js
+// pages/order/order.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    classid:0,
-    sel_sort:1,
-    goodsClassList:[{},{},{},{},{},{},{},{}]
+    orderinfo: [],
+    payTypeIndex: 0,
+    payTypeArray: ['快递邮寄', '上门自提', '同城急送 ·（即送费）'],
+    addressData: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    wx.setNavigationBarTitle({
-      title: options.title,
+    this.setData({
+      orderinfo: wx.getStorageSync("ORDERINFO"),
+      addressData: wx.getStorageSync("ADDRESS_DATA")
     })
-    this.classid = options.index;
   },
 
-  viewDetailFunc(e) {
-    let {
-      id
-    } = e.detail;
+  toaddressPage() {
     wx.navigateTo({
-      url: '/pages/goodsDetail/goodsDetail?id='+id
+      url: '/pages/address/address',
     })
   },
-  
+
+  toAddAddressPage() {
+    wx.navigateTo({
+      url: '/pages/add_address/add_address',
+    })
+  },
+
+  bindPickerChange(e) {
+    console.log(e)
+    this.setData({
+      payTypeIndex: e.detail.value
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

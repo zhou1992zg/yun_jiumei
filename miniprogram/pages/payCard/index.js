@@ -151,16 +151,32 @@ Page({
         isSettlementRed: !isUncheck
       })
     }
+    console.log(this.data.goodsCar)
     this.totalPrice();
   },
 
-  stepperEvent: function(e){
+  stepperEvent: function (e) {
     console.log(e.detail.action)
-    if(e.detail.action=="plus"){
+    if (e.detail.action == "plus") {
       this.addNum(e.detail.goodsIndex);
-    }else if(e.detail.action=="minus"){
+    } else if (e.detail.action == "minus") {
       this.subNum(e.detail.goodsIndex);
+    } else if (e.detail.action == "change") {
+      console.log(e.detail.goodsIndex)
+      console.log(e.detail.totalNum)
+      this.changeGoodsNum(e.detail.goodsIndex, e.detail.totalNum)
     }
+  },
+  //输入数量
+  changeGoodsNum: function (index, totalNum) {
+    let list = this.data.goodsCar;
+    // 获取商品数量
+    list[index].count = totalNum;
+    this.setData({
+      goodsCar: list
+    });
+    wx.setStorageSync("ORDERINFO", list)
+    this.totalPrice();
   },
   //减少数量
   subNum: function (index) {
@@ -177,7 +193,7 @@ Page({
     this.setData({
       goodsCar: list
     });
-    wx.setStorageSync("ORDERINFO",list)
+    wx.setStorageSync("ORDERINFO", list)
     this.totalPrice();
   },
   //增加数量
@@ -195,7 +211,7 @@ Page({
     this.setData({
       goodsCar: list
     });
-    wx.setStorageSync("ORDERINFO",list)
+    wx.setStorageSync("ORDERINFO", list)
     this.totalPrice();
   },
   // 计算金额
@@ -302,8 +318,9 @@ Page({
             }
           }
           _this.data.orderinfo = nlist; //将订单的信息传给API.js
+          wx.setStorageSync("ORDERINFO", nlist);
           wx.navigateTo({
-            url: '../order/order'
+            url: '/pages/order/order'
           })
         } else {
           console.log(res);
@@ -332,8 +349,7 @@ Page({
       });
       return;
     }
-    this.data.orderinfo = wx.getStorageSync("ORDERINFO");
-    this.data.goodsCar = wx.getStorageSync("ORDERINFO");
+    this.data.goodsCar = wx.getStorageSync("GOODSCAR");
     this.totalPrice();
   },
 })

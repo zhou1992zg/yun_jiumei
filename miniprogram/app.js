@@ -14,7 +14,7 @@ App({
         traceUser: true,
       })
     }
-    wx.setStorageSync("ORDERINFO",[{
+    wx.setStorageSync("GOODSCAR",[{
       amount: 0,
       base_unit_id: "221310149857512422",
       base_unit_name: "把",

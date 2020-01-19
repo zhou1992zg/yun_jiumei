@@ -1,35 +1,27 @@
-// pages/goodsClass/goodsClass.js
+// pages/address/address.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    classid:0,
-    sel_sort:1,
-    goodsClassList:[{},{},{},{},{},{},{},{}]
+    clicktag: 0,
+    popUpWindowHidden: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    wx.setNavigationBarTitle({
-      title: options.title,
-    })
-    this.classid = options.index;
+    const _this = this;
+    let { pagetype, addressid } = options;
+    const systemInfo = _this.data.systemInfo;
+    _this.setData({
+        pageType: pagetype,
+        addressid:addressid,
+    });
   },
 
-  viewDetailFunc(e) {
-    let {
-      id
-    } = e.detail;
-    wx.navigateTo({
-      url: '/pages/goodsDetail/goodsDetail?id='+id
-    })
-  },
-  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

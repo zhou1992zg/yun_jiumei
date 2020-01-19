@@ -59,7 +59,7 @@
     </block>
     <view class='empty_big_box'>
   <view class='empty_box'>
-    <i class="iconfont icon-kong i"></i>
+    <i class="iconfont icon-kong2 i"></i>
     <view class='empty_text'>暂无订单</view>
   </view>
 </view>

@@ -33,7 +33,7 @@
 		</view>
 	</view>
 	<view class="list-box" style="margin-top:6px;">
-		<navigator url='/pages/address_list/address_list?pagetype="my"' class='item'>
+		<navigator url='/pages/address/address?pagetype="1"' class='item'>
 			<view class="text-box">
 				<i class="iconfont icon-shouhuodizhi img"></i>
 				收货地址

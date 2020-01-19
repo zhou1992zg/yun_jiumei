@@ -7,7 +7,10 @@
     "pages/login/login",
     "pages/shopOrder/shopOrder",
     "pages/goodsDetail/goodsDetail",
-    "pages/goodsClass/goodsClass"
+    "pages/goodsClass/goodsClass",
+    "pages/address/address",
+    "pages/add_address/add_address",
+    "pages/order/order"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -9,7 +9,8 @@ Page({
     one_product_list: [{ pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }],
     two_product_list: [{ pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }],
     three_product_list: [{ pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }],
-    four_product_list: [{ pic: '../../static/banner_err.png' }]
+    four_product_list: [{ pic: '../../static/banner_err.png' }],
+    goodsClassList:[{},{},{},{},{}]
   },
 
   onLoad: function () {

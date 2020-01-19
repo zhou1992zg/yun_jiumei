@@ -1,7 +1,7 @@
 <view class="container">
   <view class='no_shop' wx:if="{{carisShow}}">
     <view class='no_shop_only'>
-      <image class='shop_show_only' src='../../images/03gouwuche_kong.png'></image>
+       <i class="iconfont icon-kong i"></i>
       <text class='on_shop_txt'>购物车空空如也</text>
       <navigator url="/pages/index/index" open-type='switchTab' hover-class="none">
         <view class='btn_return'>
@@ -19,7 +19,7 @@
         <view class='position_shop_circlechecked' wx:else bindtap='checkAll'>
           <image class='has_shop_circlechecked1' src='../../assets/images/gou.png'></image>
         </view>
-        <image class='has_shop_icon1' src='../../images/03gouwuche_icon_dianpu.png'></image>
+        <image class='has_shop_icon1' src='../../assets/images/logo.jpg'></image>
         <text class='has_shop_smalltxt'>酒槑 (配送/自提)</text>
       </view>
       <text class='btn_shop_change' wx:if="{{isEdit}}" bindtap='editGood'>编辑</text>
@@ -40,7 +40,6 @@
               <view class='position_hasshop_img'>
                 <!-- 商品图片 -->
                 <image class='shop_img' src='{{item.url}}'></image>
-                <image class='icon_vip' src='../../images/vip.png'></image>
               </view>
               <view class='menu_right_txt'>
                 <!-- 商品名称和描述 -->
@@ -80,9 +79,9 @@
         </view>
         <!-- 一个都没选择，展示灰色结算按钮 -->
         <view class='btn_detele_all' wx:if="{{isSettlement}}">结算</view>
-        <view class='btn_detele_all_red' wx:if="{{isSettlementRed}}" bindtap='goOrder'>结算</view>
-        <view class='btn_detele_all_red' wx:if="{{idDeteleRed}}" bindtap='deteleMore'>删除</view>
-        <view class='btn_detele_all' wx:if="{{idDetel}}">删除</view>
+        <view class='btn_detele_all_red' wx:elif="{{isSettlementRed}}" bindtap='goOrder'>结算</view>
+        <view class='btn_detele_all_red' wx:elif="{{idDeteleRed}}" bindtap='deteleMore'>删除</view>
+        <view class='btn_detele_all' wx:else="{{idDetel}}">删除</view>
       </view>
     </view>
   </view>

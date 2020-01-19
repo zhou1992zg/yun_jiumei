@@ -222,7 +222,6 @@ page {
 
 .empty_big_box .empty_box .empty_text {
     width: 610rpx;
-    margin-top: 50rpx;
     text-align: center;
     font-size: 28rpx;
     color: rgba(153, 153, 153, 1);

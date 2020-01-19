@@ -56,8 +56,8 @@
     height: 48rpx;
     line-height: 48rpx;
     font-size: 30rpx;
-    background: #FF8200;
-    border: solid 1px #FF8200;
+    background: #9c2732;
+    border: solid 1px #9c2732;
     color: #fff;
 }
 .num-choose .active{

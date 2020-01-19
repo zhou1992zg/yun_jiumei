@@ -1,0 +1,196 @@
+/* pages/my/address/address.wxss */
+
+.element::-webkit-scrollbar {
+  display: none
+}
+
+.wrap {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  background: #eef0ed;
+  box-sizing: border-box;
+  padding-bottom: 120rpx;
+  min-height: 100vh;
+}
+
+.xm-ellipsis-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal !important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.cell-content {
+  width: 380rpx;
+}
+
+.cells {
+  position: relative;
+  bottom: 120px;
+  top: 0px;
+  overflow: hidden;
+}
+
+.cells:after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: #e5e5e5;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 30rpx;
+  overflow-x: auto;
+}
+
+.cell:after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #e5e5e5;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.cell-name {
+  width: 222rpx;
+  text-align: center;
+  font-size: 34rpx;
+  margin-right: 50rpx;
+}
+
+.cell-name .status {
+  width: 80rpx;
+  height: 38rpx;
+  font-size: 26rpx;
+  line-height: 38rpx;
+  border-radius: 30rpx;
+  border: 1px solid #8e1bff;
+  color: #8e1bff;
+  margin: auto;
+  margin-top: 14rpx;
+}
+
+.adds {
+  margin-top: 14rpx;
+  color: #888;
+}
+
+.edit {
+  width: 130rpx;
+  text-align: center;
+  margin-left: auto;
+}
+
+.edit image {
+  width: 36rpx;
+  height: 36rpx;
+  margin: auto;
+}
+
+.fiexd-adds {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #fff;
+}
+
+.fiexd-adds .adds-btn {
+  width: 650rpx;
+  height: 90rpx;
+  margin: 16rpx 50rpx;
+  border-radius: 20rpx;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 90rpx;
+  color: #eef0ed;
+  background: #9c2732;
+}
+
+.del {
+  width: 160rpx;
+  height: 100%;
+  background-color: red;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: -160rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 地址列表 */
+
+.address-list {
+  width: 710rpx;
+  margin: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.address-list .address-name {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.address-list .address-city {
+  font-size: 28rpx;
+  width: 100%;
+}
+
+.address-list .address-city .address-type {
+  width: 100%;
+  font-size: 22rpx;
+  padding: 2rpx 20rpx;
+  background: #0172ce;
+  color: #fff;
+  border-radius: 20rpx;
+  margin-right: 10rpx;
+}
+
+.address-list .address-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0 10rpx 0;
+  margin-top: 10rpx;
+  border-top: 2rpx solid rgb(211, 209, 209);
+}
+
+.address-list .address-btn .gou-img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.address-list .address-btn .btn-default {
+  display: flex;
+  align-items: center;
+}
+
+.address-list .address-btn .modify {
+  width: 40rpx;
+  height: 40rpx;
+  padding-right: 10rpx;
+}

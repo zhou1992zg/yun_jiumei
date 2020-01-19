@@ -1,0 +1,39 @@
+  <view class='wrap'>
+  	<view class='inputs'>
+  		<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+				<view class='inputs-item'>
+					<label>城市</label>
+					<view class='inpt city' bindtap='chooseCity'>
+						<input placeholder-style='color: #B2B2B2' value='{{cityValue}}' placeholder='省，市，区' disabled />
+						<image src='/imgs/arrow-right.png'></image>
+					</view>
+				</view>
+			</picker>
+  		<view class='inputs-item'>
+  			<label>详细地址</label>
+  			<view class='inpt'>
+  				<input bindinput='setParams' data-key='adds' placeholder-style='color: #B2B2B2' value='{{adds}}' placeholder='如街道，楼牌等' />
+  			</view>
+  		</view>
+  		<view class='inputs-item'>
+  			<label>姓名</label>
+  			<view class='inpt'>
+  				<input bindinput='setParams' data-key='name' placeholder-style='color: #B2B2B2' value='{{name}}' placeholder='姓名' />
+  			</view>
+  		</view>
+  		<view class='inputs-item'>
+  			<label>手机号</label>
+  			<view class='inpt'>
+  				<input bindinput='setParams' data-key='phone' placeholder-style='color: #B2B2B2' value='{{phone}}' placeholder='手机号码' />
+  			</view>
+  		</view>
+  		<view class='default-adds' bindtap='checkRadioFn'>
+				<i class="iconfont icon-xuanze i" wx:if="{{!radioChecked}}"></i>
+				<i class="iconfont icon-gou i" wx:else></i>
+  			设为默认地址
+  		</view>
+  	</view>
+  	<button class='btn-save' bindtap='save'>保存</button>
+  	<!-- 城市选择控件 -->
+  	<picker isShowPicker="{{isShowCity}}" value="{{adress_index}}" keyWordsOfShow="name" bindsure="sureCallBack" bindcancle="{{cancleCallBack}}" scrollType="link" listData="{{citysLists}}" titleText="选择省市区" sureStyle='color: #8E1BFF' cancelStyle='color: #B2B2B2' titleStyle='color: #B2B2B2;font-size: 36rpx'></picker>
+  </view>
