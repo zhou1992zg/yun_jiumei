@@ -5,7 +5,7 @@ Page({
    */
   data: {
     bgHeight: 0,
-    userInfo: {},
+    userInfo: wx.getStorageSync("PHONE_NUMBER"),
     isLogin: wx.getStorageSync("PHONE_NUMBER")
   },
 
@@ -23,30 +23,40 @@ Page({
     this.setData({
       bgHeight: systemInfo.windowHeight
     })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              console.log(res);
-              this.setData({
-                userInfo: res.userInfo,
-              })
-            }
-          })
-        }
-      }
-    })
   },
 
   onGetUserInfo: function (e) {
+    const that = this;
     if (e.detail.userInfo) {
-      this.setData({
-        userInfo: e.detail.userInfo,
-      })
+      that.update(e.detail.userInfo, wx.getStorageSync("PHONE_NUMBER"));
     }
+  },
+
+  // 更新用户信息
+  update: function (userInfo, userPhone) {
+    const db = wx.cloud.database();
+    Object.assign(userPhone, userInfo);
+    db.collection("user-info").where({
+      _openid: userPhone._openid
+    }).update({
+      data: userInfo,
+      success: res => {
+        console.log(res)
+        wx.setStorageSync("PHONE_NUMBER", userPhone)
+        this.setData({
+          userInfo: userPhone,
+        })
+        wx.showToast({
+          title: '同步成功啦',
+        })
+      },
+      fail: err => {
+        console.log(err)
+        wx.showToast({
+          title: '同步失败啦，稍后再试',
+        })
+      }
+    })
   },
 
   switchTabPage: function (e) {

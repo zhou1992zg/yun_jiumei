@@ -86,8 +86,35 @@ Page({
       mobile: phone,
       info: cityValue + adds,
     }
-    wx.setStorageSync("ADDRESS_DATA", addressData);
     console.log(addressData)
+    _this.addNewAddress(addressData, function (res) {
+      wx.setStorageSync("ADDRESS_DATA", addressData);
+      wx.navigateBack({
+        delta: 1
+      })
+    }, function () {
+
+    })
+  },
+
+  addNewAddress: function (addressData, fn, errFn) {
+    const that = this;
+    const db = wx.cloud.database();
+    db.collection("address-list").add({
+      data: addressData,
+      success: res => {
+        console.log('添加新收货地址成功，返回的_id', res._id)
+        if (res._id) {
+          fn && fn(res)
+        } else {
+          errFn && errFn()
+        }
+      },
+      fail: err => {
+        console.log(err)
+        errFn && errFn()
+      }
+    })
   },
 
   checkRadioFn() {

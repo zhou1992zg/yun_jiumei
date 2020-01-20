@@ -360,6 +360,7 @@ page {
   align-items: center;
   width: 590rpx;
   line-height:54rpx;
+  font-size: 32rpx;
 }
 
 .my-box .list-box .item .text-box text {

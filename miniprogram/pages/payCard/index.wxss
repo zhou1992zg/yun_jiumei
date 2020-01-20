@@ -97,7 +97,7 @@ view {
   height: 38rpx;
   border: 2rpx solid rgba(151, 151, 151, 1);
   border-radius: 50%;
-  margin: 0 30rpx 0 30rpx;
+  margin: 0 10rpx 0 30rpx;
 }
 
 .has_shop_circlechecked1 {
@@ -110,17 +110,17 @@ view {
   overflow: hidden;
   width: 42rpx;
   height: 42rpx;
-  margin: 0 30rpx 0 30rpx;
+  margin: 0 10rpx 0 30rpx;
 }
 
 .has_shop_icon1 {
-  width: 32rpx;
-  height: 32rpx;
-  margin-right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0 8rpx 0 10rpx;
 }
 
 .has_shop_smalltxt {
-  font-size: 28rpx;
+  font-size: 32rpx;
   font-family: PingFangSC-Regular;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
@@ -166,7 +166,7 @@ view {
   height: 38rpx;
   border: 2rpx solid rgba(151, 151, 151, 1);
   border-radius: 50%;
-  margin: 0 30rpx 0 30rpx;
+  margin: 0 10rpx 0 30rpx;
 }
 
 .shop_img {
@@ -189,7 +189,7 @@ view {
 
 .menu_right_name {
   padding-top: 14rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
   line-height: 30rpx;
   font-family: PingFangSC-Regular;
   font-weight: 400;
@@ -344,12 +344,12 @@ view {
 }
 
 .total_name {
-  font-size: 28rpx;
+  font-size: 30rpx;
   color: rgba(51, 51, 51, 1);
 }
 
 .total_name_num {
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-family: PingFangSC-Medium;
   font-weight: 500;
   line-height: 40rpx;
@@ -384,7 +384,7 @@ view {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30rpx;
+  font-size: 32rpx;
   font-family: PingFangSC-Medium;
   font-weight: 500;
   color: rgba(255, 255, 255, 1);
@@ -396,5 +396,5 @@ view {
   height: 42rpx;
   overflow: hidden;
   border-radius: 50%;
-  margin: 0 30rpx 0 30rpx;
+  margin: 0 10rpx 0 30rpx;
 }
