@@ -5,7 +5,7 @@
         <scroll-view scroll-y="true" style="height: 100%;" class="nav-scroll">
             <view wx:for="{{data}}" class="nav-item {{index === navActive ? 'active' : ''}}" wx:key="{{index}}"
                 data-id="tty{{item.goods_category_one_id}}" data-index="{{index}}" catchtap="chooseType">
-                <text></text>
+                <span></span>
                 {{item.goods_category_one_name}}
             </view>
         </scroll-view>

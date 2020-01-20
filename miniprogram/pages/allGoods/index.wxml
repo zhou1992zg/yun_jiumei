@@ -1,4 +1,5 @@
 <wxs src="../../filter/filter.wxs" module="filter" />
+<skeleton selector="skeleton" loading="spin" wx:if="{{showSkeleton}}"></skeleton>
 <view class="container">
   <view class="main" wx:if="{{typeData.length}}">
     <tty-linkage data="{{typeData}}" procurement bindContentEvent="contentEvent" management="true" goods-class="border border-bottom" bindviewDetailFunc="viewDetailFunc"></tty-linkage>

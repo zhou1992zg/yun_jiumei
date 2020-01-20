@@ -4,7 +4,7 @@
       <view class="w_b_text">欢迎回来~</view>
       <view class="w_b_en">Welcome back!</view>
       <view class="w_b_p">请授权微信登录小程序</view>
-      <button bindtap="onGetOpenid">授 权 登 录</button>
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授 权 登 录</button>
       <view class="no_login" bindtap="noLoginFn">暂不登陆</view>
       <view class="w_b_bottom">酒槑酒馆  你身边的红酒专家</view>
     </view>

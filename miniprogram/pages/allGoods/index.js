@@ -2,7 +2,6 @@
  * 开单商品列表**/
 let app = getApp();
 const utils = require('../../utils/util');
-const listData = require('../../data/list-data');
 const Dialog = require('../../components/tty-ui/dialog/dialog');
 const multi = utils.floatOpration.multi;
 const add = utils.floatOpration.add;
@@ -14,14 +13,28 @@ Page({
     basePageTotalNum: 0, // 手动输入时的基础总数
     typeData: [], // 列表数据
     useData: [], // 过度数据
-    goodsData: [] // 购物篮商品列表
+    goodsData: [], // 购物篮商品列表
+    showSkeleton: true   //骨架屏显示隐藏
   },
-  onShow(e) {
-    this.setData({
-      typeData: listData.data
+  onLoad() {
+    const db = wx.cloud.database()
+    db.collection("all-goods").get({
+      success: res => {
+        this.setData({
+          typeData: res.data,
+          showSkeleton: false
+        })
+        this.dataSet(res.data)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: "none",
+          title: '查询记录失败',
+        })
+      }
     })
-    this.dataSet(listData.data)
   },
+  onShow() {},
 
   // 重置购物篮数据
   resetBasket(basketData) {
@@ -148,7 +161,7 @@ Page({
       id
     } = e.detail;
     wx.navigateTo({
-      url: '/pages/goodsDetail/goodsDetail?id='+id
+      url: '/pages/goodsDetail/goodsDetail?id=' + id
     })
   },
   /*商品列表添加事件*/

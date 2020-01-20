@@ -1,5 +1,5 @@
 <!-- 地址填写/选择 -->
-<view class='address noAddress' data-addressid="{{addressData.address_id||''}}" bindtap="{{addressData?'toAddAddressPage':'toaddressPage'}}">
+<view class='address noAddress' data-addressid="{{addressData.address_id||''}}" bindtap="{{addressData.realname?'toaddressPage':'toAddAddressPage'}}">
 	<i class="iconfont icon-dizhi address-icon"></i>
 	<view class='address-right'>
 		<view class='name'>{{addressData.realname||'联系人姓名'}} · {{addressData.mobile||'电话'}}</view>
@@ -15,7 +15,7 @@
 		</view>
 		<i class="iconfont icon-sandian address-icon"></i>
 	</view>
-</picker>
+</picker>	
 
 
 <!-- 循环的商品列表 -->
