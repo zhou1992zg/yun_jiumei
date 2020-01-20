@@ -1,5 +1,4 @@
 {
   "navigationBarTitleText": "收货地址",
-  "navigationBarBackgroundColor": "#9c2732",
-  "pop-up-window": "/components/pop-up-window/pop-up-window"
+  "navigationBarBackgroundColor": "#9c2732"
 }
