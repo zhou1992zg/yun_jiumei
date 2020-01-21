@@ -172,25 +172,32 @@
 .address-list .address-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 16rpx 0 10rpx 0;
   margin-top: 10rpx;
   border-top: 2rpx solid rgb(211, 209, 209);
 }
 
 .address-list .address-btn .gou-img {
-  width: 40rpx;
-  height: 40rpx;
+  font-size: 38rpx;
   margin-right: 10rpx;
+  font-weight: 600;
+  color: #9c2732;
 }
 
 .address-list .address-btn .btn-default {
   display: flex;
   align-items: center;
+  margin-right: 40rpx;
 }
 
 .address-list .address-btn .modify {
   width: 40rpx;
   height: 40rpx;
-  padding-right: 10rpx;
+  margin-right: 40rpx;
+}
+
+.hover-style{
+  background-color: rgba(102, 99, 99, 0.1);
+  border-radius: 20rpx;
 }

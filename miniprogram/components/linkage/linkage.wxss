@@ -40,9 +40,10 @@
     background: #ffffff;
     font-size: 32rpx;
     color: #000;
+    font-weight: bold;
 }
 
-.container-linkpage .nav .active span{
+.container-linkpage .nav .active span {
     position: absolute;
     top: 50%;
     left: 0;
@@ -65,7 +66,7 @@
     overflow: hidden;
 }
 
-.container-linkpage .pesticide{
+.container-linkpage .pesticide {
     overflow: hidden;
 }
 
@@ -176,4 +177,10 @@
 
 .content .has-no-more .name {
     margin: 0 16rpx;
+}
+
+/* 点击效果 */
+.hover-style {
+    background-color: rgba(102, 99, 99, 0.1);
+    border-radius: 20rpx;
 }

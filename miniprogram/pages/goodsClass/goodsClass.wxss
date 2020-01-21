@@ -140,3 +140,8 @@
   font-size: 20rpx;
   color: #aaa;
 }
+
+.hover-style{
+  background-color: rgba(102, 99, 99, 0.1);
+  border-radius: 20rpx;
+}

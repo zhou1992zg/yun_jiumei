@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "收货地址",
-  "navigationBarBackgroundColor": "#9c2732"
+  "navigationBarBackgroundColor": "#9c2732",
+  "usingComponents": {
+    "skeleton": "../../../components/skeleton/skeleton"
+  }
 }

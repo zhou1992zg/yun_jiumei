@@ -1,6 +1,7 @@
 <!-- pages/my/address/address.wxml -->
+<skeleton selector="skeleton" loading="spin" wx:if="{{showSkeleton}}"></skeleton>
 <view class='wrap'>
-	<view class='cells' hidden="{{addressList.length<=0}}">
+	<view class='cells' wx:if="{{addressList.length>0}}">
 		<block wx:for="{{addressList}}" wx:key="{{item.id}}">
 			<!-- 地址列表 -->
 			<view class="address-list" bindtap="toChangeAddress" data-id="{{item.id}}" data-mobile="{{item.mobile}}" data-info="{{item.province+item.city+item.area+item.address}}" data-realname="{{item.realname}}">
@@ -8,29 +9,27 @@
 					{{item.realname}} {{item.mobile}}
 				</view>
 				<view class="address-city" hover-class="none" hover-stop-propagation="false">
-					<text class="address-type">家</text>
-					成都站
-				</view>
-				<view class="address-city" hover-class="none" hover-stop-propagation="false">
-					{{item.province+item.city+item.area+item.address}}
+					{{item.info}}
 				</view>
 				<view class="address-btn" hover-class="none" hover-stop-propagation="false">
-					<view class="btn-default" hover-class="none" hover-stop-propagation="false">
-						<image class="gou-img" src="{{item.isdefault==1?'/imgs/gou.png':'/imgs/gou-kong.png'}}" mode="aspectFill"></image>
-						默认地址
+					<view wx:if="{{upUrl=='pages/order/order'}}" class="btn-default" hover-class="hover-style" catchtap="useAddress" data-id="{{item._id}}" hover-stop-propagation="false">
+						<i class="iconfont icon-xuanze1 gou-img"></i>
+						使用该地址
 					</view>
-					<view class="modify" data-addressstring="{{item.addressString}}" catchtap="toAddressPage" data-url='/pages/address/address?addressInfo='>
-						<image class="modify" src="/imgs/my/icons-adds-edit.png" mode="aspectFill"></image>
+					<view class="btn-default" hover-class="none" data-id="{{item._id}}" hover-class="hover-style" catchtap="changeDAddress">
+						<i style="{{item.isdefault==1?'':'color:#ccc;'}}" class="iconfont {{item.isdefault==1?'icon-gou':'icon-xuanze'}} gou-img"></i>
+						{{item.isdefault==1?'':'设置为'}}默认地址
+					</view>
+					<view class="modify" data-id="{{item._id}}" catchtap="removeAddress">
+						<i class="iconfont icon-shanchu gou-img"></i>
 					</view>
 				</view>
 			</view>
 		</block>
 	</view>
-	<!-- <kong kong-hidden="{{addressList.length>0}}" kong-btn-hidden="{{true}}" kong-msg="还没有添加地址欧" /> -->
 	<!-- 新增地址 -->
 	<navigator class='fiexd-adds' style="{{isIphoneX?'bottom:68rpx;':''}}" open-type="navigate" hover-class="none" url='/pages/add_address/add_address'>
 		<view class="adds-btn" hover-class="none" hover-stop-propagation="false">新增地址</view>
 	</navigator>
 	<view wx:if="{{isIphoneX}}" class="fui-iphonex-button"></view>
 </view>
-<!-- <pop-up-window window-hidden="{{popUpWindowHidden}}" window-title="{{popUpWindow.title}}" window-centen="{{popUpWindow.centen}}" window-btn-list="{{popUpWindow.btnList}}" addId="{{id}}" bindgetMyAddressFn="getMyAddressFn" /> -->

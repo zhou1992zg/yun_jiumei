@@ -22,8 +22,8 @@
 		</view>
 	</view>
 	<view class="class_box">
-		<block wx:for="{{goodsClassList}}" wx:key="{{index}}">
-			<view class="goods_class_list" bindtap="viewDetailFunc" data-id="{{item.goods_id}}">
+		<block wx:for="{{goodsClassList}}" wx:key="index">
+			<view class="goods_class_list" hover-class="hover-style" bindtap="viewDetailFunc" data-id="{{item.goods_id}}">
 				<image src="" class="goods_img"/>
 				<view class="right">
 					<view class="title zx-warp-2">【西班牙DO级红酒 网红人气酒 原跑瓶进口】 小红帽干红葡萄酒</view>

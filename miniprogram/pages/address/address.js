@@ -7,67 +7,181 @@ Page({
   data: {
     clicktag: 0,
     popUpWindowHidden: true,
+    upUrl: '',
+    showSkeleton: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     const _this = this;
-    let { pagetype, addressid } = options;
-    const systemInfo = _this.data.systemInfo;
-    _this.setData({
-        pageType: pagetype,
-        addressid:addressid,
+    _this.getPageLu();
+    const db = wx.cloud.database()
+    db.collection("address-list").where({
+      _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
+    }).get({
+      success: res => {
+        _this.setData({
+          addressList: res.data,
+          showSkeleton: false
+        });
+        _this.toFirstAddress(res.data);
+      },
+      fail: err => {
+        wx.showToast({
+          icon: "none",
+          title: '获取地址失败',
+        })
+      }
     });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //获取上个页面路径
+  getPageLu: function () {
+    let pages = getCurrentPages(); //获取加载的页面
+    let currentPage = pages[pages.length - 2]; //获取当前页面的对象
+    let url = currentPage.route; //当前页面url
+    console.log(url)
+    this.setData({
+      upUrl: url
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  useAddress: function (e) {
+    let _this = this;
+    const _id = e.currentTarget.dataset.id;
+    let addressList = _this.data.addressList;
+    let DAddress = {};
+    addressList.forEach(function (element) {
+      if (element._id == _id) {
+        DAddress = element
+      }
+    });
+    wx.setStorageSync("ADDRESS_DATA", DAddress);
+    wx.navigateBack({
+      delta: 1
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  removeAddress: function (e) {
+    let _this = this;
+    let id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除这条地址吗？',
+      success: function (res) {
+        if (res.confirm) {
+          const db = wx.cloud.database();
+          db.collection("address-list").where({
+            _id: id
+          }).remove({
+            success: res => {
+              wx.showToast({
+                title: '删除成功',
+              })
+              _this.onShow() //删除成功重新加载
+            },
+            fail: err => {
+              wx.showToast({
+                title: '删除失败',
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  //将默认地址排在第一个
+  toFirstAddress: function (addressList) {
+    const _this = this;
+    addressList.sort(function (a, b) {
+      return b.isdefault - a.isdefault
+    })
+    console.log(addressList)
+    _this.setData({
+      addressList: addressList
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
+
+  //修改默认地址
+  changeDAddress: function (e) {
+    let _this = this;
+    const _id = e.currentTarget.dataset.id;
+    let addressList = _this.data.addressList;
+    let DAddress = {};
+    addressList.forEach(function (element) {
+      if (element._id == _id) {
+        DAddress = element
+      }
+    });
+    if (DAddress.isdefault == 1) {
+      wx.showToast({
+        title: '已经是默认地址咯',
+        icon: 'none'
+      })
+      return
+    } else {
+      _this.delDefault(addressList[0]._id, function () {
+        _this.addIsDefault(DAddress._id, function (addressList) {
+          wx.showToast({
+            title: '修改成功',
+          });
+          _this.onShow();
+        }, function () {
+          wx.showToast({
+            title: '修改失败',
+          })
+        })
+      }, function () {
+        wx.showToast({
+          title: '修改失败',
+        })
+      })
+    }
+
+
+
+    // _this.setData({
+    //   addressList: addressList
+    // })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  delDefault: function (_id, fn, errFn) {
+    const db = wx.cloud.database();
+    db.collection("address-list").where({
+      _id: _id
+    }).update({
+      data: {
+        isdefault: 0,
+      },
+      success: res => {
+        fn && fn()
+      },
+      fail: err => {
+        errFn && errFn()
+      }
+    });
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //添加默认地址
+  addIsDefault: function (_id, fn, errFn) {
+    const db = wx.cloud.database();
+    db.collection("address-list").where({
+      _id: _id
+    }).update({
+      data: {
+        isdefault: 1,
+      },
+      success: res => {
+        fn && fn()
+      },
+      fail: err => {
+        errFn && errFn()
+      }
+    });
   }
 })

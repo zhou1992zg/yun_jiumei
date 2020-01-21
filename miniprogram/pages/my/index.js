@@ -5,11 +5,13 @@ Page({
    */
   data: {
     bgHeight: 0,
-    userInfo: wx.getStorageSync("PHONE_NUMBER"),
+    userInfo: {},
     isLogin: wx.getStorageSync("PHONE_NUMBER")
   },
 
   onShow: function (options) {
+    let systemInfo = wx.getSystemInfoSync();
+    let userInfo = {};
     if (!wx.getStorageSync("PHONE_NUMBER")) {
       var pages = getCurrentPages(); //获取加载的页面
       var currentPage = pages[pages.length - 1]; //获取当前页面的对象
@@ -18,10 +20,12 @@ Page({
       wx.navigateTo({
         url: '../login/login' + "?url=" + url,
       })
+    }else{
+      userInfo = wx.getStorageSync("PHONE_NUMBER");
     }
-    let systemInfo = wx.getSystemInfoSync();
     this.setData({
-      bgHeight: systemInfo.windowHeight
+      bgHeight: systemInfo.windowHeight,
+      userInfo:userInfo
     })
   },
 

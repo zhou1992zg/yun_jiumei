@@ -109,6 +109,14 @@ Component({
       let goodsId = e.currentTarget.dataset.goodsid;
       let myEventDetail = {}
       let totalNum = 0;
+      if (num === 0) {
+        num =1;
+        wx.showToast({
+          title: '最少选择1件商品',
+          icon: 'none',
+          duration: 1500
+        })
+      }
       if (num > totalStock) { // 超过库存
         wx.showToast({
           title: '库存不足，请增加库存！',
@@ -139,9 +147,15 @@ Component({
     },
     minusHandle(e) {
       let num = this.data.totalNum;
+      console.log(num)
       let {typeOneIndex, typeTwoIndex, goodsIndex} = this.data
       let goodsId = e.currentTarget.dataset.goodsid;
-      if (num <= 0) {
+      if (num <= 1) {
+        wx.showToast({
+          title: '最少选择1件商品',
+          icon: 'none',
+          duration: 1500
+        })
         return
       }
       num--;

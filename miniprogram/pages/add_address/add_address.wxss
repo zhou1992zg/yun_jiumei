@@ -87,3 +87,8 @@
   margin-right: 16rpx;
   color: #9c2732;
 }
+
+.hover-style{
+  background-color: rgba(102, 99, 99, 0.1);
+  border-radius: 20rpx;
+}

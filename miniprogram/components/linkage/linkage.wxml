@@ -22,7 +22,7 @@
                         <view class="name">{{twoItem.goods_category_two_name}}</view>
                     </view>
                     <view class="pesticide-container">
-                        <view class="pesticide-item goods-class" wx:for="{{twoItem.goods}}" data-itemId="{{pes.goods_id}}" wx:for-item="pes" wx:key="{{goodsIndex}}"
+                        <view class="pesticide-item goods-class" hover-class="hover-style"  wx:for="{{twoItem.goods}}" data-itemId="{{pes.goods_id}}" wx:for-item="pes" wx:key="{{goodsIndex}}"
                             catchtap="tapHandle" wx:for-index="goodsIndex">
                             <image src="{{pes.url || defaultImg}}" mode="aspectFit"></image>
                             <view class="pesticide-item-content {{management ? 'management-item-content' : ''}}">

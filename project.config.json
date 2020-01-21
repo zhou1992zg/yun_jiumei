@@ -75,6 +75,13 @@
 					"id": -1,
 					"name": "pages/payCard/index",
 					"pathName": "pages/payCard/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/address/address",
+					"pathName": "pages/address/address",
 					"scene": null
 				}
 			]

@@ -58,7 +58,6 @@ Page({
         list[i].selected = isChecked;
         // 判断是否全选中
         if (list[i].selected) {
-          console.log(1)
           this.data.isChecked = false;
           isSettlementRed = false;
           isSettlement = false;
@@ -156,7 +155,6 @@ Page({
   },
 
   stepperEvent: function (e) {
-    console.log(e.detail.action)
     if (e.detail.action == "plus") {
       this.addNum(e.detail.goodsIndex);
     } else if (e.detail.action == "minus") {
@@ -172,6 +170,7 @@ Page({
     let list = this.data.goodsCar;
     // 获取商品数量
     list[index].count = totalNum;
+    
     this.setData({
       goodsCar: list
     });

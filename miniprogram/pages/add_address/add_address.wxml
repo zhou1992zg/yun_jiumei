@@ -27,7 +27,7 @@
   				<input bindinput='setParams' data-key='phone' placeholder-style='color: #B2B2B2' value='{{phone}}' placeholder='手机号码' />
   			</view>
   		</view>
-  		<view class='default-adds' bindtap='checkRadioFn'>
+  		<view class='default-adds' hover-class="hover-style" bindtap='checkRadioFn'>
 				<i class="iconfont icon-xuanze i" wx:if="{{!radioChecked}}"></i>
 				<i class="iconfont icon-gou i" wx:else></i>
   			设为默认地址

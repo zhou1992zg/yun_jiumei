@@ -395,7 +395,9 @@ page {
   margin-right: 10rpx;
   width: 46rpx;
   height: 46rpx;
-  font-size: 42rpx;
+  font-size: 50rpx;
+  color: #9c2732;
+  font-weight: 600;
 }
 
 .list-box .list-list {
@@ -416,6 +418,8 @@ page {
   width: 60rpx;
   height: 60rpx;
   font-size: 50rpx;
+  color: #9c2732;
+  font-weight: 600;
 }
 
 .flex-h {

@@ -81,10 +81,15 @@ Page({
       })
       return;
     }
+    let isdefault = 0;
+    if (_this.data.radioChecked) {
+      isdefault = 1
+    }
     let addressData = {
       realname: name,
       mobile: phone,
       info: cityValue + adds,
+      isdefault: isdefault
     }
     console.log(addressData)
     _this.addNewAddress(addressData, function (res) {
