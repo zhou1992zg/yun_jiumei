@@ -5,7 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabData: [{ title: '全部', btnIndex: '1', listName: 'stayDelivery' }, { title: '待付款', btnIndex: '1', listName: 'stayDelivery' }, { title: '已付款', btnIndex: '0', listName: 'stayPayOrder' }, { title: '已发货', btnIndex: '2', listName: 'okOrder' }, { title: '待评价', btnIndex: '', listName: 'allOrder' }],
+    tabData: [{
+      title: '全部',
+      btnIndex: '1',
+      listName: 'stayDelivery'
+    }, {
+      title: '待付款',
+      btnIndex: '1',
+      listName: 'stayDelivery'
+    }, {
+      title: '已付款',
+      btnIndex: '0',
+      listName: 'stayPayOrder'
+    }, {
+      title: '已发货',
+      btnIndex: '2',
+      listName: 'okOrder'
+    }, {
+      title: '待评价',
+      btnIndex: '',
+      listName: 'allOrder'
+    }],
     tabIndex: 0,
     type: 1,
     status: '1',
@@ -20,16 +40,55 @@ Page({
     navHeight: 0,
     popUpWindowHidden: true,
     loading: true,
-    orderList: []
+    orderLists: [{
+      id: 'adadwefwef',
+      _orderid: 'SGIDD-2423534875',
+      _statusname: '已付款',
+      _payType: 1,
+      _createtime: '2020.08.12 18:09',
+      _price: 198
+    }, {
+      id: 'adadwefwef',
+      _orderid: 'SGIDD-2423534874',
+      _statusname: '待付款',
+      _payType: 0,
+      _createtime: '2020.08.12 18:09',
+      _price: 198
+    }]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const _this = this;
     this.setData({
       systemInfo: wx.getSystemInfoSync()
-    })
+    });
+    //获取订单列表
+    _this.getOrderList();
+  },
+
+  /**
+   * 获取订单列表
+   * @param {} e 
+   */
+  getOrderList(){
+    const db = wx.cloud.database()
+    db.collection("order").where({
+      _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
+    }).get({
+      success: res => {
+        console.log(res.data)
+        
+      },
+      fail: err => {
+        wx.showToast({
+          icon: "none",
+          title: '获取订单失败了',
+        })
+      }
+    });
   },
 
   /**
@@ -40,7 +99,11 @@ Page({
     const tabIndex = e.currentTarget.dataset.index;
     const btnIndex = e.currentTarget.dataset.btnindex;
     const listName = e.currentTarget.dataset.listname;
-    _this.setData({ tabIndex, status: btnIndex, listName });
+    _this.setData({
+      tabIndex,
+      status: btnIndex,
+      listName
+    });
   },
 
   /**
@@ -53,8 +116,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

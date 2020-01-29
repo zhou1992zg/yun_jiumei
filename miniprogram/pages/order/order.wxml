@@ -22,7 +22,7 @@
 <!-- 循环的商品列表 -->
 <view class='has_shop_list'>
 	<!-- 循环商品列表 -->
-	<block wx:key="keygoods_car_index" wx:for="{{orderinfo}}">
+	<block wx:key="keygoods_car_index" wx:for="{{goodsData}}">
 		<view class='has_shop_item'>
 			<view class='btn_ischeck'>
 				<!-- 判断是否为选中状态 -->
@@ -67,7 +67,7 @@
 	<view class='color_them'>
 		<view class='name'>+ ￥{{postage}}</view>
 	</view>
-</view>
+</view>	
 
 <!-- 购买按钮 -->
 <view class='buyBtn'>
@@ -75,8 +75,8 @@
 		<view class="btn" style="width:50%;background:#fff;color:#9c2732;" hover-class="none" hover-stop-propagation="false" bindtap="" data-goodid="1">
 			￥<text>{{allPrice}}</text>
 		</view>
-		<view class="btn" style="width:50%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuyCard">
-			提交订单
+		<view class="btn" style="width:50%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuyGoods">
+			支付订单
 		</view>
 	</view>
 </view>

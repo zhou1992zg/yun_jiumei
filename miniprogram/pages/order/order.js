@@ -5,11 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderinfo: [],
+    goodsData: [],
     payTypeIndex: 0,
     payTypeArray: ['快递邮寄', '上门自提', '同城急送 ·（即送费）'],
     addressData: {},
-    postage: 14.5
+    postage: 14.5,
   },
 
   onLoad: function () {
@@ -32,7 +32,7 @@ Page({
   onShow: function () {
     this.setData({
       addressData: wx.getStorageSync("ADDRESS_DATA"),
-      orderinfo: wx.getStorageSync("ORDERINFO"),
+      goodsData: wx.getStorageSync("ORDERINFO"),
       goodsCar: wx.getStorageSync("GOODSCAR")
     })
     this.totalPrice();
@@ -136,45 +136,92 @@ Page({
     });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  toBuyGoods: function () {
+    const _this = this;
+    let goods_data = [];
+    let orderPrice = 0;
+    _this.data.goodsCar.forEach((item) => {
+      console.log(item)
+      orderPrice = orderPrice + Number(item.price) * Number(item.count);
+      let goods_list = {
+        goods_id: item.goods_id,  
+        goods_url: item.url,
+        price: item.price,
+        count: item.count,
+      }
+      goods_data.push(goods_list);
+    });
+    let buyData = {
+      address_id: wx.getStorageSync("ADDRESS_DATA")._id,
+      distribution_way: _this.data.payTypeIndex,
+      goods_data: goods_data,
+      _price: orderPrice
+    };
+    _this.addOrder(buyData);
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 下单
+  addOrder(buyData) {
+    const _this = this;
+    wx.cloud.callFunction({
+      name: 'order',
+      data: {
+        buyData
+      },
+      complete: res => {
+        console.log(res.result._id)
+        _this.pay(res.result._id, buyData._price);
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 订单支付
+  pay(orderId, _price) {
+    wx.showLoading({
+      title: '支付中'
+    });
+    wx.cloud.callFunction({
+      name: 'pay', // 调用pay函数
+      data: {
+        _id: orderId,
+        _price: _price
+      }, // 支付金额
+      success: (res) => {
+        wx.hideLoading();
+        const {
+          result
+        } = res;
+        const {
+          code,
+          data
+        } = result;
+        if (code !== 0) {
+          wx.showModal({
+            title: '提示',
+            content: '支付失败',
+            showCancel: false
+          });
+          return;
+        }
+        console.log(data);
+        wx.requestPayment({
+          timeStamp: data.time_stamp,
+          nonceStr: data.nonce_str,
+          package: `prepay_id=${data.prepay_id}`,
+          signType: 'MD5',
+          paySign: data.sign,
+          success: () => {
+            wx.showToast({
+              title: '支付成功'
+            });
+          }
+        });
+      },
+      fail: (res) => {
+        wx.hideLoading();
+        console.log('FAIL');
+        console.log(res);
+      }
+    });
   }
 })

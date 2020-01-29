@@ -9,6 +9,11 @@ page {
     padding-top: 88rpx;
 }
 
+.wrap{
+    min-height: 100vh;
+    background: rgb(240, 238, 238);
+}
+
 .tab {
     position: fixed;
     top: 0;
@@ -160,15 +165,55 @@ page {
     color: #C1BABA;
 }
 
-.order-list-box .order-content .server-contenr-box .server-list .text-left {
+.order-list-box .order-content .server-contenr-box .server-list .text-left,.order-list-box .order-content .server-contenr-box .server-list-img .text-left-img {
     margin-left: 10rpx;
     width: 100rpx;
+}
+
+.order-list-box .order-content .server-contenr-box .server-list-img view{
+    overflow: hidden;
+    white-space:nowrap;
+    overflow-x:scroll;
+    flex: 1;
+}
+
+.order-list-box .order-content .server-contenr-box .server-list-img .box-show{
+    height: 120rpx;
+    width: 10rpx;
+    box-shadow: -10px 0px 10px rgba(255,255,255,0.9);
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.order-list-box .order-content .server-contenr-box .server-list-img{
+    position: relative;
+    padding: 6rpx 0;
+    font-size: 24rpx;
+    color: #C1BABA;
+}
+
+.order-list-box .order-content .server-contenr-box .server-list-img .box-two{
+    display: flex;
+}
+
+::-webkit-scrollbar{
+    display:none;
 }
 
 .order-list-box .order-content .server-contenr-box .server-list .text-right {
     margin: 0 10rpx;
     text-align: right;
     flex: 1;
+}
+
+.order-list-box .order-content .server-contenr-box .server-list-img .img-right{
+    width: 100rpx;
+    height: 100rpx;
+    background-color: pink;
+    border-radius: 16rpx;
+    margin-right: 10rpx;
 }
 
 .order-list-box .order-content .order-name .type-text .money-icon {
