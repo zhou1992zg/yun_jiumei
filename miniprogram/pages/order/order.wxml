@@ -16,7 +16,7 @@
 		</view>
 		<i class="iconfont icon-sandian address-icon"></i>
 	</view>
-</picker>	
+</picker>
 
 
 <!-- 循环的商品列表 -->
@@ -60,20 +60,20 @@
 	</view>
 </view>
 
-<view class='pay_style'>
+<view class='pay_style' wx:if="{{payTypeIndex!=1}}">
 	<view class='address-right'>
 		<view class='name'>运费</view>
 	</view>
 	<view class='color_them'>
-		<view class='name'>+ ￥{{postage}}</view>
+		<view class='name'>邮费到付</view>
 	</view>
-</view>	
+</view>
 
 <!-- 购买按钮 -->
 <view class='buyBtn'>
 	<view class='btn-box'>
 		<view class="btn" style="width:50%;background:#fff;color:#9c2732;" hover-class="none" hover-stop-propagation="false" bindtap="" data-goodid="1">
-			￥<text>{{allPrice}}</text>
+			￥<text>{{totalPrice}}</text>
 		</view>
 		<view class="btn" style="width:50%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuyGoods">
 			支付订单

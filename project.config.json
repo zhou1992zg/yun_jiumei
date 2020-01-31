@@ -90,6 +90,20 @@
 					"id": -1,
 					"name": "pages/shopOrder/shopOrder",
 					"pathName": "pages/shopOrder/shopOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/orderDetail/orderDetail",
+					"pathName": "pages/orderDetail/orderDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order/order",
+					"pathName": "pages/order/order",
 					"scene": null
 				}
 			]

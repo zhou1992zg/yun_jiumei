@@ -27,6 +27,7 @@ Page({
         })
       }
     });
+    this.getYouFei();
   },
 
   onShow: function () {
@@ -36,6 +37,27 @@ Page({
       goodsCar: wx.getStorageSync("GOODSCAR")
     })
     this.totalPrice();
+  },
+
+  // 查询邮费
+  getYouFei() {
+    wx.cloud.callFunction({
+      name: 'http', // 调用pay函数
+      data: {
+        "originalsStreet": "上海-上海市-长宁区",
+        "originalsaddress": "上海-上海市-长宁区",
+        "sendDateTime": "2018-08-07 11:00:03",
+        "totalVolume": 0.001,
+        "totalWeight": 500,
+        "logisticCompanyID": "DEPPON"
+      }, // 支付金额
+      success: (res) => {
+        console.log(res)
+      },
+      fail: (res) => {
+        console.log(res);
+      }
+    });
   },
 
   toaddressPage() {
@@ -132,7 +154,6 @@ Page({
     this.setData({
       goodsCar: list,
       totalPrice: total.toFixed(2),
-      allPrice: (Number(total.toFixed(2)) + Number(this.data.postage)).toFixed(2)
     });
   },
 
@@ -144,7 +165,7 @@ Page({
       console.log(item)
       orderPrice = orderPrice + Number(item.price) * Number(item.count);
       let goods_list = {
-        goods_id: item.goods_id,  
+        goods_id: item.goods_id,
         goods_url: item.url,
         price: item.price,
         count: item.count,

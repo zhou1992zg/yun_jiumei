@@ -1,2 +1,51 @@
-<!--miniprogram/pages/orderDetail/orderDetail.wxml-->
-<text>miniprogram/pages/orderDetail/orderDetail.wxml</text>
+<view class="header">
+	<view class="order_type"><i class="iconfont icon-gantanhao-quan i"></i>已取消</view>
+	<view class="radu_box"></view>
+</view>
+<view class="address">
+	<view class="name_phone"><i class="iconfont icon-shouhuodizhi i"></i>周迅 13547093105</view>
+	<view class="address_list">地址：四川省德阳市广汉市金鱼镇11-2</view>
+</view>
+<view class="merchant_goods">
+	<view class='has_shop_smalltxt'>
+		<image class='has_shop_icon1' src='../../assets/images/logo.jpg' /> 酒槑 | 酒馆 </view>
+	<block wx:for="{{goodsCar}}" wx:key="index">
+		<view class='position_hasshop_item'>
+			<view class='position_hasshop_img'>
+				<!-- 商品图片 -->
+				<image class='shop_img' src='{{item.url}}'></image>
+			</view>
+			<view class='menu_right_txt'>
+				<!-- 商品名称和描述 -->
+				<text class='menu_right_name zx-warp-2'>{{item.goods_name}}</text>
+				<view class='menu_right_down'>
+					<text class='menu_right_num'>数量：{{item.count}}</text>
+				</view>
+				<view class='menu_right_down'>
+					<!-- 商品最新价格 -->
+					<text class='menu_right_nprice'>¥{{item.price}}</text>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>
+<view class="call_phone">
+	<i class="iconfont icon-lianxidianhua i"></i>联系客服
+</view>
+<view class="address" style="padding-top:60rpx;border-radius:30rpx;">
+	<view class="name_phone margin_20"><text>订单编号：</text>WDYSUG-15254254844</view>
+	<view class="name_phone margin_40"><text>下单时间：</text>2020.01.25 18:15</view>
+	<view class="name_phone margin_40"><text>支付方式：</text>未支付</view>
+	<view class="name_phone"><text>配送方式：</text>快递配送</view>
+</view>
+<view class="address" style="padding-top:60rpx;border-radius:30rpx;">
+	<view class="name_phone margin_20 disp_f"><text>商品总额：</text>¥185</view>
+	<view class="name_phone margin_40 disp_f"><text>运费：</text>¥15</view>
+	<view class="name_phone margin_40 disp_f"><text></text><text>实付款：<text class="money_icon">¥</text><text class="text">198.05</text></text></view>
+</view>
+<view class="button_box">
+	<block>
+		<view class="btn to_pay">支付订单</view>
+		<view class="btn buy_two">再次购买</view>
+	</block>
+</view>

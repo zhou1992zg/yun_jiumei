@@ -1,1 +1,220 @@
-/* miniprogram/pages/orderDetail/orderDetail.wxss */
+page {
+  background-color: #efefef;
+  width: 100vw;
+  min-height: 100vh;
+  padding-bottom: 80rpx;
+}
+
+.header {
+  position: relative;
+  padding-bottom: 80rpx;
+  background-color: #9c2732;
+}
+
+.header .radu_box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  width: 100vw;
+  height: 30rpx;
+  border-radius: 30rpx 30rpx 0 0;
+}
+
+.header .order_type {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #fff;
+  width: 100vw;
+  text-align: center;
+  padding-top: 30rpx;
+}
+
+.header .order_type .i {
+  font-size: 40rpx;
+  margin-right: 10rpx;
+}
+
+.address {
+  width: 100vw;
+  padding: 30rpx 36rpx 60rpx 36rpx;
+  background-color: #fff;
+  border-radius: 0 0 30rpx 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.address .name_phone,
+.address .address_list {
+  font-size: 28rpx;
+  color: #000;
+}
+
+.address .address_list{
+  color: #ccc;
+  margin-left: 38rpx;
+  margin-top: 10rpx;
+}
+
+.address .name_phone .i {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+  font-weight: 600;
+}
+
+.merchant_goods{
+  padding: 30rpx 36rpx 30rpx 36rpx;
+  background-color: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  box-shadow: 0 40rpx 40rpx -40rpx #5e5e5e;
+}
+
+.merchant_goods .has_shop_smalltxt{
+  font-weight: 600;
+  color: #000;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+}
+
+.merchant_goods .has_shop_smalltxt .has_shop_icon1{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.position_hasshop_item {
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.position_hasshop_img {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 16rpx;
+}
+
+.shop_img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.menu_right_txt {
+  flex: 1;
+  height: 200rpx;
+  padding-top: 15rpx;
+  line-height: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu_right_name {
+  padding-top: 14rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+}
+
+.menu_right_down {
+  display: flex;
+  align-items: center;
+  line-height: 42rpx;
+  justify-content: space-between;
+}
+
+.menu_right_nprice {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(214, 70, 60, 1);
+}
+
+.menu_right_num{
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.call_phone{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  padding: 30rpx 36rpx 30rpx 36rpx;
+  background-color: #fff;
+  border-radius: 0 0 30rpx 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.call_phone .i{
+  font-size: 40rpx;
+  margin-right: 10rpx;
+}
+
+.name_phone text{
+  color: #ccc;
+}
+
+.address .margin_20 {
+  margin-bottom: 20rpx;
+}
+
+.address .margin_40 {
+  margin-bottom: 40rpx;
+}
+
+.address .disp_f{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address .name_phone .text{
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #9c2732;
+}
+
+.address .name_phone .money_icon{
+  color: #9c2732;
+  font-weight: 600;
+  margin-right: 6rpx;
+  font-size: 20rpx;
+}
+
+.button_box{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 80rpx;
+  width: 100vw;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10rpx;
+}
+
+.button_box .btn{
+  width: 160rpx;
+  height: 60rpx;
+  border: 2rpx solid #8b8686;
+  color: #000;
+  text-align: center;
+  border-radius: 30rpx;
+  line-height: 56rpx;
+  font-size: 26rpx;
+  margin-right: 26rpx;
+}
+
+.button_box .buy_two{
+  color: #fff;
+  background-color: #9c2732;
+  border: 2rpx solid #9c2732;
+}
