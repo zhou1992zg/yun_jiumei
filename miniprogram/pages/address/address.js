@@ -69,7 +69,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     wx.showModal({
       title: '提示',
-      content: '确认删除这条地址吗？',
+      content: '确认删除此收货地址?',
       success: function (res) {
         if (res.confirm) {
           const db = wx.cloud.database();
