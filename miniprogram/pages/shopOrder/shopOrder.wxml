@@ -23,29 +23,31 @@
 	</view>
 	<block wx:if="{{orderLists||orderLists.length>0}}">
 		<block wx:for='{{orderLists}}' wx:key='{{item.id}}'>
-			<view class="order-list-box" catchtap='detail' data-orderid="{{item.id}}">
+			<view class="order-list-box" catchtap='detail' data-orderid="{{item._orderId}}">
 				<view class="order-content">
 					<view class="order-name">
-						<view class="name">订单号：{{item._orderid}}</view>
-						<view class="type-text">{{item._statusname}}</view>
+						<view class="name">订单号：{{item._orderId}}</view>
+						<view class="type-text" wx:if="{{item._payType==0}}">待付款</view>
+						<view class="type-text" wx:elif="{{item._payType==1}}">待发货</view>
+						<view class="type-text" wx:elif="{{item._payType==2}}">已发货</view>
+						<view class="type-text" wx:else="{{item._payType==3}}">已完成</view>
 					</view>
 					<view class="server-contenr-box">
 						<view class="server-list-img">
 							<view class="box-show"></view>
 							<view class="box-two">
-								<view class="text-left-img">商品清单：</view>
 								<view>
-									<image class="img-right" src="" />
-									<image class="img-right" src="" />
-									<image class="img-right" src="" />
-									<image class="img-right" src="" />
-									<image class="img-right" src="" />
+								<block wx:for="{{item.goods_data}}" wx:for-item="items">
+									<image class="img-right" src="{{items.goods_url}}" />
+								</block>
 								</view>
 							</view>
 						</view>
 						<view class="server-list">
 							<view class="text-left">配送方式</view>
-							<view class="text-right ellipsis1">上海市浦东区某某小区3栋23号</view>
+							<view class="text-right ellipsis1" wx:if="{{item.distribution_way==0}}">快递邮寄</view>
+							<view class="text-right ellipsis1" wx:elif="{{item.distribution_way==1}}">上门自提</view>
+							<view class="text-right ellipsis1" wx:else="{{item.distribution_way==2}}">同城寄送</view>
 						</view>
 						<view class="server-list">
 							<view class="text-left">下单时间</view>
@@ -53,7 +55,7 @@
 						</view>
 					</view>
 					<view class="order-name">
-						<view class="name">支付金额</view>
+						<view class="name">订单总额</view>
 						<view class="type-text">
 							<text class="money-icon">¥</text>
 							<text>{{item._price}}元</text>

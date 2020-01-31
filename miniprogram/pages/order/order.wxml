@@ -18,6 +18,11 @@
 	</view>
 </picker>
 
+<view class='pay_style'>
+	<i class="iconfont icon-dianpu i_one"></i>
+	<view class='has_shop_smalltxt zx-no-warp'>四川省德阳市市辖区泰山南路与雅河街交汇处东北角文杰莱茵广场1层3号</view>
+	<i class="iconfont icon-jiantou-copy i_two"></i>
+</view>
 
 <!-- 循环的商品列表 -->
 <view class='has_shop_list'>

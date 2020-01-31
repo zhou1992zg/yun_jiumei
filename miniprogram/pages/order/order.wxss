@@ -27,12 +27,14 @@ view {
 }
 
 .address-right {
+  font-weight: bold;
   flex: 1;
 }
 
 .address-right .name{
   display: flex;
   align-items: center;
+  font-weight: bold;
 }
 
 .address-right .name text:nth-child(2){
@@ -52,6 +54,19 @@ view {
   align-items: center;
   background-color: #fff;
   border-radius:20rpx;
+}
+
+.pay_style .i_one{
+  font-size: 36rpx;
+  color: #000;
+  margin-right: 20rpx;
+  font-weight: bold;
+}
+
+.pay_style .i_two{
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #000;
 }
 
 
@@ -281,4 +296,13 @@ view {
 
 .buyBtn .no_total {
   background: #ccc;
+}
+
+.has_shop_smalltxt{
+  width: 590rpx;
+  font-weight: 600;
+  color: #000;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
 }

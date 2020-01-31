@@ -16,6 +16,7 @@ exports.main = async (event, context) => {
   orderData['_orderId'] = orderId;
   orderData['_openid'] = event.userInfo.openId;
   orderData['_payType'] = 0; //0=待付款，1=已付款，2=已发货，3=待评价
+  orderData['_createtime'] = curTime; //0=待付款，1=已付款，2=已发货，3=待评价
   return await orderCollection.add({
     data: orderData,
   });

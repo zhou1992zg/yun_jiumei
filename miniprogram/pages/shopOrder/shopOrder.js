@@ -1,4 +1,7 @@
 // miniprogram/pages/shopOrder/shopOrder.js
+import {
+  formatTime
+} from '../../utils/utils';
 Page({
 
   /**
@@ -22,7 +25,7 @@ Page({
       btnIndex: '2',
       listName: 'okOrder'
     }, {
-      title: '待评价',
+      title: '已完成',
       btnIndex: '',
       listName: 'allOrder'
     }],
@@ -40,21 +43,7 @@ Page({
     navHeight: 0,
     popUpWindowHidden: true,
     loading: true,
-    orderLists: [{
-      id: 'adadwefwef',
-      _orderid: 'SGIDD-2423534875',
-      _statusname: '已付款',
-      _payType: 1,
-      _createtime: '2020.08.12 18:09',
-      _price: 198
-    }, {
-      id: 'adadwefwef',
-      _orderid: 'SGIDD-2423534874',
-      _statusname: '待付款',
-      _payType: 0,
-      _createtime: '2020.08.12 18:09',
-      _price: 198
-    }]
+    orderLists: []
   },
 
   /**
@@ -71,16 +60,25 @@ Page({
 
   /**
    * 获取订单列表
-   * @param {} e 
+   * @param {} 
    */
-  getOrderList(){
+  getOrderList() {
+    const _this = this;
     const db = wx.cloud.database()
     db.collection("order").where({
       _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
     }).get({
       success: res => {
         console.log(res.data)
-        
+        let data = res.data;
+        data.forEach((item, index) => {
+          if (item._createtime) {
+            data[index]["_createtime"] = formatTime(item._createtime/1000, "Y-M-D h:m:s");
+          }
+        })
+        _this.setData({
+          orderLists: data
+        })
       },
       fail: err => {
         wx.showToast({
@@ -106,10 +104,10 @@ Page({
     });
   },
 
-  detail(e){
+  detail(e) {
     let orderid = e;
     wx.navigateTo({
-      url: '/pages/orderDetail/orderDetail?orderid='+orderid,
+      url: '/pages/orderDetail/orderDetail?orderid=' + orderid,
     })
   },
 
