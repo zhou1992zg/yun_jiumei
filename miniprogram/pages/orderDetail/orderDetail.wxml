@@ -1,5 +1,8 @@
 <view class="header">
-	<view class="order_type"><i class="iconfont icon-gantanhao-quan i"></i>已取消</view>
+	<view class="order_type" wx:if="{{orderDeta._payType==0}}"><i class="iconfont icon-daizhifu i"></i>未支付</view>
+	<view class="order_type" wx:elif="{{orderDeta._payType==1}}"><i class="iconfont icon-daifahuo i"></i>待发货</view>
+	<view class="order_type" wx:elif="{{orderDeta._payType==2}}"><i class="iconfont icon-yifahuodefuben i"></i>待收货</view>
+	<view class="order_type" wx:else><i class="iconfont icon-tick i"></i>已完成</view>
 	<view class="radu_box"></view>
 </view>
 <view class="address">
@@ -9,11 +12,11 @@
 <view class="merchant_goods">
 	<view class='has_shop_smalltxt'>
 		<image class='has_shop_icon1' src='../../assets/images/logo.jpg' /> 酒槑 | 酒馆 </view>
-	<block wx:for="{{goodsCar}}" wx:key="index">
+	<block wx:for="{{orderDeta.goods_data}}" wx:key="index">
 		<view class='position_hasshop_item'>
 			<view class='position_hasshop_img'>
 				<!-- 商品图片 -->
-				<image class='shop_img' src='{{item.url}}'></image>
+				<image class='shop_img' src='{{item.goods_url}}'></image>
 			</view>
 			<view class='menu_right_txt'>
 				<!-- 商品名称和描述 -->
@@ -29,23 +32,36 @@
 		</view>
 	</block>
 </view>
-<view class="call_phone">
-	<i class="iconfont icon-lianxidianhua i"></i>联系客服
+<view class="call_phone" bindtap="callPhone">
+	<i class="iconfont icon-lianxidianhua i"></i>联系老板
 </view>
 <view class="address" style="padding-top:60rpx;border-radius:30rpx;">
-	<view class="name_phone margin_20"><text>订单编号：</text>WDYSUG-15254254844</view>
-	<view class="name_phone margin_40"><text>下单时间：</text>2020.01.25 18:15</view>
-	<view class="name_phone margin_40"><text>支付方式：</text>未支付</view>
-	<view class="name_phone"><text>配送方式：</text>快递配送</view>
+	<view class="name_phone margin_20"><text>订单编号：</text>{{orderDeta._orderId}}</view>
+	<view class="name_phone margin_40"><text>下单时间：</text>{{orderDeta._createtime}}</view>
+	<view class="name_phone margin_40" wx:if="{{orderDeta._payType==0}}"><text>订单状态：</text>未支付</view>
+	<view class="name_phone margin_40" wx:elif="{{orderDeta._payType==1}}"><text>订单状态：</text>待发货</view>
+	<view class="name_phone margin_40" wx:elif="{{orderDeta._payType==2}}"><text>订单状态：</text>已发货</view>
+	<view class="name_phone margin_40" wx:else><text>订单状态：</text>已完成</view>
+	<view class="name_phone" wx:if="{{orderDeta.distribution_way==0}}"><text>配送方式：</text>快递配送</view>
+	<view class="name_phone" wx:elif="{{orderDeta.distribution_way==1}}"><text>配送方式：</text>上门自提</view>
+	<view class="name_phone" wx:else><text>配送方式：</text>同城急送</view>
 </view>
 <view class="address" style="padding-top:60rpx;border-radius:30rpx;">
-	<view class="name_phone margin_20 disp_f"><text>商品总额：</text>¥185</view>
-	<view class="name_phone margin_40 disp_f"><text>运费：</text>¥15</view>
-	<view class="name_phone margin_40 disp_f"><text></text><text>实付款：<text class="money_icon">¥</text><text class="text">198.05</text></text></view>
+	<view class="name_phone margin_20 disp_f"><text>商品总额：</text>¥{{orderDeta._price}}</view>
+	<view class="name_phone margin_40 disp_f"><text>运费：</text>运费到付</view>
+	<view class="name_phone margin_40 disp_f"><text></text><text>实付款：<text class="money_icon">¥</text><text class="text">{{orderDeta._price}}</text></text></view>
 </view>
 <view class="button_box">
-	<block>
+<block wx:if="{{orderDeta._payType==0}}">
 		<view class="btn to_pay">支付订单</view>
-		<view class="btn buy_two">再次购买</view>
+	</block>
+	<block wx:elif="{{orderDeta._payType==1}}">
+		<view class="btn buy_two" bindtap="callPhone">联系老板</view>
+	</block>
+	<block wx:elif="{{orderDeta._payType==2}}">
+		<view class="btn buy_two">物流查询</view>
+	</block>
+	<block wx:else>
+		<view class="btn buy_two">再买一次</view>
 	</block>
 </view>

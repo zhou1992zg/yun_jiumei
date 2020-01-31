@@ -279,6 +279,7 @@ Page({
           // 删除索引从1
           list.splice(index, 1);
           // 页面渲染数据
+          wx.setStorageSync("GOODSCAR", list);
           that.setData({
             goodsCar: list
           });
@@ -317,7 +318,7 @@ Page({
             }
           }
           _this.data.orderinfo = nlist; //将订单的信息传给API.js
-          wx.setStorageSync("ORDERINFO", nlist);
+          wx.setStorageSync("GOODSCAR", nlist);
           wx.navigateTo({
             url: '/pages/order/order'
           })

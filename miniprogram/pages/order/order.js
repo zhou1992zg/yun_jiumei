@@ -169,6 +169,7 @@ Page({
         goods_url: item.url,
         price: item.price,
         count: item.count,
+        goods_name: item.goods_name
       }
       goods_data.push(goods_list);
     });
@@ -231,9 +232,25 @@ Page({
           package: `prepay_id=${data.prepay_id}`,
           signType: 'MD5',
           paySign: data.sign,
-          success: () => {
+          success: (res) => {
+            console.log(res)
+            
             wx.showToast({
-              title: '支付成功'
+              title: '支付成功',
+              icon: 'success',
+              duration: 1000
+            });
+            setTimeout(function () {
+              wx.redirectTo({
+                url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
+              })
+            }, 1000)
+          },
+          fail: (res) => {
+            console.log(res)
+            wx.showToast({
+              title: '取消支付',
+              icon: 'none'
             });
           }
         });

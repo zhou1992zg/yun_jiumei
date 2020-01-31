@@ -23,7 +23,7 @@
 	</view>
 	<block wx:if="{{orderLists||orderLists.length>0}}">
 		<block wx:for='{{orderLists}}' wx:key='{{item.id}}'>
-			<view class="order-list-box" catchtap='detail' data-orderid="{{item._orderId}}">
+			<view class="order-list-box" catchtap='detail' data-orderid="{{item._id}}">
 				<view class="order-content">
 					<view class="order-name">
 						<view class="name">订单号：{{item._orderId}}</view>

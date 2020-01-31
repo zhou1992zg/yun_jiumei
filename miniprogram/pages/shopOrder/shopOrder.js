@@ -105,7 +105,8 @@ Page({
   },
 
   detail(e) {
-    let orderid = e;
+    console.log(e)
+    let orderid = e.currentTarget.dataset.orderid;
     wx.navigateTo({
       url: '/pages/orderDetail/orderDetail?orderid=' + orderid,
     })
