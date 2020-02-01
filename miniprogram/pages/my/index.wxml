@@ -40,17 +40,17 @@
 			</view>
 			<i class="iconfont icon-jiantou-copy right"></i>
 		</navigator>
-		<navigator url='/pages/serviceIntr/serviceIntr' class='item'>
+		<!-- <navigator url='/pages/serviceIntr/serviceIntr' class='item'>
 			<view class="text-box">
 				<i class="iconfont icon-fuwujieshao img"></i>
 				服务介绍
 			</view>
 			<i class="iconfont icon-jiantou-copy right"></i>
-		</navigator>
-		<view class='item' bindtap="makePhoneCall" data-tell="400-002-2699">
+		</navigator> -->
+		<view class='item' bindtap="makePhoneCall" data-tell="18111501020">
 			<view class="text-box">
 				<i class="iconfont icon-kefudianhua img"></i>
-				电话客服 <text>400-002-2699</text>
+				电话客服 <text>18111501020 </text>
 			</view>
 			<i class="iconfont icon-jiantou-copy right"></i>
 		</view>
