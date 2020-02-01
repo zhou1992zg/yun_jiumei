@@ -39,6 +39,23 @@ Page({
     this.totalPrice();
   },
 
+  /**
+   * 打开地图
+   */
+  getLocation:function(){
+    wx.getLocation({
+      type: 'wgs84', 
+      success: function (res) {
+        wx.openLocation({//​使用微信内置地图查看位置。
+          latitude: 31.107237,//要去的纬度-地址
+          longitude: 104.392375,//要去的经度-地址
+          name: "酒槑 18111501020",
+          address: '文杰莱茵广场内'
+        })
+      }
+    })
+  },
+
   // 查询邮费
   getYouFei() {
     wx.cloud.callFunction({

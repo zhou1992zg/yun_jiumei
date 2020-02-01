@@ -8,28 +8,28 @@
 	<view class="list-box">
 		<view class="all-order" hover-class="none" hover-stop-propagation="false">
 			<view class="my-order" hover-class="none" hover-stop-propagation="false">我的订单</view>
-			<view bindtap="switchTabPage" data-listname='allOrder' class="look-order" hover-class="none" hover-stop-propagation="false">
+			<view bindtap="switchTabPage" data-index="0" class="look-order" hover-class="none" hover-stop-propagation="false">
 				查看全部订单
 				<i class="iconfont icon-jiantou-copy right"></i>
 			</view>
 		</view>
 		<view class="flex-h">
-			<view bindtap="switchTabPage" class="list-list" data-listname='stayPayOrder'>
+			<view bindtap="switchTabPage" class="list-list" data-index='1'>
 				<i class="iconfont icon-fukuan img"></i>
 				<view class="list-text">待付款</view>
 			</view>
-			<view bindtap="switchTabPage" class="list-list" data-listname='stayDelivery'>
+			<view bindtap="switchTabPage" class="list-list" data-index='2'>
 				<i class="iconfont icon-yifukuan img"></i>
 				<view class="list-text">已付款</view>
 			</view>
-			<view bindtap="switchTabPage" class="list-list" data-listname='okOrder'>
+			<view bindtap="switchTabPage" class="list-list" data-index='3'>
 				<i class="iconfont icon-yifahuo img"></i>
 				<view class="list-text">已发货</view>
 			</view>
-			<navigator class="list-list" hover-class="none" url='/pages/serverOrder/serverOrder'>
+			<view bindtap="switchTabPage" class="list-list" data-index='4' >
 				<i class="iconfont icon-yiwancheng img"></i>
-				<view class="list-text">已收货</view>
-			</navigator>
+				<view class="list-text">已完成</view>
+			</view>
 		</view>
 	</view>
 	<view class="list-box" style="margin-top:6px;">

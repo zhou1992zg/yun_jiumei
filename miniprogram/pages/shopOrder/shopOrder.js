@@ -1,6 +1,7 @@
 // miniprogram/pages/shopOrder/shopOrder.js
 import {
-  formatTime,isOwnEmpty
+  formatTime,
+  isOwnEmpty
 } from '../../utils/utils';
 Page({
 
@@ -10,24 +11,14 @@ Page({
   data: {
     tabData: [{
       title: '全部',
-      btnIndex: '1',
-      listName: 'stayDelivery'
     }, {
       title: '待付款',
-      btnIndex: '1',
-      listName: 'stayDelivery'
     }, {
-      title: '已付款',
-      btnIndex: '0',
-      listName: 'stayPayOrder'
+      title: '待发货',
     }, {
       title: '已发货',
-      btnIndex: '2',
-      listName: 'okOrder'
     }, {
       title: '已完成',
-      btnIndex: '',
-      listName: 'allOrder'
     }],
     tabIndex: 0,
     type: 1,
@@ -43,7 +34,16 @@ Page({
     navHeight: 0,
     popUpWindowHidden: true,
     loading: true,
-    orderLists: []
+    orderLists: [],
+    showSkeleton: true,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (o) {
+    const index = o.index;
+    wx.setStorageSync("ORDER_INDEX", index);
   },
 
   /**
@@ -51,39 +51,46 @@ Page({
    */
   onShow: function () {
     const _this = this;
-    this.setData({
-      systemInfo: wx.getSystemInfoSync()
-    });
     //获取订单列表
-    _this.getOrderList(0);
+    _this.getOrderList();
   },
 
   /**
    * 获取订单列表
    * @param {} 
    */
-  getOrderList(index) {
+  getOrderList() {
     const _this = this;
     const db = wx.cloud.database()
-    db.collection("order").where({
-      _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
-      _payType: index
-    }).get({
+    let data = {};
+    if (wx.getStorageSync("ORDER_INDEX") == 0) {
+      data = {
+        _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
+      }
+    } else {
+      data = {
+        _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
+        _payType: Number(wx.getStorageSync("ORDER_INDEX")) - 1
+      }
+    }
+    db.collection("order").where(data).get({
       success: res => {
         console.log(res.data)
         let data = res.data;
-        if(isOwnEmpty(data)){
+        if (isOwnEmpty(data)) {
           data = false;
-        }else{
+        } else {
           data.forEach((item, index) => {
             if (item._createtime) {
-              data[index]["_createtime"] = formatTime(item._createtime/1000, "Y-M-D h:m:s");
+              data[index]["_createtime"] = formatTime(item._createtime / 1000, "Y-M-D h:m:s");
             }
           })
         }
-        
+
         _this.setData({
-          orderLists: data
+          orderLists: data,
+          tabIndex: wx.getStorageSync("ORDER_INDEX"),
+          showSkeleton: false
         })
       },
       fail: err => {
@@ -103,12 +110,13 @@ Page({
     const tabIndex = e.currentTarget.dataset.index;
     const btnIndex = e.currentTarget.dataset.btnindex;
     const listName = e.currentTarget.dataset.listname;
+    wx.setStorageSync("ORDER_INDEX", tabIndex);
     _this.setData({
       tabIndex,
       status: btnIndex,
-      listName
+      listName,
     });
-    _this.getOrderList(tabIndex);
+    _this.getOrderList();
   },
 
   detail(e) {
@@ -119,40 +127,6 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享

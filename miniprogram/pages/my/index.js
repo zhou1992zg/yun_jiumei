@@ -64,9 +64,9 @@ Page({
   },
 
   switchTabPage: function (e) {
-    let listName = e.currentTarget.dataset.listname;
+    let index = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '/pages/shopOrder/shopOrder?listName=' + listName,
+      url: '/pages/shopOrder/shopOrder?index=' + index,
     })
   },
 

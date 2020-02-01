@@ -1,15 +1,5 @@
-<!-- <wxs module="fn">
-	module.exports = {
-		getOrderText: function(orderDetail) {
-			var serviceText = '';
-			for (var i = 0; i < orderDetail.goods.length; i++) {
-				serviceText = serviceText + (orderDetail.goods[i].values) + ',';
-			}
-			serviceText = serviceText.substring(0, serviceText.length - 1)
-			return serviceText;
-		},
-	}
-</wxs> -->
+<wxs src="../../filter/filter.wxs" module="filter" />
+<skeleton selector="skeleton" loading="spin" wx:if="{{showSkeleton}}"></skeleton>
 <view class='wrap'>
 	<view class='tab'>
 		<scroll-view scroll-x style="height: 44px;" scroll-with-animation="500" scroll-left="{{scrollWidth}}">
