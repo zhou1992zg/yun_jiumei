@@ -27,7 +27,7 @@
 <!-- 循环的商品列表 -->
 <view class='has_shop_list'>
 	<!-- 循环商品列表 -->
-	<block wx:key="keygoods_car_index" wx:for="{{goodsData}}">
+	<block wx:key="keygoods_car_index" wx:for="{{goodsCar}}">
 		<view class='has_shop_item'>
 			<view class='btn_ischeck'>
 				<!-- 判断是否为选中状态 -->

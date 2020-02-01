@@ -42,13 +42,13 @@ Page({
   /**
    * 打开地图
    */
-  getLocation:function(){
+  getLocation: function () {
     wx.getLocation({
-      type: 'wgs84', 
+      type: 'wgs84',
       success: function (res) {
-        wx.openLocation({//​使用微信内置地图查看位置。
-          latitude: 31.107237,//要去的纬度-地址
-          longitude: 104.392375,//要去的经度-地址
+        wx.openLocation({ //​使用微信内置地图查看位置。
+          latitude: 31.107237, //要去的纬度-地址
+          longitude: 104.392375, //要去的经度-地址
           name: "酒槑 18111501020",
           address: '文杰莱茵广场内'
         })
@@ -202,6 +202,9 @@ Page({
   // 下单
   addOrder(buyData) {
     const _this = this;
+    wx.showLoading({
+      title: '下单中'
+    });
     wx.cloud.callFunction({
       name: 'order',
       data: {
@@ -209,6 +212,8 @@ Page({
       },
       complete: res => {
         console.log(res.result._id)
+        wx.setStorageSync("GOODSCAR",[]);
+        wx.hideLoading();
         _this.pay(res.result._id, buyData._price);
       }
     })
@@ -216,8 +221,9 @@ Page({
 
   // 订单支付
   pay(orderId, _price) {
+    const _this = this;
     wx.showLoading({
-      title: '支付中'
+      title: '下单成功，前往支付'
     });
     wx.cloud.callFunction({
       name: 'pay', // 调用pay函数
@@ -251,17 +257,24 @@ Page({
           paySign: data.sign,
           success: (res) => {
             console.log(res)
-            
-            wx.showToast({
-              title: '支付成功',
-              icon: 'success',
-              duration: 1000
-            });
-            setTimeout(function () {
-              wx.redirectTo({
-                url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
-              })
-            }, 1000)
+            _this.changeOrderType(orderId, function () {
+              wx.showToast({
+                title: '支付成功',
+                icon: 'success',
+                duration: 1000
+              });
+              setTimeout(function () {
+                wx.redirectTo({
+                  url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
+                })
+              }, 1000)
+            }, function () {
+              wx.showToast({
+                title: '支付失败，稍后重试',
+                icon: 'success',
+                duration: 1000
+              });
+            })
           },
           fail: (res) => {
             console.log(res)
@@ -269,6 +282,11 @@ Page({
               title: '取消支付',
               icon: 'none'
             });
+            setTimeout(function () {
+              wx.redirectTo({
+                url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
+              })
+            }, 1000)
           }
         });
       },
@@ -278,5 +296,23 @@ Page({
         console.log(res);
       }
     });
+  },
+
+  changeOrderType(order_id, fn, errFn) {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'changeOrder',
+      // 传给云函数的参数
+      data: {
+        order_id: order_id,
+        type: 1
+      },
+      success: function (res) {
+        fn && fn(res)
+      },
+      fail: function (err) {
+        errFn && errFn(res)
+      }
+    })
   }
 })

@@ -130,7 +130,6 @@ Page({
           paySign: data.sign,
           success: (res) => {
             console.log(res)
-
             wx.showToast({
               title: '支付成功',
               icon: 'success',

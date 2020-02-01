@@ -17,11 +17,26 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面显示
    */
-  onLoad: function (options) {
-
+  onShow: function () {
+    if (!wx.getStorageSync("PHONE_NUMBER")) {
+      var pages = getCurrentPages(); //获取加载的页面
+      var currentPage = pages[pages.length - 1]; //获取当前页面的对象
+      var url = currentPage.route; //当前页面url
+      console.log(url)
+      wx.navigateTo({
+        url: '../login/login' + "?url=" + url,
+      });
+      return;
+    }
+    this.setData({
+      goodsCar: wx.getStorageSync("GOODSCAR"),
+      carisShow: !wx.getStorageSync("GOODSCAR").length,
+    })
+    this.totalPrice();
   },
+
   // 编辑事件
   editGood: function () {
     this.setData({
@@ -170,7 +185,7 @@ Page({
     let list = this.data.goodsCar;
     // 获取商品数量
     list[index].count = totalNum;
-    
+
     this.setData({
       goodsCar: list
     });
@@ -327,29 +342,5 @@ Page({
         }
       }
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    if (!wx.getStorageSync("PHONE_NUMBER")) {
-      var pages = getCurrentPages(); //获取加载的页面
-      var currentPage = pages[pages.length - 1]; //获取当前页面的对象
-      var url = currentPage.route; //当前页面url
-      console.log(url)
-      wx.navigateTo({
-        url: '../login/login' + "?url=" + url,
-      });
-      return;
-    }
-    this.data.goodsCar = wx.getStorageSync("GOODSCAR");
-    this.totalPrice();
-  },
+  }
 })
