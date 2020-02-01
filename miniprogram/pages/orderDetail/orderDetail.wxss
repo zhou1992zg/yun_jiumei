@@ -69,11 +69,17 @@ page {
 }
 
 .merchant_goods .has_shop_smalltxt{
-  font-weight: 600;
+  font-weight: bold;
   color: #000;
   font-size: 32rpx;
   display: flex;
   align-items: center;
+}
+
+.merchant_goods .has_shop_smalltxt .i{
+  font-size: 36rpx;
+  flex: 1;
+  text-align: right;
 }
 
 .merchant_goods .has_shop_smalltxt .has_shop_icon1{
@@ -160,6 +166,10 @@ page {
 
 .name_phone text{
   color: #ccc;
+}
+
+.address{
+  font-weight: bold;
 }
 
 .address .margin_20 {

@@ -1,6 +1,6 @@
 // miniprogram/pages/shopOrder/shopOrder.js
 import {
-  formatTime
+  formatTime,isOwnEmpty
 } from '../../utils/utils';
 Page({
 
@@ -49,33 +49,39 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function () {
     const _this = this;
     this.setData({
       systemInfo: wx.getSystemInfoSync()
     });
     //获取订单列表
-    _this.getOrderList();
+    _this.getOrderList(0);
   },
 
   /**
    * 获取订单列表
    * @param {} 
    */
-  getOrderList() {
+  getOrderList(index) {
     const _this = this;
     const db = wx.cloud.database()
     db.collection("order").where({
       _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
+      _payType: index
     }).get({
       success: res => {
         console.log(res.data)
         let data = res.data;
-        data.forEach((item, index) => {
-          if (item._createtime) {
-            data[index]["_createtime"] = formatTime(item._createtime/1000, "Y-M-D h:m:s");
-          }
-        })
+        if(isOwnEmpty(data)){
+          data = false;
+        }else{
+          data.forEach((item, index) => {
+            if (item._createtime) {
+              data[index]["_createtime"] = formatTime(item._createtime/1000, "Y-M-D h:m:s");
+            }
+          })
+        }
+        
         _this.setData({
           orderLists: data
         })
@@ -102,6 +108,7 @@ Page({
       status: btnIndex,
       listName
     });
+    _this.getOrderList(tabIndex);
   },
 
   detail(e) {
@@ -118,11 +125,6 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

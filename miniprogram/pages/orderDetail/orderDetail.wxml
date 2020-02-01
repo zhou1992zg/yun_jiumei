@@ -1,3 +1,5 @@
+<wxs src="../../filter/filter.wxs" module="filter" />
+<skeleton selector="skeleton" loading="spin" wx:if="{{showSkeleton}}"></skeleton>
 <view class="header">
 	<view class="order_type" wx:if="{{orderDeta._payType==0}}"><i class="iconfont icon-daizhifu i"></i>未支付</view>
 	<view class="order_type" wx:elif="{{orderDeta._payType==1}}"><i class="iconfont icon-daifahuo i"></i>待发货</view>
@@ -6,12 +8,13 @@
 	<view class="radu_box"></view>
 </view>
 <view class="address">
-	<view class="name_phone"><i class="iconfont icon-shouhuodizhi i"></i>周迅 13547093105</view>
-	<view class="address_list">地址：四川省德阳市广汉市金鱼镇11-2</view>
+	<view class="name_phone"><i class="iconfont icon-shouhuodizhi i"></i>{{addressDeta.realname}} {{addressDeta.mobile}}</view>
+	<view class="address_list">地址：{{addressDeta.info}}</view>
 </view>
 <view class="merchant_goods">
-	<view class='has_shop_smalltxt'>
-		<image class='has_shop_icon1' src='../../assets/images/logo.jpg' /> 酒槑 | 酒馆 </view>
+	<view class='has_shop_smalltxt' bindtap="getLocation">
+		<image class='has_shop_icon1' src='../../assets/images/logo.jpg'/> 酒槑 | 酒馆 <i class="iconfont icon-daohang i"></i></view>
+		
 	<block wx:for="{{orderDeta.goods_data}}" wx:key="index">
 		<view class='position_hasshop_item'>
 			<view class='position_hasshop_img'>

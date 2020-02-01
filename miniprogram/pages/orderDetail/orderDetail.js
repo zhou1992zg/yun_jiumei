@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showSkeleton: true
   },
 
   /**
@@ -25,6 +25,23 @@ Page({
   callPhone() {
     wx.makePhoneCall({
       phoneNumber: '18111501020',
+    })
+  },
+
+  /**
+   * 打开地图
+   */
+  getLocation:function(){
+    wx.getLocation({
+      type: 'wgs84', 
+      success: function (res) {
+        wx.openLocation({//​使用微信内置地图查看位置。
+          latitude: 31.107237,//要去的纬度-地址
+          longitude: 104.392375,//要去的经度-地址
+          name: "酒槑 18111501020",
+          address: '文杰莱茵广场内'
+        })
+      }
     })
   },
 
@@ -155,7 +172,31 @@ Page({
         let data = res.data[0];
         data["_createtime"] = formatTime(data._createtime / 1000, "Y-M-D h:m:s");
         _this.setData({
-          orderDeta: res.data[0]
+          orderDeta: data
+        })
+        this.getAddressDeta(data.address_id);
+      },
+      fail: err => {
+        wx.showToast({
+          icon: "none",
+          title: '获取订单失败',
+        })
+      }
+    });
+  },
+
+  getAddressDeta(address_id) {
+    const _this = this;
+    const db = wx.cloud.database()
+    db.collection("address-list").where({
+      _id: address_id,
+    }).get({
+      success: res => {
+        console.log(res.data[0])
+        let data = res.data[0];
+        _this.setData({
+          addressDeta: data,
+          showSkeleton: false
         })
       },
       fail: err => {
