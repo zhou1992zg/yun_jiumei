@@ -1,4 +1,10 @@
 /* 轮播 */
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .swiper_box {
   height: 700rpx;
 }

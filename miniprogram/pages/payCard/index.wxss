@@ -1,5 +1,8 @@
+@import '../../style/YouYuan.wxss'; 
+
 view {
   box-sizing: content-box !important;
+  font-family: "YouYuan";
 }
 
 .container {

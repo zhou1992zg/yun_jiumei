@@ -25,7 +25,7 @@
 	},
 	"appid": "wx954b3b0e52f62cdd",
 	"projectname": "yun_wx",
-	"libVersion": "2.10.0",
+	"libVersion": "2.10.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",

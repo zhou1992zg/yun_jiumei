@@ -1,4 +1,9 @@
 /* pages/my/address/address.wxss */
+@import '../../style/YouYuan.wxss'; 
+
+view{
+  font-family: "YouYuan";
+}
 
 .element::-webkit-scrollbar {
   display: none

@@ -1,3 +1,9 @@
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .login_box {
   position: relative;
   width: 100vw;

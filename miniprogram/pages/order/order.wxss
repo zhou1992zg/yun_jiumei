@@ -1,4 +1,6 @@
 /* pages/order/order.wxss */
+@import '../../style/YouYuan.wxss'; 
+
 page{
   min-height: 100vh;
   background-color: #f2f5f4;
@@ -6,6 +8,7 @@ page{
 }
 
 view {
+  font-family: "YouYuan";
   box-sizing: content-box !important;
 }
 

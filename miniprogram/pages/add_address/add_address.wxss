@@ -1,3 +1,9 @@
+@import '../../style/YouYuan.wxss'; 
+
+view{
+  font-family: "YouYuan";
+}
+
 .wrap {
   font-size: 28rpx;
   font-family: PingFangSC-Regular;

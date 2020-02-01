@@ -1,3 +1,9 @@
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .pages {
   background-color: #fff;
   min-height: 100vh;

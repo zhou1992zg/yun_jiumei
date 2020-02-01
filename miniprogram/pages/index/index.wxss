@@ -1,7 +1,8 @@
 /**index.wxss**/
+@import '../../style/YouYuan.wxss'; 
 
-.index_page {
-  background: #fff;
+view {
+  font-family: "YouYuan";
 }
 
 /* 轮播 */

@@ -1,8 +1,11 @@
+@import '../../style/YouYuan.wxss'; 
+
 page {
   overflow: hidden;
 }
 
 view{
+  font-family: "YouYuan";
   box-sizing: content-box !important;
 }
 

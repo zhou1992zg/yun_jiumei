@@ -1,4 +1,9 @@
 /* pages/my/my.wxss */
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
 
 page {
   font-size: 26rpx;
