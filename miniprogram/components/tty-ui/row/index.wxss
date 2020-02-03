@@ -1,1 +1,7 @@
+@import '../../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .tty-row:after{content:"";display:table;clear:both}

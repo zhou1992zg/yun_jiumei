@@ -129,7 +129,7 @@ view {
 .menu_right_name {
   font-size: 28rpx;
   line-height: 30rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
 }
@@ -154,14 +154,14 @@ view {
 
 .menu_right_nprice {
   font-size: 30rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 400;
   color: rgba(214, 70, 60, 1);
 }
 
 .menu_right_oprice {
   font-size: 20rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 400;
   color: rgba(185, 189, 185, 1);
   /* margin-left: 22rpx; */
@@ -188,7 +188,7 @@ view {
   height: 228rpx;
   background: rgba(235, 84, 77, 1);
   font-size: 24rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
   display: flex;
@@ -233,7 +233,7 @@ view {
 .buyBtn .left text:nth-child(1) {
   height: 36px;
   font-size: 26rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   color: rgba(136, 136, 136, 1);
   margin-right: 14rpx;
 }
@@ -241,7 +241,7 @@ view {
 .buyBtn .left text:nth-child(2) {
   height: 36rpx;
   font-size: 26rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   color: #c5201f;
   line-height: 36rpx;
 }
@@ -261,7 +261,7 @@ view {
   height: 100rpx;
   background: #c5201f;
   font-size: 22prx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   color: rgba(255, 255, 255, 1);
   line-height: 100rpx;
   text-align: center;
@@ -291,7 +291,7 @@ view {
   height: 100rpx;
   background: #9c2732;
   font-size: 34prx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   color: rgba(255, 255, 255, 1);
   line-height: 100rpx;
   text-align: center;

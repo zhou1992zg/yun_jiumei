@@ -1,4 +1,9 @@
 /* components/linkage/linkage.wxss */
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
 
 .container-linkpage {
     width: 100%;

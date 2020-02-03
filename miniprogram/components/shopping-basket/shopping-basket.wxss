@@ -1,4 +1,10 @@
 /* components/shopping-basket/shopping-basket.wxss */
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .basket-container{
     height: 100rpx;
     width: 100%;

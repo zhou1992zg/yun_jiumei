@@ -41,7 +41,7 @@ page {
   /* width:216px; */
   height: 50rpx;
   font-size: 36rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   /* font-weight:400; */
   color: rgba(0, 0, 0, 1);
   line-height: 50rpx;
@@ -98,7 +98,7 @@ page {
   height: 28rpx;
   font-size: 20rpx;
   padding: 0 6rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
   line-height: 28rpx;

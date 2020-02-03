@@ -1,3 +1,9 @@
+@import '../../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .tty-cell {
   position: relative;
   padding: 12px 15px;

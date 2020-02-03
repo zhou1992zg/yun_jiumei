@@ -1,3 +1,9 @@
+@import '../../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 @font-face {
   font-family: ttyui-weapp-icon;
   src: url('https://at.alicdn.com/t/font_703014_gw77qytejlm.eot');

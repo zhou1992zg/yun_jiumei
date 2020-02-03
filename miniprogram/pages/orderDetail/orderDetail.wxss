@@ -127,7 +127,7 @@ page {
   padding-top: 14rpx;
   font-size: 30rpx;
   line-height: 42rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
 }
@@ -141,14 +141,14 @@ page {
 
 .menu_right_nprice {
   font-size: 30rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 400;
   color: rgba(214, 70, 60, 1);
 }
 
 .menu_right_num{
   font-size: 28rpx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   font-weight: 600;
   color: #ccc;
 }

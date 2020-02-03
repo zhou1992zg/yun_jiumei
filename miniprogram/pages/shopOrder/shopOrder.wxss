@@ -8,7 +8,7 @@ view {
 page {
     width: 100%;
     /*height: 100%;*/
-    font-family: PingFangSC-Regular;
+    font-family: "YouYuan";
     font-size: 28rpx;
     color: #000;
     padding-top: 88rpx;
@@ -46,7 +46,7 @@ page {
     line-height: 88rpx;
     /*padding: 0 30rpx;*/
     font-size: 28rpx;
-    font-family: PingFangSC-Regular;
+    font-family: "YouYuan";
     color: rgba(53, 53, 53, 1);
     background: #fff;
 }
@@ -95,7 +95,7 @@ page {
     height: 40rpx;
     padding-bottom: 34rpx;
     font-size: 14px;
-    font-family: PingFangSC-Regular;
+    font-family: "YouYuan";
     font-weight: 400;
     color: rgba(0, 0, 0, 1);
     line-height: 40rpx;
@@ -239,7 +239,7 @@ page {
     margin-top: 6rpx;
     padding: 0 30rpx;
     font-size: 26rpx;
-    font-family: PingFangSC-Regular;
+    font-family: "YouYuan";
     font-weight: 400;
     color: rgba(53, 53, 53, 1);
     line-height: 50rpx;

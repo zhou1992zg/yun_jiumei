@@ -1,3 +1,9 @@
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .chatroom {
   width: 100%;
   height: 100%;

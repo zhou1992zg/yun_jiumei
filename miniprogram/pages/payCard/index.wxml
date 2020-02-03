@@ -80,7 +80,7 @@
         <!-- 一个都没选择，展示灰色结算按钮 -->
         <view class='btn_detele_all' wx:if="{{isSettlement}}">选择商品</view>
         <view class='btn_detele_all_red' wx:elif="{{isSettlementRed}}" bindtap='goOrder'>立即结算</view>
-        <view class='btn_detele_all_red' wx:elif="{{idDeteleRed}}" bindtap='deteleMore'>删除</view>
+        <view class='btn_detele_all_ccc' wx:elif="{{idDeteleRed}}" bindtap='deteleMore'>删除</view>
         <view class='btn_detele_all' wx:else="{{idDetel}}">全部删除</view>
       </view>
     </view>

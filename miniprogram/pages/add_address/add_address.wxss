@@ -6,7 +6,6 @@ view{
 
 .wrap {
   font-size: 28rpx;
-  font-family: PingFangSC-Regular;
   font-weight: 400;
   color: #000;
   padding-top: 40rpx

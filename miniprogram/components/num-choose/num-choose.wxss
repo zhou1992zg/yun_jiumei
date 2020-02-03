@@ -1,4 +1,10 @@
 /* components/num-choose/num-choose.wxss */
+@import '../../style/YouYuan.wxss'; 
+
+view {
+  font-family: "YouYuan";
+}
+
 .wrapper{
     width: 170rpx;
     position: relative;
@@ -50,6 +56,7 @@
     top: 0;
     font-size: 28rpx;
     text-align: center;
+    font-family: "YouYuan";
 }
 .num-choose .plus{
     width: 48rpx;

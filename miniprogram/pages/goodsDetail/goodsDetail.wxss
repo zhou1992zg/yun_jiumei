@@ -89,7 +89,6 @@ view {
 .buyBtn .left text:nth-child(1) {
   height: 36px;
   font-size: 26rpx;
-  font-family: PingFangSC-Regular;
   color: rgba(136, 136, 136, 1);
   margin-right: 14rpx;
 }
@@ -97,7 +96,6 @@ view {
 .buyBtn .left text:nth-child(2) {
   height: 36rpx;
   font-size: 26rpx;
-  font-family: PingFangSC-Regular;
   color: #9c2732;
   line-height: 36rpx;
 }
@@ -105,7 +103,6 @@ view {
 .buyBtn .left text:nth-child(3) {
   height: 56rpx;
   font-size: 34rpx;
-  font-family: PingFangSC-Medium;
   font-weight: 500;
   color: #9c2732;
   line-height: 56rpx;
@@ -117,7 +114,7 @@ view {
   height: 100rpx;
   background: #9c2732;
   font-size: 34prx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   color: rgba(255, 255, 255, 1);
   line-height: 100rpx;
   text-align: center;
@@ -142,7 +139,7 @@ view {
   height: 100rpx;
   background: #9c2732;
   font-size: 34prx;
-  font-family: PingFangSC-Regular;
+  font-family: "YouYuan";
   color: rgba(255, 255, 255, 1);
   line-height: 100rpx;
   text-align: center;
