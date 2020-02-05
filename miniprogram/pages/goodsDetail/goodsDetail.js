@@ -36,7 +36,8 @@ Page({
         })
       },
       fail: err => {
-        console.log("获取banner失败");
+        console.log(err)
+        console.log("获取商品详情失败");
       }
     });
   },
