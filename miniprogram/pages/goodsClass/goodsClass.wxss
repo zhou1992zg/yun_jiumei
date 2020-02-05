@@ -123,9 +123,9 @@ view {
 
 .feature span {
   color: #777778;
-  font-size: 28rpx;
-  padding: 0 18rpx;
-  background-color: #fefefe;
+  font-size: 26rpx;
+  padding: 8rpx 18rpx;
+  background-color: #eee;
   border-radius: 30rpx;
   margin-right: 10rpx;
 }

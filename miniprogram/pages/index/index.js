@@ -31,7 +31,7 @@ Page({
 
   async getData() {
     const _this = this;
-    const db = wx.cloud.database()
+    const db = wx.cloud.database();
     let swiperList = await db.collection("banner").get({
       success: res => {
         console.log(res.data[0].bannerList)

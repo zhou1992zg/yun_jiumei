@@ -1,7 +1,7 @@
 <view class="pages">
 	<view class="sort_mode_box">
 		<view class="sort_mode_box_fixd" wx:if="switchIndex==3">
-			<span class="filter" class="{{sel_sort==1&&'filter_active'}}" bindtap="selSort(1)" data-index="1">附近</span>
+			<span class="filter" class="{{sel_sort==1&&'filter_active'}}" bindtap="selSort(1)" data-index="1">综合</span>
 			<span class="filter" class="{{sel_sort==2&&'filter_active'}}" bindtap="selSort(2)" data-index="2">热卖</span>
 			<span class="filter" class="{{sel_sort==3&&'filter_active'}}" bindtap="selSort(3)" data-index="3">
 				价格
@@ -23,17 +23,15 @@
 	</view>
 	<view class="class_box">
 		<block wx:for="{{goodsClassList}}" wx:key="index">
-			<view class="goods_class_list" hover-class="hover-style" bindtap="viewDetailFunc" data-id="{{item.goods_id}}">
-				<image src="" class="goods_img"/>
+			<view class="goods_class_list" hover-class="hover-style" bindtap="viewDetailFunc" data-id="{{item._id}}">
+				<image src="{{item._shareList[0].fileID}}" class="goods_img"/>
 				<view class="right">
-					<view class="title zx-warp-2">【西班牙DO级红酒 网红人气酒 原跑瓶进口】 小红帽干红葡萄酒</view>
+					<view class="title zx-warp-2">{{item.goods_name}}</view>
 					<view class="feature">
-					 <span>干型</span>
-					 <span>柔和</span>
-					 <span>法国</span>
+					 <span wx:for="{{item._type}}" wx:for-item="bas">{{bas}}</span>
 					</view>
-					<view class="money">¥ <span>139.00</span></view>
-					<view class="type">已售：110瓶  库存：18瓶</view>
+					<view class="money">¥ <span>{{item.price}}</span></view>
+					<view class="type">已售：{{item.amount}}瓶  库存：{{item.stock}}瓶</view>
 				</view>
 			</view>
 		</block>

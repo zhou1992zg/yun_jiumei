@@ -22,18 +22,18 @@
                         <view class="name">{{twoItem.goods_category_two_name}}</view>
                     </view>
                     <view class="pesticide-container">
-                        <view class="pesticide-item goods-class" hover-class="hover-style"  wx:for="{{twoItem.goods}}" data-itemId="{{pes.goods_id}}" wx:for-item="pes" wx:key="{{goodsIndex}}"
+                        <view class="pesticide-item goods-class" hover-class="hover-style"  wx:for="{{twoItem.goods}}" data-itemid="{{pes._id}}" wx:for-item="pes" wx:key="{{goodsIndex}}"
                             catchtap="tapHandle" wx:for-index="goodsIndex">
-                            <image src="{{pes.url || defaultImg}}" mode="aspectFit"></image>
+                            <image src="{{pes._shareList[0].fileID || defaultImg}}" mode="aspectFill"></image>
                             <view class="pesticide-item-content {{management ? 'management-item-content' : ''}}">
                                 <view class="describe">
                                     <text>{{pes.goods_name}}</text>
                                 </view>
                                 <view class="price">
-                                    <text>{{filter.currencyFormat(pes.price)}}</text>               
+                                    <text>{{filter.currencyFormat(pes.price)}}</text>
                                 </view>
                                 <view class="inventory">
-                                    <text>已售：110瓶 库存：{{pes.stock}} {{pes.base_unit_name}}</text>
+                                    <text>已售：{{pes.stock}}瓶 库存：{{pes.amount}} {{pes.base_unit_name}}</text>
                                 </view>
                             </view>
                         </view>

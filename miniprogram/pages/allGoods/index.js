@@ -14,27 +14,190 @@ Page({
     typeData: [], // 列表数据
     useData: [], // 过度数据
     goodsData: [], // 购物篮商品列表
-    showSkeleton: true   //骨架屏显示隐藏
+    showSkeleton: true //骨架屏显示隐藏
   },
   onLoad() {
-    const db = wx.cloud.database()
-    db.collection("all-goods").get({
+    this.getData()
+  },
+  async getData() {
+    const _this = this;
+    const db = wx.cloud.database();
+    let typeData = [];
+    await db.collection("goods").where({
+      _payTypeIndex: "0"
+    }).get({
       success: res => {
-        this.setData({
-          typeData: res.data,
-          showSkeleton: false
-        })
-        this.dataSet(res.data)
+        let data = res.data;
+        console.log('goodsList0==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651891449856",
+          goods_category_one_name: "红葡萄酒",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891449857",
+            goods_category_two_name: "红葡萄酒",
+            goods: data
+          }]
+        }
+        typeData[0] = goodsList;
       },
       fail: err => {
-        wx.showToast({
-          icon: "none",
-          title: '查询记录失败',
-        })
+        console.log("获取商品分类0失败");
       }
-    })
+    });
+    await db.collection("goods").where({
+      _payTypeIndex: "1"
+    }).get({
+      success: res => {
+        let data = res.data;
+        console.log('goodsList1==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651891449858",
+          goods_category_one_name: "白葡萄酒",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891459857",
+            goods_category_two_name: "白葡萄酒",
+            goods: data
+          }]
+        }
+        typeData[1] = goodsList;
+      },
+      fail: err => {
+        console.log("获取商品分类1失败");
+      }
+    });
+    await db.collection("goods").where({
+      _payTypeIndex: "2"
+    }).get({
+      success: res => {
+        let data = res.data;
+        console.log('goodsList2==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651896449858",
+          goods_category_one_name: "甜葡萄酒",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891449857",
+            goods_category_two_name: "甜葡萄酒",
+            goods: data
+          }]
+        }
+        typeData[2] = goodsList;
+      },
+      fail: err => {
+        console.log("获取商品分类2失败");
+      }
+    });
+    await db.collection("goods").where({
+      _payTypeIndex: "3"
+    }).get({
+      success: res => {
+        let data = res.data;
+        console.log('goodsList3==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651896449860",
+          goods_category_one_name: "起泡酒",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891449857",
+            goods_category_two_name: "起泡酒",
+            goods: data
+          }]
+        }
+        typeData[3] = goodsList;
+      },
+      fail: err => {
+        console.log("获取商品分类3失败");
+      }
+    });
+    await db.collection("goods").where({
+      _payTypeIndex: "4"
+    }).get({
+      success: res => {
+        let data = res.data;
+        console.log('goodsList4==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651896449862",
+          goods_category_one_name: "百元畅饮",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891449857",
+            goods_category_two_name: "百元畅饮",
+            goods: data
+          }]
+        }
+        typeData[4] = goodsList;
+      },
+      fail: err => {
+        console.log("获取商品分类4失败");
+      }
+    });
+    await db.collection("goods").where({
+      _payTypeIndex: "5"
+    }).get({
+      success: res => {
+        let data = res.data;
+        console.log('goodsList5==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651896449864",
+          goods_category_one_name: "人气爆款",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891449857",
+            goods_category_two_name: "人气爆款",
+            goods: data
+          }]
+        }
+        typeData[5] = goodsList;
+      },
+      fail: err => {
+        console.log("获取商品分类5失败");
+      }
+    });
+    await db.collection("goods").where({
+      _payTypeIndex: "6"
+    }).get({
+      success: res => {
+        let data = res.data;
+        console.log('goodsList6==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651896449866",
+          goods_category_one_name: "精品酒具",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891449857",
+            goods_category_two_name: "精品酒具",
+            goods: data
+          }]
+        }
+        typeData[6] = goodsList;
+      },
+      fail: err => {
+        console.log("获取商品分类6失败");
+      }
+    });
+    await db.collection("goods").where({
+      _payTypeIndex: "7"
+    }).get({
+      success: res => {
+        let data = res.data;
+        console.log('goodsList7==>', data);
+        let goodsList = {
+          goods_category_one_id: "221310651896449868",
+          goods_category_one_name: "店主优选",
+          goods_category_two: [{
+            goods_category_two_id: "221310651891449857",
+            goods_category_two_name: "店主优选",
+            goods: data
+          }]
+        }
+        typeData[7] = goodsList;
+      },
+      fail: err => {
+        console.log("获取商品分类7失败");
+      }
+    });
+    setTimeout(function () {
+      _this.setData({
+        typeData,
+        showSkeleton: false
+      })
+    }, 3000)
   },
-  onShow() {},
 
   // 重置购物篮数据
   resetBasket(basketData) {
@@ -156,6 +319,7 @@ Page({
     });
     this.calculateMoney(goodsData); // 计算总金额
   },
+
   viewDetailFunc(e) {
     let {
       id
@@ -164,6 +328,7 @@ Page({
       url: '/pages/goodsDetail/goodsDetail?id=' + id
     })
   },
+  
   /*商品列表添加事件*/
   contentEvent(e) {
     let {
