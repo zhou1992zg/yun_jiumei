@@ -12,13 +12,17 @@ Page({
     postage: 14.5,
   },
 
-  onLoad: function () {
-    const db = wx.cloud.database()
+  onLoad: function (o) {
+    const _this = this;
+    const db = wx.cloud.database();
+    _this.setData({
+      buyGoodsId: o.id || ''
+    })
     db.collection("address-list").where({
       _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
     }).get({
       success: res => {
-        wx.setStorageSync("ADDRESS_DATA", res.data[0])
+        wx.setStorageSync("ADDRESS_DATA", res.data[0]);
       },
       fail: err => {
         wx.showToast({
@@ -27,16 +31,53 @@ Page({
         })
       }
     });
-    this.getYouFei();
   },
 
   onShow: function () {
-    this.setData({
-      addressData: wx.getStorageSync("ADDRESS_DATA"),
-      goodsData: wx.getStorageSync("ORDERINFO"),
-      goodsCar: wx.getStorageSync("GOODSCAR")
-    })
-    this.totalPrice();
+    const _this = this;
+    _this.getPageLu(function (url) {
+      if (url == "pages/goodsDetail/goodsDetail") {
+        const db = wx.cloud.database();
+        db.collection("goods").where({
+          _id: _this.data.buyGoodsId,
+        }).get({
+          success: res => {
+            console.log(res.data)
+            let goodsCar = res.data;
+            goodsCar[0].count = 1;
+            goodsCar[0].selected = true;
+            _this.setData({
+              addressData: wx.getStorageSync("ADDRESS_DATA"),
+              goodsData: wx.getStorageSync("ORDERINFO"),
+              goodsCar
+            })
+            _this.totalPrice();
+          },
+          fail: err => {
+            wx.showToast({
+              icon: "none",
+              title: '获取直购商品失败',
+            })
+          }
+        });
+      } else {
+        _this.setData({
+          addressData: wx.getStorageSync("ADDRESS_DATA"),
+          goodsData: wx.getStorageSync("ORDERINFO"),
+          goodsCar: wx.getStorageSync("GOODSCAR")
+        })
+        _this.totalPrice();
+      }
+    });
+  },
+
+  //获取上个页面路径
+  getPageLu: function (fn) {
+    let pages = getCurrentPages(); //获取加载的页面
+    let currentPage = pages[pages.length - 2]; //获取当前页面的对象
+    let url = currentPage.route; //当前页面url
+    console.log(url)
+    fn && fn(url);
   },
 
   /**
@@ -158,6 +199,7 @@ Page({
   // 计算金额
   totalPrice: function () {
     let list = this.data.goodsCar;
+    console.log(list)
     let total = 0;
     // 循环列表得到每个数据
     for (let i = 0; i < list.length; i++) {
@@ -183,7 +225,7 @@ Page({
       orderPrice = orderPrice + Number(item.price) * Number(item.count);
       let goods_list = {
         goods_id: item.goods_id,
-        goods_url: item.url,
+        goods_url: item._shareList[0].fileID,
         price: item.price,
         count: item.count,
         goods_name: item.goods_name
@@ -212,7 +254,7 @@ Page({
       },
       complete: res => {
         console.log(res.result._id)
-        wx.setStorageSync("GOODSCAR",[]);
+        wx.setStorageSync("GOODSCAR", []);
         wx.hideLoading();
         _this.pay(res.result._id, buyData._price);
       }

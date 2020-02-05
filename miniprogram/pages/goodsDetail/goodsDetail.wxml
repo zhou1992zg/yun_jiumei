@@ -29,14 +29,20 @@
 <!-- 购买按钮 -->
 <view class='buyBtn'>
 	<view class='btn-box'>
-		<view class="btn" style="width:25%;background:#fff;color:#ccc;" hover-class="none" hover-stop-propagation="false" bindtap="toIndex">
-			返回首页
+		<view class="btn" style="width:15%;background:#fff;color:#ccc;" hover-class="none" hover-stop-propagation="false" bindtap="callPhone">
+			<i class="iconfont icon-icon-test _icon"></i>
+			<span>联系客服</span>
 		</view>
-		<view class="btn" style="width:25%;background:#fff;color:#ccc;" hover-class="none" hover-stop-propagation="false" bindtap="toCard">
-			去结算
+		<view class="btn" style="width:15%;background:#fff;color:#ccc;" hover-class="none" hover-stop-propagation="false" bindtap="toCard">
+			<view class="card_num">{{carGoodsNum}}</view>
+			<i class="iconfont icon-gouwuche _icon {{moveImg?'animation_moveImg':''}}"></i>
+			<span>购物车</span>
 		</view>
-		<view class="btn" style="width:50%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuyCard">
-			加入购物车({{carGoodsNum}})
+		<view class="btn btn_one" style="width:35%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuyCard">
+			加入购物车
+		</view>
+		<view class="btn btn_two" style="width:35%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuy">
+			立即购买
 		</view>
 	</view>
 </view>

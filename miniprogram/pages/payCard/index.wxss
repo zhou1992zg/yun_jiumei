@@ -146,6 +146,7 @@ view {
   margin-top: 100rpx;
   display: flex;
   flex-direction: column;
+  padding-bottom: 126rpx;
 }
 
 .has_shop_item {

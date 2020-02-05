@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentNum: 0
+    carGoodsNum:0,
+    currentNum: 0,
+    moveImg: false
   },
 
   /**
@@ -13,11 +15,11 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    wx.setNavigationBarTitle({
+    this.setData({
       goods_id: options.id,
     })
     this.getGoodsDate(options.id);
-    this.getCarGoodsNum(wx.getStorageSync("GOODSCAR"))
+    this.getCarGoodsNum(wx.getStorageSync("GOODSCAR"),false)
   },
 
   getGoodsDate(goods_id) {
@@ -61,18 +63,40 @@ Page({
       duration: 2000
     })
     wx.setStorageSync("GOODSCAR", goodsCard);
-    this.getCarGoodsNum(goodsCard)
+    this.getCarGoodsNum(goodsCard,true)
   },
 
-  getCarGoodsNum(goodsCard) {
+  callPhone() {
+    wx.makePhoneCall({
+      phoneNumber: '18111501020',
+    })
+  },
+
+  getCarGoodsNum(goodsCard,b) {
+    const _this = this;
     let carGoodsNum = 0;
     if (goodsCard.length > 0) {
       goodsCard.forEach((item, index) => {
         carGoodsNum = carGoodsNum + item.count;
       })
     }
-    this.setData({
+    _this.setData({
+      moveImg: b,
       carGoodsNum
+    })
+    if(b){
+      setTimeout(function () {
+        _this.setData({
+          moveImg: false,
+        })
+      }, 2000)
+    }
+  },
+
+  toBuy(){
+    const _this = this;
+    wx.navigateTo({
+      url: '/pages/order/order?id='+_this.data.goods_id,
     })
   },
 
