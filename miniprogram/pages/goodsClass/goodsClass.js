@@ -53,6 +53,10 @@ Page({
   },
 
   selSort(e) {
+    wx.showLoading({
+      title: '加载中',
+      mask:true
+    })
     let {
       index
     } = e.currentTarget.dataset;
@@ -87,9 +91,10 @@ Page({
           arr[i] = max;
         }
       }
-    }
+    };
     this.setData({
       goodsClassList: arr
-    })
+    });
+    wx.hideLoading();
   }
 })
