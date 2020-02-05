@@ -49,6 +49,12 @@
 	<view class="name_phone" wx:elif="{{orderDeta.distribution_way==1}}"><text>配送方式：</text>上门自提</view>
 	<view class="name_phone" wx:else><text>配送方式：</text>同城急送</view>
 </view>
+<view class='inputs-item' wx:if="{{orderDeta.distribution_way==0}}">
+		<label>快递单号</label>
+		<view class='inpt'>
+			<input value="{{orderDeta._courierNum}}" placeholder-style='color: #B2B2B2' disabled/>
+		</view>
+	</view>
 <view class="address" style="padding-top:60rpx;border-radius:30rpx;">
 	<view class="name_phone margin_20 disp_f"><text>商品总额：</text>¥{{orderDeta._price}}</view>
 	<view class="name_phone margin_40 disp_f"><text>运费：</text>运费到付</view>
@@ -60,9 +66,10 @@
 		<view class="btn buy_two" bindtap="pay">支付订单</view>
 	</block>
 	<block wx:elif="{{orderDeta._payType==1}}">
-		<view class="btn buy_two" bindtap="callPhone">联系老板</view>
+		<view class="btn to_pay" bindtap="callPhone">联系老板</view>
 	</block>
 	<block wx:elif="{{orderDeta._payType==2}}">
+		<view class="btn to_pay" bindtap="callPhone">联系老板</view>
 		<view class="btn buy_two" bindtap="getLogistics">物流查询</view>
 	</block>
 	<block wx:else>

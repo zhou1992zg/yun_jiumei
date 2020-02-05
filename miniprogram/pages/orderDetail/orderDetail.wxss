@@ -235,3 +235,39 @@ page {
   background-color: #9c2732;
   border: 2rpx solid #9c2732;
 }
+
+.inputs-item {
+  display: flex;
+  position: relative;
+  height: 110rpx;
+  align-items: center;
+  padding: 0;
+  font-size: 34rpx;
+  padding: 0 30rpx;
+  margin-bottom: 30rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+}
+
+.inputs-item:after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  left: 0;
+  right: 0;
+  background: rgba(216, 216, 216, 1);
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  bottom: 0
+}
+
+.inputs-item label {
+  width: 150rpx;
+  margin-right: 40rpx
+}
+
+.inputs-item .inpt {
+  flex: 1;
+  width: 100%;
+  position: relative
+}

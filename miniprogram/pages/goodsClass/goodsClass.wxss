@@ -1,4 +1,4 @@
-@import '../../style/YouYuan.wxss'; 
+@import '../../style/YouYuan.wxss';
 
 view {
   font-family: "YouYuan";

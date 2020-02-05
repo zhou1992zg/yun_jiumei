@@ -93,6 +93,7 @@ Page({
 
   // 订单支付
   pay() {
+    const _this = this;
     let orderId = this.data.order_id;
     let _price = this.data.orderDeta._price;
     wx.showLoading({
@@ -129,17 +130,24 @@ Page({
           signType: 'MD5',
           paySign: data.sign,
           success: (res) => {
-            console.log(res)
-            wx.showToast({
-              title: '支付成功',
-              icon: 'success',
-              duration: 1000
-            });
-            setTimeout(function () {
-              wx.redirectTo({
-                url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
-              })
-            }, 1000)
+            _this.changeOrderType(orderId, function () {
+              wx.showToast({
+                title: '支付成功',
+                icon: 'success',
+                duration: 1000
+              });
+              setTimeout(function () {
+                wx.redirectTo({
+                  url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
+                })
+              }, 1000)
+            }, function () {
+              wx.showToast({
+                title: '支付失败，稍后重试',
+                icon: 'success',
+                duration: 1000
+              });
+            })
           },
           fail: (res) => {
             console.log(res)
@@ -158,7 +166,23 @@ Page({
     });
   },
 
-
+  changeOrderType(order_id, fn, errFn) {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'changeOrder',
+      // 传给云函数的参数
+      data: {
+        order_id: order_id,
+        type: 1
+      },
+      success: function (res) {
+        fn && fn(res)
+      },
+      fail: function (err) {
+        errFn && errFn(res)
+      }
+    })
+  },
 
   getOrderDet(orderid) {
     const _this = this;
