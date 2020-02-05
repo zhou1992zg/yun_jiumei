@@ -61,8 +61,15 @@ Page({
    */
   getOrderList() {
     const _this = this;
+    if (!_this.data.showSkeleton) {
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+    }
     const db = wx.cloud.database()
     let data = {};
+    console.log(wx.getStorageSync("ORDER_INDEX"));
     if (wx.getStorageSync("ORDER_INDEX") == 0) {
       data = {
         _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
@@ -86,14 +93,16 @@ Page({
             }
           })
         }
-
+        data && data.reverse();
         _this.setData({
           orderLists: data,
           tabIndex: wx.getStorageSync("ORDER_INDEX"),
           showSkeleton: false
         })
+        wx.hideLoading()
       },
       fail: err => {
+        wx.hideLoading()
         wx.showToast({
           icon: "none",
           title: '获取订单失败了',

@@ -49,10 +49,10 @@
 	<view class="name_phone" wx:elif="{{orderDeta.distribution_way==1}}"><text>配送方式：</text>上门自提</view>
 	<view class="name_phone" wx:else><text>配送方式：</text>同城急送</view>
 </view>
-<view class='inputs-item' wx:if="{{orderDeta.distribution_way==0}}">
+<view class='inputs-item' wx:if="{{orderDeta.distribution_way==0&&orderDeta._courierNum}}">
 		<label>快递单号</label>
 		<view class='inpt'>
-			<input value="{{orderDeta._courierNum}}" placeholder-style='color: #B2B2B2' disabled/>
+			<input value="{{orderDeta._courierNum}}" placeholder-style='color: #B2B2B2;font-size: 30rpx;' placeholder="正在为您发货中" disabled/>
 		</view>
 	</view>
 <view class="address" style="padding-top:60rpx;border-radius:30rpx;">

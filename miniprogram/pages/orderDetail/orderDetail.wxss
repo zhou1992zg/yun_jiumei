@@ -271,3 +271,7 @@ page {
   width: 100%;
   position: relative
 }
+
+.inputs-item .inpt input {
+  font-size: 30rpx;
+}
