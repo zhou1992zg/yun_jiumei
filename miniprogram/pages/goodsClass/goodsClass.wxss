@@ -67,8 +67,7 @@ view {
   color: #333333;
   font-weight: 800;
   font-size: 32rpx;
-  padding: 28rpx 0rpx 16rpx 0rpx;
-  margin: 0 16rpx;
+  padding: 18rpx 0rpx;
   position: relative;
 }
 

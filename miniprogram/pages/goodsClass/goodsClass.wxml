@@ -1,9 +1,9 @@
 <view class="pages">
 	<view class="sort_mode_box">
 		<view class="sort_mode_box_fixd" wx:if="switchIndex==3">
-			<span class="filter" class="{{sel_sort==1&&'filter_active'}}" bindtap="selSort(1)" data-index="1">综合</span>
-			<span class="filter" class="{{sel_sort==2&&'filter_active'}}" bindtap="selSort(2)" data-index="2">热卖</span>
-			<span class="filter" class="{{sel_sort==3&&'filter_active'}}" bindtap="selSort(3)" data-index="3">
+			<span class="filter" class="{{sel_sort==1&&'filter_active'}}" bindtap="selSort" data-index="1">综合</span>
+			<span class="filter" class="{{sel_sort==2&&'filter_active'}}" bindtap="selSort" data-index="2">热卖</span>
+			<span class="filter" class="{{sel_sort==3&&'filter_active'}}" bindtap="selSort" data-index="3">
 				价格
 				<view wx:if="clickIndex == 0 || clickIndex % 2 != 0" class="jiang">
 					<i class="iconfont icon-paixujiantouxia1 paixujiantouxia1_icon"></i>
@@ -18,7 +18,7 @@
 					<i class="iconfont icon-paixujiantoushang1 paixujiantoushang1_icon"></i>
 				</view>
 			</span>
-			<span class="filter" class="{{sel_sort==4&&'filter_active'}}" bindtap="selSort(4)" data-index="4">佣金</span>
+			<span class="filter" class="{{sel_sort==4&&'filter_active'}}" bindtap="selSort" data-index="4">佣金</span>
 		</view>
 	</view>
 	<view class="class_box">
