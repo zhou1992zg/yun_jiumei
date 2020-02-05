@@ -71,8 +71,9 @@
 	<block wx:elif="{{orderDeta._payType==2}}">
 		<view class="btn to_pay" bindtap="callPhone">联系老板</view>
 		<view class="btn buy_two" bindtap="getLogistics">物流查询</view>
+		<view class="btn buy_two" bindtap="orderOk">确定收货</view>
 	</block>
 	<block wx:else>
-		<view class="btn buy_two">再买一次</view>
+		<view class="btn buy_two" bindtap="getLogistics">再次购买</view>
 	</block>
 </view>

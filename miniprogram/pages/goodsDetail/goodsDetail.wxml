@@ -1,45 +1,42 @@
-<!--pages/goodsDetail/goodsDetail.wxml-->
-<import src="../../wxParse/wxParse.wxml" />
 <!-- 商品轮播图 -->
 <view class="swiper_box">
-	<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000" v-if="bannerList.length>0" bindchange="swiperChange">
-		<swiper-item>
-			<image src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)" />
-		</swiper-item>
-		<swiper-item>
-			<image src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)" />
-		</swiper-item>
-		<swiper-item>
-			<image src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)" />
+	<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000">
+		<swiper-item wx:for="{{goodsDate._bannerList}}" wx:key="index">
+			<image src="{{item.fileID}}" class="slide-image" lazy-load="true" />
 		</swiper-item>
 	</swiper>
 </view>
 
 <view class="name_fx">
-	<view class="goods_name">【西班牙DO级红酒 网红人气酒 原跑瓶进口】 小红帽干红葡萄酒</view>
+	<view class="goods_name">{{goodsDate.goods_name}}</view>
 	<!-- <view>
 		<i class=""/><i>
 			分享
 	</view> -->
 </view>
 <view class="money">
-	￥<span>68.00</span>
+	￥<span>{{goodsDate.price}}</span>
 </view>
 <view class="one">
-	<span class="left">运费：免运费</span><span class="right">销量：111</span>
+	<span class="left">运费：运费到付</span><span class="right">库存：{{goodsDate.stock}} 销量：{{goodsDate.amount}}</span>
 </view>
-
-<image class="goods_D" src=""></image>
+<view class="name_fx">
+	<view class="goods_name">商品详情</view>
+</view>
+<image class="goods_D" mode="widthFix" wx:for="{{goodsDate._detailsList}}" src="{{item.fileID}}"></image>
 
 
 <!-- 购买按钮 -->
 <view class='buyBtn'>
 	<view class='btn-box'>
-		<view class="btn" style="width:50%;background:#fff;color:#ccc;" hover-class="none" hover-stop-propagation="false" bindtap="" data-goodid="1">
+		<view class="btn" style="width:25%;background:#fff;color:#ccc;" hover-class="none" hover-stop-propagation="false" bindtap="toIndex">
 			返回首页
 		</view>
+		<view class="btn" style="width:25%;background:#fff;color:#ccc;" hover-class="none" hover-stop-propagation="false" bindtap="toCard">
+			去结算
+		</view>
 		<view class="btn" style="width:50%;" hover-class="none" hover-stop-propagation="false" bindtap="toBuyCard">
-			加入购物车(1)
+			加入购物车({{carGoodsNum}})
 		</view>
 	</view>
 </view>

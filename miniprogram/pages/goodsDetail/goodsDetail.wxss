@@ -17,7 +17,6 @@ view {
 .slide-image {
   width: 750rpx;
   height: 700rpx;
-  background: rgb(117, 36, 35);
 }
 
 .goods_name{
@@ -62,8 +61,9 @@ view {
 
 .goods_D{
   display: block;
-  width: 100%;
-  padding-bottom: 100rpx;
+  width: 94%;
+  margin:0 auto;
+  padding-bottom: 120rpx;
 }
 
 /* 购买按钮 */
@@ -119,6 +119,7 @@ view {
   line-height: 100rpx;
   text-align: center;
   border-radius: 0;
+  float: left;
 }
 
 .buyBtn .btn .card_num{
@@ -134,7 +135,6 @@ view {
 }
 
 .buyBtn .btn-box {
-  display: flex;
   width: 750rpx;
   height: 100rpx;
   background: #9c2732;

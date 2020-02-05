@@ -2,14 +2,8 @@
 <view class="index_page">
 	<view class="swiper_box">
 		<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000" v-if="bannerList.length>0" bindchange="swiperChange">
-			<swiper-item>
-				<image src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)" />
-			</swiper-item>
-			<swiper-item>
-				<image src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)" />
-			</swiper-item>
-			<swiper-item>
-				<image src="{{index <= currentNum+1 ? item.pic : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner(item.jump,item.position,item.pr_id,item.cat_id,item.alt,item.route)" />
+			<swiper-item class="swiper-item" wx:for="{{swiperList}}" wx:key="index">
+				<image src="{{index <= currentNum+1 ? item.fileID : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner" data-id="{{item._goodsid}}"/>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -26,48 +20,48 @@
 		</block>
 	</view>
 
-	<view class="recommended_box">
+	<view class="recommended_box" wx:if="{{one_product_list.length>0}}">
 		<view class="title">醇臻推荐
 			<span>RECOMMEND</span>
 		</view>
-		<scroll-view class="scroll_view" bindscroll="bindscrollFn(index,false)" scroll-x="true">
+		<scroll-view class="scroll_view" scroll-x="true">
 			<view class="scroll_box">
 				<block wx:for="{{one_product_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
 					<view class="new-product-plate" bindtap="getId">
-						<view class="goods-img" style="width:152px;height:152px">
-							<image src="{{item.pic}}" lazy-load="true" class="img" />
+						<view class="goods-img" style="width:152px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
+							<image src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
 						</view>
 					</view>
 				</block>
 			</view>
 		</scroll-view>
 	</view>
-	<view class="recommended_box">
+	<view class="recommended_box" wx:if="{{two_product_list.length>0}}">
 		<view class="title">新品首发
 			<span>THE NEWS STARTING</span>
 		</view>
-		<scroll-view class="scroll_view" bindscroll="bindscrollFn(index,false)" scroll-x="true">
+		<scroll-view class="scroll_view" scroll-x="true">
 			<view class="scroll_box">
 				<block wx:for="{{two_product_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
 					<view class="new-product-plate" bindtap="getId">
-						<view class="goods-img" style="width:214px;height:102px">
-							<image src="{{item.pic}}" lazy-load="true" class="img" />
+						<view class="goods-img" style="width:152px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
+							<image src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
 						</view>
 					</view>
 				</block>
 			</view>
 		</scroll-view>
 	</view>
-	<view class="recommended_box">
+	<view class="recommended_box" wx:if="{{three_product_list.length>0}}">
 		<view class="title">高分精品
 			<span>HIGH QUALITY PRODUCTS</span>
 		</view>
-		<scroll-view class="scroll_view" bindscroll="bindscrollFn(index,false)" scroll-x="true">
+		<scroll-view class="scroll_view" scroll-x="true">
 			<view class="scroll_box">
 				<block wx:for="{{three_product_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
 					<view class="new-product-plate" bindtap="getId">
-						<view class="goods-img" style="width:314px;height:102px">
-							<image src="{{item.pic}}" lazy-load="true" class="img" />
+						<view class="goods-img" style="width:152px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
+							<image src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
 						</view>
 					</view>
 				</block>
@@ -75,23 +69,8 @@
 		</scroll-view>
 	</view>
 	<view class="recommended_box">
-		<view class="title">全部商品 <span>JIUMEI ALLGOODS</span></view>
+		<view class="title">商家信息 <span>BUSINESS INFORMATION</span></view>
 	</view>
-	<view class="all_goods">
-		<block wx:for="{{goodsClassList}}" wx:key="index">
-			<view class="goods_class_list" hover-class="hover-style" bindtap="viewDetailFunc" data-id="{{item.goods_id}}">
-				<image src="../../static/banner_err.png" class="goods_img" />
-				<view class="right">
-					<view class="title zx-warp-2">【西班牙DO级红酒 网红人气酒 原跑瓶进口】 小红帽干红葡萄酒</view>
-					<view class="feature">
-						<span>干型</span>
-						<span>柔和</span>
-						<span>法国</span>
-					</view>
-					<view class="money">¥ <span>139.00</span></view>
-					<view class="type">已售：110瓶 库存：18瓶</view>
-				</view>
-			</view>
-		</block>
+	<view class="infor">
 	</view>
 </view>

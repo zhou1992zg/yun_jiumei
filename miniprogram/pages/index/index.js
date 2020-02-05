@@ -3,69 +3,115 @@ const app = getApp()
 
 Page({
   data: {
-    bannerList: [{ name: "红葡萄酒" }, { name: "白葡萄酒" }, { name: "甜葡萄酒" }, { name: "起泡酒" }, { name: "百元畅饮" }, { name: "人气爆款" }, { name: "精品酒具" }, { name: "店主优选" }],
+    swiperList: [],
+    bannerList: [{
+      name: "红葡萄酒"
+    }, {
+      name: "白葡萄酒"
+    }, {
+      name: "甜葡萄酒"
+    }, {
+      name: "起泡酒"
+    }, {
+      name: "百元畅饮"
+    }, {
+      name: "人气爆款"
+    }, {
+      name: "精品酒具"
+    }, {
+      name: "店主优选"
+    }],
     currentNum: 0,
     blockListStyleLength: 4,
-    one_product_list: [{ pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }],
-    two_product_list: [{ pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }],
-    three_product_list: [{ pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }, { pic: '../../static/banner_err.png' }],
-    four_product_list: [{ pic: '../../static/banner_err.png' }],
-    goodsClassList:[{},{},{},{},{}]
   },
 
   onLoad: function () {
+    this.getData();
   },
 
-  jumpToProductList(e){
+  async getData() {
+    const _this = this;
+    const db = wx.cloud.database()
+    let swiperList = await db.collection("banner").get({
+      success: res => {
+        console.log(res.data[0].bannerList)
+        let data = res.data[0].bannerList;
+        _this.setData({
+          swiperList: data
+        })
+      },
+      fail: err => {
+        console.log("获取banner失败");
+      }
+    });
+    // 醇臻推荐
+    let one_product_list = await db.collection("goods").where({
+      _activeIndex: "0"
+    }).get({
+      success: res => {
+        console.log(res.data)
+        let data = res.data;
+        _this.setData({
+          one_product_list: data
+        })
+      },
+      fail: err => {
+        console.log("获取banner失败");
+      }
+    });
+    let two_product_list = await db.collection("goods").where({
+      _activeIndex: "1"
+    }).get({
+      success: res => {
+        console.log(res.data)
+        let data = res.data;
+        _this.setData({
+          two_product_list: data
+        })
+      },
+      fail: err => {
+        console.log("获取banner失败");
+      }
+    });
+    let three_product_list = await db.collection("goods").where({
+      _activeIndex: "2"
+    }).get({
+      success: res => {
+        console.log(res.data)
+        let data = res.data;
+        _this.setData({
+          three_product_list: data
+        })
+      },
+      fail: err => {
+        console.log("获取banner失败");
+      }
+    });
+  },
+
+  jumpToProductList(e) {
     let title = e.currentTarget.dataset.title;
     let classid = e.currentTarget.dataset.classid;
     wx.navigateTo({
-      url: '/pages/goodsClass/goodsClass?classid='+classid+"&title="+title,
+      url: '/pages/goodsClass/goodsClass?classid=' + classid + "&title=" + title,
     })
   },
 
   swiperChange(e) {
     let _this = this;
-    if (_this.data.bannerList.length > _this.data.currentNum) {
+    if (_this.data.swiperList.length > _this.data.currentNum) {
       _this.data.currentNum = e.detail.current;
-    } else if (_this.data.bannerList.length == _this.data.currentNum) {
+    } else if (_this.data.swiperList.length == _this.data.currentNum) {
       return;
     }
   },
 
-  gotoBanner: function (isJump, isPosition, prId, catId, alt, outerUrl) {
+  gotoBanner: function (e) {
+    let goods_id = e.currentTarget.dataset.id;
     //banner跳转
-    if (isJump == 1) {
-      //是否跳转  1是 2否
-      if (isPosition == 1) {
-        //跳转位置：1商品详情 2外部跳转 3新增商品列表 4十万活动 5限时招募
-        wx.navigateTo({
-          url: "/pages/productDetails/main?productId=" + prId
-        });
-      } else if (isPosition == 2) {
-        // wx.navigateTo({
-        //   url: "/pages/activity/webPage/main?url=" + outerUrl
-        // });
-      } else if (isPosition == 3) {
-        // wx.navigateTo({
-        //   url: `/pages/goodsList/main?themeid=${catId}&title=${alt}`
-        // });
-      } else if (isPosition == 4) {
-        wx.navigateTo({
-          url: "/pages/activity/moneyIncentive/main"
-        });
-      } else if (isPosition == 5) {
-        wx.navigateTo({
-          url: "/pages/activity/cultivateTeam/main"
-        });
-      } else if (isPosition == 6) {
-        wx.navigateTo({
-          url: "/pages/activity/sendMoney/main"
-        });
-      }
-    } else {
-      console.log("不需要跳转！");
-    }
+    wx.navigateTo({
+      url: '/pages/goodsDetail/goodsDetail?id=' + goods_id
+    })
   },
 
   onGetUserInfo: function (e) {

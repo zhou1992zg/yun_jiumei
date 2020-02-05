@@ -31,16 +31,65 @@ Page({
   /**
    * 打开地图
    */
-  getLocation:function(){
+  getLocation: function () {
     wx.getLocation({
-      type: 'wgs84', 
+      type: 'wgs84',
       success: function (res) {
-        wx.openLocation({//​使用微信内置地图查看位置。
-          latitude: 31.107237,//要去的纬度-地址
-          longitude: 104.392375,//要去的经度-地址
+        wx.openLocation({ //​使用微信内置地图查看位置。
+          latitude: 31.107237, //要去的纬度-地址
+          longitude: 104.392375, //要去的经度-地址
           name: "酒槑 18111501020",
           address: '文杰莱茵广场内'
         })
+      }
+    })
+  },
+
+  /**
+   * 确定收货
+   */
+  orderOk() {
+    const _this = this;
+    wx.showModal({
+      title: '提示',
+      content: '请确定收到商品',
+      success: function (res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '加载中',
+          })
+          wx.cloud.callFunction({
+            // 云函数名称
+            name: 'updateDate',
+            // 传给云函数的参数
+            data: {
+              e: {
+                _payType: 3
+              },
+              d: {
+                _id: _this.data.order_id
+              },
+              c: 'order'
+            },
+            success: function (res) {
+              wx.hideLoading()
+              wx.showToast({
+                title: '谢谢您的光临！',
+                icon: 'success',
+                duration: 3000
+              })
+              _this.getOrderDet(_this.data.order_id);
+            },
+            fail: function (err) {
+              console.log(err)
+              wx.hideLoading()
+              wx.showToast({
+                title: '出错了',
+                duration: 2000
+              })
+            }
+          })
+        }
       }
     })
   },

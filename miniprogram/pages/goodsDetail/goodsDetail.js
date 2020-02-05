@@ -5,28 +5,87 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    currentNum: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    wx.setNavigationBarTitle({
+      goods_id: options.id,
+    })
+    this.getGoodsDate(options.id);
+    this.getCarGoodsNum(wx.getStorageSync("GOODSCAR"))
   },
 
-  toBuyCard(){
-    if (!wx.getStorageSync("PHONE_NUMBER")) {
-      var pages = getCurrentPages(); //获取加载的页面
-      var currentPage = pages[pages.length - 1]; //获取当前页面的对象
-      var url = currentPage.route; //当前页面url
-      console.log(url)
-      wx.navigateTo({
-        url: '../login/login' + "?url=" + url,
-      })
-      return;
+  getGoodsDate(goods_id) {
+    const _this = this;
+    const db = wx.cloud.database()
+    db.collection("goods").where({
+      _id: goods_id
+    }).get({
+      success: res => {
+        console.log(res.data[0])
+        let data = res.data[0];
+        _this.setData({
+          goodsDate: data
+        })
+      },
+      fail: err => {
+        console.log("获取banner失败");
+      }
+    });
+  },
+
+  toBuyCard() {
+    const _this = this;
+    let goodsData = _this.data.goodsDate;
+    let goodsCard = wx.getStorageSync("GOODSCAR");
+    let hasGoods = false;
+    goodsCard.forEach((item, index) => {
+      if (item._id == goodsData._id) {
+        item.count + 1;
+        hasGoods = true;
+      }
+    })
+    if (!hasGoods) {
+      goodsData.count = 1;
+      goodsCard.push(goodsData);
     }
-    
+    console.log(goodsCard);
+    wx.showToast({
+      title: '加入购物车',
+      icon: 'success',
+      duration: 2000
+    })
+    wx.setStorageSync("GOODSCAR", goodsCard);
+    this.getCarGoodsNum(goodsCard)
+  },
+
+  getCarGoodsNum(goodsCard) {
+    let carGoodsNum = 0;
+    if (goodsCard.length > 0) {
+      goodsCard.forEach((item, index) => {
+        carGoodsNum = carGoodsNum + item.count;
+      })
+    }
+    this.setData({
+      carGoodsNum
+    })
+  },
+
+  toIndex() {
+    wx.switchTab({
+      url: "/pages/index/index"
+    })
+  },
+
+  toCard() {
+    wx.switchTab({
+      url: "/pages/payCard/index"
+    })
   },
 
   /**
