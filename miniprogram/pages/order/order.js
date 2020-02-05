@@ -265,7 +265,7 @@ Page({
   pay(orderId, _price) {
     const _this = this;
     wx.showLoading({
-      title: '下单成功，前往支付'
+      title: '下单成功，支付'
     });
     wx.cloud.callFunction({
       name: 'pay', // 调用pay函数

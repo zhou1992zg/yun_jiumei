@@ -55,6 +55,7 @@ Page({
     })
     if (!hasGoods) {
       goodsData.count = 1;
+      goodsData.selected = true;
       goodsCard.push(goodsData);
     }
     console.log(goodsCard);

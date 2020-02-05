@@ -39,7 +39,7 @@
             <view class='position_hasshop_item'>
               <view class='position_hasshop_img'>
                 <!-- 商品图片 -->
-                <image class='shop_img' src='{{item.fileID}}'></image>
+                <image class='shop_img' src='{{item._shareList[0].fileID}}'></image>
               </view>
               <view class='menu_right_txt'>
                 <!-- 商品名称和描述 -->
