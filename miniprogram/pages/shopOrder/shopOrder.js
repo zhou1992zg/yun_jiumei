@@ -67,7 +67,7 @@ Page({
         mask: true
       })
     }
-    const db = wx.cloud.database()
+    const db = wx.cloud.database();
     let data = {};
     console.log(wx.getStorageSync("ORDER_INDEX"));
     if (wx.getStorageSync("ORDER_INDEX") == 0) {
