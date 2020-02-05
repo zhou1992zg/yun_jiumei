@@ -5,6 +5,10 @@ view {
   font-family: "YouYuan";
 }
 
+.index_page{
+  padding-bottom: 30rpx;
+}
+
 /* 轮播 */
 .swiper_box {
   height: 350rpx;
@@ -211,4 +215,37 @@ view {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.pay_style{
+  width: 680rpx;
+  height: 110rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: #fff;
+  border-radius:20rpx;
+  margin: 0 auto;
+}
+
+.pay_style .i_two{
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #000;
+  margin-right: 10rpx;
+}
+
+.my_map{
+  position: relative;
+}
+
+.cover-view{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  bottom: 40rpx;
+  right: 20rpx;
+  background-color: #fff;
+  border-radius: 50%;
 }

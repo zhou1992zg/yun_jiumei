@@ -3,7 +3,7 @@
 	<view class="swiper_box">
 		<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000" v-if="bannerList.length>0" bindchange="swiperChange">
 			<swiper-item class="swiper-item" wx:for="{{swiperList}}" wx:key="index">
-				<image mode="aspectFill" src="{{index <= currentNum+1 ? item.fileID : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner" data-id="{{item._goodsid}}"/>
+				<image mode="aspectFill" src="{{index <= currentNum+1 ? item.fileID : '../../static/banner_err.png'}}" class="slide-image" lazy-load="true" bindtap="gotoBanner" data-id="{{item._goodsid}}" />
 			</swiper-item>
 		</swiper>
 	</view>
@@ -71,6 +71,11 @@
 	<view class="recommended_box">
 		<view class="title">商家信息 <span>BUSINESS INFORMATION</span></view>
 	</view>
-	<view class="infor">
+	<view class='pay_style' bindtap="getLocation">
+		<i class="iconfont icon-daohang i_two"></i>
+		<view class='has_shop_smalltxt zx-no-warp'>四川省德阳市文杰莱茵广场1层3号</view>
 	</view>
+	<map id="myMap" class="my_map" longitude="104.392375" latitude="31.107237" enable-traffic="true" enable-satellite="true" scale="16" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location="true" style="width: 340px; height: 150px;border-radius:30rpx;margin:0 auto;box-shadow: 0 0 16rpx rgba(0, 0, 0, .4);overflow: hidden;">
+		<cover-image class="cover-view" src="../../assets/images/dinwei.png" bindtap="moveToLocation"></cover-image>
+	</map>
 </view>

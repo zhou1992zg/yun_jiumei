@@ -23,10 +23,94 @@ Page({
     }],
     currentNum: 0,
     blockListStyleLength: 4,
+    markers: [{
+      iconPath: "../../assets/images/address.png",
+      id: 0,
+      latitude: 31.107237,
+      longitude: 104.392375,
+      width: 30,
+      height: 30
+    }],
+    polyline: [{
+      points: [{
+        longitude: 113.3245211,
+        latitude: 23.10229
+      }, {
+        longitude: 113.324520,
+        latitude: 23.21229
+      }],
+      color: "#FF0000DD",
+      width: 2,
+      dottedLine: true
+    }],
   },
 
   onLoad: function () {
     this.getData();
+  },
+
+  onShow() {
+    let markers = this.data.markers;
+    markers[0].width = 30;
+    markers[0].height = 30;
+    this.setData({
+      markers
+    })
+  },
+
+  onReady: function () {
+    this.mapCtx = wx.createMapContext('myMap')
+  },
+
+  getLocation: function () {
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        wx.openLocation({ //​使用微信内置地图查看位置。
+          latitude: 31.107237, //要去的纬度-地址
+          longitude: 104.392375, //要去的经度-地址
+          name: "酒槑 18111501020",
+          address: '四川省德阳市文杰莱茵广场1层3号'
+        })
+      }
+    })
+  },
+
+  moveToLocation() {
+    const _this = this;
+    _this.mapCtx.moveToLocation({
+      longitude: 104.392375,
+      latitude: 31.107237,
+      success: function () {
+        let markers = _this.data.markers;
+        markers[0].width = 30;
+        markers[0].height = 30;
+        _this.setData({
+          markers
+        })
+      }
+    });
+  },
+
+  markertap(e) {
+    const index = e.markerId;
+    let markers = this.data.markers;
+    markers[index].width = 40;
+    markers[index].height = 40;
+    this.setData({
+      markers
+    })
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        wx.openLocation({ //​使用微信内置地图查看位置。
+          latitude: 31.107237, //要去的纬度-地址
+          longitude: 104.392375, //要去的经度-地址
+          name: "酒槑 18111501020",
+          address: '四川省德阳市文杰莱茵广场1层3号'
+        })
+      }
+    })
   },
 
   async getData() {
