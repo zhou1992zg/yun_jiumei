@@ -8,6 +8,7 @@ view {
 .container {
   min-height: 100vh;
   background: #f2f5f4;
+  overflow: hidden;
 }
 
 .no_shop {
@@ -16,12 +17,13 @@ view {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50%;
+  padding-bottom: 6%;
+  overflow: hidden;
 }
 
 .no_shop_only {
   width: 380rpx;
-  height: 333rpx;
+  height: 500rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -305,6 +307,7 @@ view {
   align-items: center;
   justify-content: space-between;
   background: rgba(255, 255, 255, 1);
+  z-index: 9999999;
 }
 
 .car_total_left {
@@ -417,4 +420,49 @@ view {
   overflow: hidden;
   border-radius: 50%;
   margin: 0 10rpx 0 30rpx;
+}
+
+.recommended_box {
+  padding-top: 40rpx;
+  background-color: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+}
+
+.recommended_box .title {
+  height: 40rpx;
+  width: 750rpx;
+  padding: 0 48rpx;
+  color: #060506;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+}
+
+.recommended_box .title span {
+  font-size: 24rpx;
+  color: #868485;
+  font-weight: bold;
+}
+
+.swiper{
+  width: 100vw;
+  height: 760rpx;
+  background-color: #fff;
+  border-radius: 0 0 30rpx 30rpx;
+  margin-bottom: 130rpx;
+}
+
+.swiper .you_box{
+  width: 690rpx;
+  height: 330rpx;
+  margin: 20rpx auto;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.swiper .you_box .img{
+  width: 330rpx;
+  height: 330rpx;
+  border-radius: 30rpx;
 }

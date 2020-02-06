@@ -13,7 +13,12 @@ Page({
     idDetel: false, //灰色删除按钮
     isSelect: false, //是否为编辑状态
     goodsCar: [], //用来接收接口返回数据
-    orderinfo: []
+    orderinfo: [],
+    youGoods:[{},{},{},{}]
+  },
+
+  onLoad(){
+    this.getData();
   },
 
   /**
@@ -35,6 +40,47 @@ Page({
       carisShow: !wx.getStorageSync("GOODSCAR").length,
     })
     this.totalPrice();
+  },
+
+  gotoBanner: function (e) {
+    let goods_id = e.currentTarget.dataset.id;
+    //banner跳转
+    wx.navigateTo({
+      url: '/pages/goodsDetail/goodsDetail?id=' + goods_id
+    })
+  },
+
+  async getData() {
+    const _this = this;
+    const db = wx.cloud.database();
+    await db.collection("goods").where({
+      _activeIndex: "0"
+    }).get({
+      success: res => {
+        console.log(res.data)
+        let data = res.data;
+        _this.setData({
+          one_product_list: data
+        })
+      },
+      fail: err => {
+        console.log("获取推荐商品失败");
+      }
+    });
+    await db.collection("goods").where({
+      _activeIndex: "2"
+    }).get({
+      success: res => {
+        console.log(res.data)
+        let data = res.data;
+        _this.setData({
+          three_product_list: data
+        })
+      },
+      fail: err => {
+        console.log("获取推荐商品失败");
+      }
+    });
   },
 
   // 编辑事件

@@ -274,4 +274,5 @@ page {
 
 .inputs-item .inpt input {
   font-size: 30rpx;
+  color: #9c2732;
 }
