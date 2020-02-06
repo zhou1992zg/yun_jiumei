@@ -28,7 +28,7 @@ Page({
     })
   },
 
-  callPhoneT(e){
+  callPhoneT(e) {
     let {
       phone
     } = e.currentTarget.dataset;
@@ -253,9 +253,15 @@ Page({
         let data = res.data[0];
         data["_createtime"] = formatTime(data._createtime / 1000, "Y-M-D h:m:s");
         _this.setData({
-          orderDeta: data
+          orderDeta: data,
         })
-        this.getAddressDeta(data.address_id);
+        if (data.address_id != "" || data.address_id || data.address_id != undefined || data.address_id != null) {
+          _this.getAddressDeta(data.address_id);
+        } else {
+          _this.setData({
+            showSkeleton: false
+          })
+        }
       },
       fail: err => {
         wx.showToast({

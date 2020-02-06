@@ -1,7 +1,7 @@
 <view class="container">
 	<view class='no_shop' wx:if="{{carisShow}}">
 		<view class='no_shop_only'>
-			<i class="iconfont icon-kong i"></i>
+			<i class="iconfont icon-empty i"></i>
 			<text class='on_shop_txt'>购物车空空如也</text>
 			<navigator url="/pages/index/index" open-type='switchTab' hover-class="none">
 				<view class='btn_return'>

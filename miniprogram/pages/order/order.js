@@ -233,7 +233,7 @@ Page({
       goods_data.push(goods_list);
     });
     let buyData = {
-      address_id: wx.getStorageSync("ADDRESS_DATA")._id,
+      address_id: _this.data.payTypeIndex == 1 ? "" : wx.getStorageSync("ADDRESS_DATA")._id,
       distribution_way: _this.data.payTypeIndex,
       goods_data: goods_data,
       _price: orderPrice

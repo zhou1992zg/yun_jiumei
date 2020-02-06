@@ -1,6 +1,6 @@
 <!-- 地址填写/选择 -->
 
-<view class='address noAddress' data-addressid="{{addressData.address_id||''}}" bindtap="{{addressData.realname?'toaddressPage':'toAddAddressPage'}}">
+<view class='address noAddress' wx:if="{{payTypeIndex!=1}}" data-addressid="{{addressData.address_id||''}}" bindtap="{{addressData.realname?'toaddressPage':'toAddAddressPage'}}">
 	<i class="iconfont icon-dizhi address-icon"></i>
 	<view class='address-right'>
 		<view class='name'>{{addressData.realname||'联系人姓名'}} · {{addressData.mobile||'电话'}}</view>

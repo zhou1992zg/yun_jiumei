@@ -5,9 +5,9 @@
 	<view class="order_type" wx:elif="{{orderDeta._payType==1}}"><i class="iconfont icon-daifahuo i"></i>待发货</view>
 	<view class="order_type" wx:elif="{{orderDeta._payType==2}}"><i class="iconfont icon-yifahuodefuben i"></i>待收货</view>
 	<view class="order_type" wx:else><i class="iconfont icon-tick i"></i>已完成</view>
-	<view class="radu_box"></view>
 </view>
-<view class="address">
+<view class="super_box">
+<view class="address" wx:if="{{addressDeta}}">
 	<view class="name_phone"><i class="iconfont icon-shouhuodizhi i"></i>{{addressDeta.realname}} {{addressDeta.mobile}}</view>
 	<view class="address_list">地址：{{addressDeta.info}}</view>
 </view>
@@ -95,4 +95,5 @@
 	<block wx:else>
 		<view class="btn buy_two" bindtap="getLogistics">再次购买</view>
 	</block>
+</view>
 </view>
