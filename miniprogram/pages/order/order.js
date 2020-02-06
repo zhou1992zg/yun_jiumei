@@ -7,7 +7,7 @@ Page({
   data: {
     goodsData: [],
     payTypeIndex: 0,
-    payTypeArray: ['快递邮寄', '上门自提', '同城急送 ·（即送费）'],
+    payTypeArray: ['快递邮寄', '上门自提', '同城寄送'],
     addressData: {},
     postage: 14.5,
   },

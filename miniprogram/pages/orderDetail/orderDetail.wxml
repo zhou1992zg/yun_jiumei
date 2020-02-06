@@ -47,7 +47,7 @@
 	<view class="name_phone margin_40" wx:else><text>订单状态：</text>已完成</view>
 	<view class="name_phone" wx:if="{{orderDeta.distribution_way==0}}"><text>配送方式：</text>快递配送</view>
 	<view class="name_phone" wx:elif="{{orderDeta.distribution_way==1}}"><text>配送方式：</text>上门自提</view>
-	<view class="name_phone" wx:else><text>配送方式：</text>同城急送</view>
+	<view class="name_phone" wx:else><text>配送方式：</text>同城寄送</view>
 </view>
 <view class='inputs-item' wx:if="{{orderDeta._payType!=3&&orderDeta.distribution_way==0}}">
 		<label>快递单号</label>
