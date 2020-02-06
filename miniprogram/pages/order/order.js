@@ -6,13 +6,14 @@ Page({
    */
   data: {
     goodsData: [],
-    payTypeIndex: 0,
+    payTypeIndex: 2,
     payTypeArray: ['快递邮寄', '上门自提', '同城配送'],
     addressData: {},
     postage: 14.5,
   },
 
   onLoad: function (o) {
+    console.log('onLoad==>');
     const _this = this;
     const db = wx.cloud.database();
     _this.setData({
@@ -22,7 +23,12 @@ Page({
       _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
     }).get({
       success: res => {
+        _this.setData({
+          addressData:res.data[0]
+        })
         wx.setStorageSync("ADDRESS_DATA", res.data[0]);
+        _this.getAddressJY(res.data[0]);
+        wx.getStorageSync(res.data[0])
       },
       fail: err => {
         wx.showToast({
@@ -33,8 +39,23 @@ Page({
     });
   },
 
+  /**
+   * 判断地址是否在旌阳区
+   */
+  getAddressJY(addressData) {
+    const _this = this;
+    console.log(addressData?addressData.info.indexOf("旌阳区") != -1?'同城客人':'外地客人':false);
+    _this.setData({
+      addressJyq: addressData?addressData.info.indexOf("旌阳区") != -1:false
+    })
+  },
+
   onShow: function () {
     const _this = this;
+    let addressData = wx.getStorageSync("ADDRESS_DATA");
+    if(!addressData||addressData=={}||addressData==""||addressData==null||addressData==undefined){
+      addressData = _this.data.addressData;
+    }
     _this.getPageLu(function (url) {
       if (url == "pages/goodsDetail/goodsDetail") {
         const db = wx.cloud.database();
@@ -47,11 +68,12 @@ Page({
             goodsCar[0].count = 1;
             goodsCar[0].selected = true;
             _this.setData({
-              addressData: wx.getStorageSync("ADDRESS_DATA"),
+              addressData,
               goodsData: wx.getStorageSync("ORDERINFO"),
               goodsCar
             })
             _this.totalPrice();
+            _this.getAddressJY(addressData);
           },
           fail: err => {
             wx.showToast({
@@ -62,11 +84,12 @@ Page({
         });
       } else {
         _this.setData({
-          addressData: wx.getStorageSync("ADDRESS_DATA"),
+          addressData,
           goodsData: wx.getStorageSync("ORDERINFO"),
           goodsCar: wx.getStorageSync("GOODSCAR")
         })
         _this.totalPrice();
+        _this.getAddressJY(addressData);
       }
     });
   },
@@ -209,8 +232,14 @@ Page({
         total += list[i].count * list[i].price;
       }
     }
+    // 同城满100免配送费
+    let poorPrice = 100 - total;
+    if (poorPrice <= 0) {
+      poorPrice = 0;
+    };
     // 最后赋值到data中渲染到页面
     this.setData({
+      poorPrice: poorPrice.toFixed(2),
       goodsCar: list,
       totalPrice: total.toFixed(2),
     });
@@ -220,6 +249,17 @@ Page({
     const _this = this;
     let goods_data = [];
     let orderPrice = 0;
+    // 如果是同城配送和快递配送 必须选择地址
+    if (_this.data.payTypeIndex == 0 || _this.data.payTypeIndex == 2) {
+      if (wx.getStorageSync("ADDRESS_DATA") == {} || !wx.getStorageSync("ADDRESS_DATA") || wx.getStorageSync("ADDRESS_DATA") == "") {
+        wx.showToast({
+          title: '您还未填写收货地址',
+          icon: 'none',
+          duration: 2000
+        })
+        return;
+      }
+    }
     _this.data.goodsCar.forEach((item) => {
       console.log(item)
       orderPrice = orderPrice + Number(item.price) * Number(item.count);
@@ -232,11 +272,13 @@ Page({
       }
       goods_data.push(goods_list);
     });
+    
     let buyData = {
       address_id: _this.data.payTypeIndex == 1 ? "" : wx.getStorageSync("ADDRESS_DATA")._id,
       distribution_way: _this.data.payTypeIndex,
       goods_data: goods_data,
-      _price: orderPrice
+      _price: orderPrice,
+      _freeBPostage: _this.data.addressJyq&&orderPrice>=100, // 判断是否是同城 订单是否满100
     };
     _this.addOrder(buyData);
   },

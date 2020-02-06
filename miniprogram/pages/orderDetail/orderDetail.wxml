@@ -1,7 +1,7 @@
 <wxs src="../../filter/filter.wxs" module="filter" />
 <skeleton selector="skeleton" loading="spin" wx:if="{{showSkeleton}}"></skeleton>
 <view class="header">
-	<view class="order_type" wx:if="{{orderDeta._payType==0}}"><i class="iconfont icon-daizhifu i"></i>未支付</view>
+	<view class="order_type" wx:if="{{orderDeta._payType==0}}"><i class="iconfont icon-daizhifu i"></i>等待付款</view>
 	<view class="order_type" wx:elif="{{orderDeta._payType==1}}"><i class="iconfont icon-daifahuo i"></i>待发货</view>
 	<view class="order_type" wx:elif="{{orderDeta._payType==2}}"><i class="iconfont icon-yifahuodefuben i"></i>待收货</view>
 	<view class="order_type" wx:else><i class="iconfont icon-tick i"></i>已完成</view>
@@ -13,7 +13,7 @@
 </view>
 <view class="merchant_goods">
 	<view class='has_shop_smalltxt' bindtap="getLocation">
-		<image class='has_shop_icon1' src='../../assets/images/logo.jpg'/> 酒槑 | 酒馆 <i class="iconfont icon-daohang i"></i></view>
+		<image class='has_shop_icon1' src='../../assets/images/logo.jpg'/> 酒槑 <i class="iconfont icon-daohang i"></i></view>
 		
 	<block wx:for="{{orderDeta.goods_data}}" wx:key="index">
 		<view class='position_hasshop_item'>
@@ -76,7 +76,7 @@
 	</view>
 <view class="address" style="padding-top:60rpx;border-radius:30rpx;">
 	<view class="name_phone margin_20 disp_f"><text>商品总额：</text>¥{{orderDeta._price}}</view>
-	<view class="name_phone margin_40 disp_f"><text>运费：</text>运费到付</view>
+	<view class="name_phone margin_40 disp_f" wx:if="{{orderDeta.distribution_way!=1}}" style="{{orderDeta._freeBPostage?'color:#9c2732;':''}}"><text>运费：</text>{{orderDeta._freeBPostage?'同城免配送费':'运费到付'}}</view>
 	<view class="name_phone margin_40 disp_f"><text></text><text>实付款：<text class="money_icon">¥</text><text class="text">{{orderDeta._price}}</text></text></view>
 </view>
 <view class="button_box">

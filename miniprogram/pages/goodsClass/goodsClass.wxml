@@ -24,7 +24,7 @@
 	<view class="class_box">
 		<block wx:for="{{goodsClassList}}" wx:key="index">
 			<view class="goods_class_list" hover-class="hover-style" bindtap="viewDetailFunc" data-id="{{item._id}}">
-				<image src="{{item._shareList[0].fileID}}" class="goods_img"/>
+				<image src="{{item._shareList[0].fileID}}" mode="aspectFit" class="goods_img"/>
 				<view class="right">
 					<view class="title zx-warp-2">{{item.goods_name}}</view>
 					<view class="feature">

@@ -18,6 +18,11 @@
 	</view>
 </picker>
 
+<view class="attention_box" wx:if="{{payTypeIndex==2}}">
+	<text class="_icon">*</text>
+	<text class="_text">{{addressJyq?"欢迎您选择同城配送，订单【满¥100】，我们将为您【免配送费】":"如果您在【旌阳区】，欢迎您选择同城配送，订单【满¥100】，我们将为您【免配送费】"}}</text>
+</view>
+
 <view class='pay_style' bindtap="getLocation">
 	<i class="iconfont icon-dianpu i_one"></i>
 	<view class='has_shop_smalltxt zx-no-warp'>四川省德阳市文杰莱茵广场1层3号</view>
@@ -70,7 +75,7 @@
 		<view class='name'>运费</view>
 	</view>
 	<view class='color_them'>
-		<view class='name'>邮费到付</view>
+		<view class='name'>{{poorPrice<=0&&payTypeIndex==2&&addressJyq?'免配送费':poorPrice>0&&payTypeIndex==2&&addressJyq?'还差¥'+poorPrice+'免配送费':'邮费到付'}}</view>
 	</view>
 </view>
 

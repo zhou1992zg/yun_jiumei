@@ -27,7 +27,7 @@ let wxpay = new WXPay({
 exports.main = async (event, context) => {
   const price = event._price;
   const tradeNo = event._id; // 生成订单号
-  const body = '酒槑|酒馆'; // 订单商品名称
+  const body = '酒槑'; // 订单商品名称
   const spbill_create_ip = '127.0.0.1'; // 发起支付的IP
   const notify_url = 'http://www.qq.com'; // 回调地址
   const total_fee = price * 100; // 支付金额，单位为分

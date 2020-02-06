@@ -15,25 +15,26 @@
                      bindscroll="onScroll" class="content-scroll">
             <view class="pesticide" id="tty{{item.goods_category_one_id}}" wx:for="{{data}}" wx:for-index="typeOneIndex"
                   wx:key="{{typeOneIndex}}">
-                    <image src="" class="pesticide_img"/>
+                    <image src="{{item.goods_class_image}}" class="pesticide_img"/>
                 <view wx:if="{{twoItem.goods.length}}" wx:for="{{item.goods_category_two}}" wx:for-item="twoItem"
                       wx:for-index="typeTwoIndex" wx:key="{{typeTwoIndex}}">
                     <view class="type-name">
                         <view class="name">{{twoItem.goods_category_two_name}}</view>
+                        <image src="../../assets/images/bottom_icon.png" class="_icon"></image>
                     </view>
                     <view class="pesticide-container">
                         <view class="pesticide-item goods-class" hover-class="hover-style"  wx:for="{{twoItem.goods}}" data-itemid="{{pes._id}}" wx:for-item="pes" wx:key="{{goodsIndex}}"
                             catchtap="tapHandle" wx:for-index="goodsIndex">
                             <image src="{{pes._shareList[0].fileID || defaultImg}}" mode="aspectFill"></image>
                             <view class="pesticide-item-content {{management ? 'management-item-content' : ''}}">
-                                <view class="describe">
-                                    <text>{{pes.goods_name}}</text>
+                                <view class="describe zx-warp-2">
+                                    <text class="zx-warp-2">{{pes.goods_name}}</text>
                                 </view>
                                 <view class="price">
                                     <text>{{filter.currencyFormat(pes.price)}}</text>
                                 </view>
                                 <view class="inventory">
-                                    <text>已售：{{pes.stock}}瓶 库存：{{pes.amount}} {{pes.base_unit_name}}</text>
+                                    <text>已售：{{pes.stock}}瓶 · 库存：{{pes.amount}} {{pes.base_unit_name}}</text>
                                 </view>
                             </view>
                         </view>

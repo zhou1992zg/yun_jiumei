@@ -2,13 +2,13 @@
 <view class="swiper_box">
 	<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000">
 		<swiper-item wx:for="{{goodsDate._bannerList}}" wx:key="index">
-			<image src="{{item.fileID}}" class="slide-image" lazy-load="true" />
+			<image src="{{item.fileID}}" mode="aspectFit" class="slide-image" lazy-load="true" />
 		</swiper-item>
 	</swiper>
 </view>
 
 <view class="name_fx">
-	<view class="goods_name">{{goodsDate.goods_name}}</view>
+	<view class="goods_name zx-warp-2">{{goodsDate.goods_name}}</view>
 	<!-- <view>
 		<i class=""/><i>
 			分享
@@ -18,7 +18,7 @@
 	￥<span>{{goodsDate.price}}</span>
 </view>
 <view class="one">
-	<span class="left">运费：运费到付</span><span class="right">库存：{{goodsDate.stock}} 销量：{{goodsDate.amount}}</span>
+	<span class="left">运费：运费到付</span><span class="right">库存：{{goodsDate.stock}}瓶 · 销量：{{goodsDate.amount}}瓶</span>
 </view>
 <view class="name_fx">
 	<view class="goods_name">商品详情</view>

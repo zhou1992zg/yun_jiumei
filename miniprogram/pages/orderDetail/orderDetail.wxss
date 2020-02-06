@@ -88,6 +88,7 @@ page {
   width: 40rpx;
   height: 40rpx;
   margin-right: 10rpx;
+  border-radius: 50%;
 }
 
 .position_hasshop_item {

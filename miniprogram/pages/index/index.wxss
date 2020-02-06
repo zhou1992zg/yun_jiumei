@@ -238,6 +238,8 @@ view {
 
 .my_map{
   position: relative;
+  width: 690rpx;
+  height: 300rpx;
 }
 
 .cover-view{

@@ -77,24 +77,33 @@ view {
 
 .container-linkpage .pesticide .type-name {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: 72rpx;
     margin-left: 28rpx;
-    align-items: center;
 }
 
 .container-linkpage .pesticide .pesticide_img {
     display: block;
-    width: 546rpx;
-    height: 172rpx;
-    padding-bottom: 24rpx;
+    width: 544rpx;
+    height: 350rpx;
+    margin-bottom: 24rpx;
     margin-top: 24rpx;
     margin-left: 24rpx;
     margin-right: 24rpx;
-    background-color: pink;
+    border-radius: 20rpx;
+    box-shadow: 0 0 16rpx rgba(97, 68, 68, 0.3);
 }
 
 .container-linkpage .pesticide .type-name .name {
     margin: 0 16rpx;
+    font-weight: bold;
+}
+
+.container-linkpage .pesticide .type-name ._icon{
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 28rpx;
 }
 
 .pesticide .pesticide-item {
@@ -172,6 +181,7 @@ view {
     padding: 30rpx 0;
     color: #ccc;
     align-items: center;
+    margin-bottom: 200rpx;
 }
 
 .content .has-no-more .line {

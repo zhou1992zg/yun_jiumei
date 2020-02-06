@@ -19,7 +19,7 @@ view {
     color: rgba(204, 204, 204, 1);
     line-height: 40rpx;
     letter-spacing: 2rpx;
-    text-align: ce  nter;
+    text-align: center;
     margin-top: 128rpx;
     text-decoration: underline;
   }
