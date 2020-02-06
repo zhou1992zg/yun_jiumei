@@ -37,7 +37,7 @@
 							<view class="text-left">配送方式</view>
 							<view class="text-right ellipsis1" wx:if="{{item.distribution_way==0}}">快递邮寄</view>
 							<view class="text-right ellipsis1" wx:elif="{{item.distribution_way==1}}">上门自提</view>
-							<view class="text-right ellipsis1" wx:else="{{item.distribution_way==2}}">同城寄送</view>
+							<view class="text-right ellipsis1" wx:else="{{item.distribution_way==2}}">同城配送</view>
 						</view>
 						<view class="server-list">
 							<view class="text-left">下单时间</view>
