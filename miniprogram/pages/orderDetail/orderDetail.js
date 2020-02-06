@@ -28,6 +28,15 @@ Page({
     })
   },
 
+  callPhoneT(e){
+    let {
+      phone
+    } = e.currentTarget.dataset;
+    wx.makePhoneCall({
+      phoneNumber: phone,
+    })
+  },
+
   /**
    * 打开地图
    */

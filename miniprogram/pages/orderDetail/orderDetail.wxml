@@ -49,22 +49,29 @@
 	<view class="name_phone" wx:elif="{{orderDeta.distribution_way==1}}"><text>配送方式：</text>上门自提</view>
 	<view class="name_phone" wx:else><text>配送方式：</text>同城急送</view>
 </view>
-<view class='inputs-item' wx:if="{{orderDeta.distribution_way==0}}">
+<view class='inputs-item' wx:if="{{orderDeta._payType!=3&&orderDeta.distribution_way==0}}">
 		<label>快递单号</label>
 		<view class='inpt'>
 			<input value="{{orderDeta._courierNum}}" placeholder-style='color: #B2B2B2;font-size: 30rpx;' placeholder="正在为您发货中" disabled/>
 		</view>
 	</view>
-	<view class='inputs-item' wx:elif="{{orderDeta.distribution_way==1}}">
+	<view class='inputs-item' wx:elif="{{orderDeta._payType!=3&&orderDeta.distribution_way==1}}">
 		<label>备货说明</label>
 		<view class='inpt'>
 			<input value="{{orderDeta._instructions}}" placeholder-style='color: #B2B2B2;font-size: 30rpx;' placeholder="正在为您备货中" disabled/>
 		</view>
 	</view>
-	<view class='inputs-item' wx:elif="{{orderDeta.distribution_way==2}}">
-		<label>寄送信息</label>
+	<view class='inputs-item' wx:elif="{{orderDeta._payType!=3&&orderDeta.distribution_way==2}}">
+		<label>公司姓名</label>
 		<view class='inpt'>
-			<input value="{{orderDeta._instructions}}" placeholder-style='color: #B2B2B2;font-size: 30rpx;' placeholder="正在为您备货中" disabled/>
+			<input value="{{orderDeta._instructions}}{{orderDeta._instPhone}}" placeholder-style='color: #B2B2B2;font-size: 30rpx;' placeholder="正在为您备货中" disabled/>
+		</view>
+		<i class="iconfont icon-lianxidianhua i" wx:if="{{orderDeta._instPhone}}" bindtap="callPhoneT" data-phone="{{orderDeta._instPhone}}"></i>
+	</view>
+	<view class='inputs-item' wx:else>
+		<label>老板留言</label>
+		<view class='inpt'>
+			<input value="更多优惠，加入【酒槑福利群】" placeholder-style='color: #B2B2B2;font-size: 30rpx;' placeholder="正在为您备货中" disabled/>
 		</view>
 	</view>
 <view class="address" style="padding-top:60rpx;border-radius:30rpx;">

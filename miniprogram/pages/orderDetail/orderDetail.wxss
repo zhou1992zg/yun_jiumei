@@ -261,6 +261,11 @@ page {
   bottom: 0
 }
 
+.inputs-item .i{
+  font-size: 38rpx;
+  font-weight: bold;
+}
+
 .inputs-item label {
   width: 150rpx;
   margin-right: 40rpx
