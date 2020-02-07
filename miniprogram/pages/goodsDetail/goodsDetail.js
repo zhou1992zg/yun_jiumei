@@ -15,7 +15,6 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    options.id = "d68532785e3c21420b4eb12f60ba28c1";
     this.setData({
       goods_id: options.id,
       hideShareBox: wx.getStorageSync("SHAREBOX")

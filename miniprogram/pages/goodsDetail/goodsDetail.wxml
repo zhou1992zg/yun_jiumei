@@ -7,6 +7,10 @@
 	</swiper>
 </view>
 
+ <view class="name_fx">
+<view class="goods_name zx-warp-2">{{goodsDate.goods_name}}</view>
+</view>
+
 <view class="_type">
 	<span wx:for="{{goodsDate._type}}" wx:for-item="bas">{{bas}}</span>
 </view>
@@ -16,7 +20,7 @@
 </view>
 
 <view class="one">
-	<span class="left">运费：运费到付</span><span class="right">库存：{{goodsDate.stock}}瓶 · 销量：{{goodsDate.amount}}瓶</span>
+	<span class="left">运费：运费到付</span><span class="right">已售：{{goodsDate.amount}}瓶 · 库存：{{goodsDate.stock}}瓶</span>
 </view>
 <view class="name_fx">
 	<view class="goods_name">商品详情</view>

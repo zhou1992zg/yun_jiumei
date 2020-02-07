@@ -8,7 +8,7 @@ Page({
     classid: 0,
     sel_sort: 1,
     clickIndex: 0,
-    type:''
+    type: ''
   },
 
   /**
@@ -45,11 +45,11 @@ Page({
           item._type = item._type.split('，');
         })
         console.log(data)
-        if(clickIndex ==0){
+        if (clickIndex == 0) {
           data.sort(_this.compareBTS(type))
-        }else if(clickIndex % 2 != 0){
+        } else if (clickIndex % 2 != 0) {
           data.sort(_this.compareBTS(type))
-        }else if(clickIndex % 2 == 0){
+        } else if (clickIndex % 2 == 0) {
           data.sort(_this.compareSTB(type))
         }
         _this.setData({
