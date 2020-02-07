@@ -3,7 +3,7 @@
 	<view class="swiper_box">
 		<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000" v-if="bannerList.length>0" bindchange="swiperChange">
 			<swiper-item class="swiper-item" wx:for="{{swiperList}}" wx:key="index">
-				<image mode="aspectFill" src="{{item.fileID}}" class="slide-image" lazy-load="true" bindtap="gotoBanner" data-id="{{item._goodsid}}" />
+				<image mode="aspectFill" src="{{item.fileID}}" class="slide-image" lazy-load bindtap="gotoBanner" data-id="{{item._goodsid}}" />
 			</swiper-item>
 		</swiper>
 	</view>
@@ -29,7 +29,7 @@
 				<block wx:for="{{one_product_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
 					<view class="new-product-plate" bindtap="getId">
 						<view class="goods-img" style="width:152px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
-							<image mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
+							<image mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load class="img" />
 						</view>
 					</view>
 				</block>

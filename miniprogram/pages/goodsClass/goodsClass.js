@@ -34,6 +34,7 @@ Page({
     const db = wx.cloud.database();
     let index = _this.data.classid;
     let type = _this.data.type;
+    console.log(type)
     let clickIndex = _this.data.clickIndex;
     db.collection("goods").where({
       _payTypeIndex: String(index)
@@ -44,12 +45,12 @@ Page({
           item._type = item._type.split('，');
         })
         console.log(data)
-        if(clickIndex % 2 != 0){
+        if(clickIndex ==0){
+          data.sort(_this.compareBTS(type))
+        }else if(clickIndex % 2 != 0){
           data.sort(_this.compareBTS(type))
         }else if(clickIndex % 2 == 0){
           data.sort(_this.compareSTB(type))
-        }else{
-          data.sort(_this.compareBTS(type))
         }
         _this.setData({
           goodsClassList: data
