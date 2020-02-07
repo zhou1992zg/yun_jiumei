@@ -7,6 +7,8 @@ Page({
   data: {
     classid: 0,
     sel_sort: 1,
+    clickIndex: 0,
+    type:''
   },
 
   /**
@@ -17,13 +19,22 @@ Page({
     wx.setNavigationBarTitle({
       title: options.title,
     })
-    let classid = options.classid;
-    this.getGoodsClassList(classid);
+    this.setData({
+      classid: options.classid
+    })
+    this.getGoodsClassList();
   },
 
-  getGoodsClassList(index) {
+  getGoodsClassList() {
     const _this = this;
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     const db = wx.cloud.database();
+    let index = _this.data.classid;
+    let type = _this.data.type;
+    let clickIndex = _this.data.clickIndex;
     db.collection("goods").where({
       _payTypeIndex: String(index)
     }).get({
@@ -33,9 +44,17 @@ Page({
           item._type = item._type.split('，');
         })
         console.log(data)
+        if(clickIndex % 2 != 0){
+          data.sort(_this.compareBTS(type))
+        }else if(clickIndex % 2 == 0){
+          data.sort(_this.compareSTB(type))
+        }else{
+          data.sort(_this.compareBTS(type))
+        }
         _this.setData({
           goodsClassList: data
         })
+        wx.hideLoading();
       },
       fail: err => {
         console.log(`获取${{index}}失败`);
@@ -53,48 +72,54 @@ Page({
   },
 
   selSort(e) {
-    wx.showLoading({
-      title: '加载中',
-      mask:true
-    })
     let {
       index
     } = e.currentTarget.dataset;
-    let type = ""
-    this.setData({
-      sel_sort: index
-    });
-    if(index==0){
-      type = "stock"
-    }else if(index==1){
+    let type = "";
+    let clickIndex = this.data.clickIndex;
+    if (index == 1) {
+      type = "";
+      clickIndex = 0;
+    } else if (index == 2) {
       type = "amount";
-    }else if(index==2){
+      clickIndex = 0;
+    } else if (index == 3) {
       type = "price";
-    }else if(index==3){
-      type = "price";
+      clickIndex = clickIndex + 1;
+    } else if (index == 4) {
+      type = "";
+      clickIndex = 0;
     }
-    this.sort(type)
+    console.log(clickIndex)
+    this.setData({
+      sel_sort: index,
+      type,
+      clickIndex,
+    })
+    this.getGoodsClassList(type)
   },
 
-  sort(type) {
-    let arr = this.data.goodsClassList;
-    //创建每次循环存储最大值得变量
-    let max;
-    //遍历数组，默认arr中的某一个元素为最大值，进行逐一比较
-    for (let i = 0; i < arr.length; i++) {
-      //外层循环一次，就拿arr[i] 和 内层循环arr.legend次的 arr[j] 做对比
-      for (let j = i; j < arr.length; j++) {
-        if (arr[i][type] < arr[j][type]) {
-          //如果arr[j]大就把此时的值赋值给最大值变量max
-          max = arr[j];
-          arr[j] = arr[i];
-          arr[i] = max;
-        }
-      }
-    };
-    this.setData({
-      goodsClassList: arr
-    });
-    wx.hideLoading();
+  /**
+   * 从大到小
+   * @param {} property 
+   */
+  compareBTS(property) {
+    return function (a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      return value2 - value1;
+    }
+  },
+
+  /**
+   * 从小到大
+   * @param {} property
+   */
+  compareSTB(property) {
+    return function (a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      return value1 - value2;
+    }
   }
 })

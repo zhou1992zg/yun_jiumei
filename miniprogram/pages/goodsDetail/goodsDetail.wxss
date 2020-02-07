@@ -193,3 +193,34 @@ view {
 .buyBtn .no_total {
   background: #ccc;
 }
+
+._type {
+  width: 100vw;
+  margin: 0 20rpx;
+  padding: 20rpx 0;
+}
+
+._type span {
+  color: #777778;
+  font-size: 26rpx;
+  padding: 8rpx 18rpx;
+  background-color: #eee;
+  border-radius: 30rpx;
+  margin-right: 10rpx;
+}
+
+.share_img{
+  position: fixed;
+  top: 12rpx;
+  right: 148rpx;
+  width: 238rpx;
+  height: 160rpx;
+}
+
+.cha_img{
+  position: fixed;
+  top: 12rpx;
+  right: 68rpx;
+  width: 38rpx;
+  height: 38rpx;
+}

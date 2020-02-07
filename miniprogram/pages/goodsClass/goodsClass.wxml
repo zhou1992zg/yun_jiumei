@@ -5,35 +5,34 @@
 			<span class="filter" class="{{sel_sort==2&&'filter_active'}}" bindtap="selSort" data-index="2">热卖</span>
 			<span class="filter" class="{{sel_sort==3&&'filter_active'}}" bindtap="selSort" data-index="3">
 				价格
-				<view wx:if="clickIndex == 0 || clickIndex % 2 != 0" class="jiang">
-					<i class="iconfont icon-paixujiantouxia1 paixujiantouxia1_icon"></i>
+				<view wx:if="clickIndex != 0" class="jiang">
+					<i class="iconfont icon-paixujiantouxia1 paixujiantouxia1_icon" style="{{clickIndex % 2 != 0?'color:#e53c0e;':''}}"></i>
 				</view>
-				<view wx:if="clickIndex != 0 && clickIndex % 2 == 0" class="jiang">
-					<i class="iconfont icon-paixujiantouxia1 paixujiantouxia1_icon" style="color:#e53c0e;"></i>
-				</view>
-				<view wx:if="clickIndex != 0 && clickIndex % 2 != 0" class="sheng">
-					<i class="iconfont icon-paixujiantoushang1 paixujiantoushang1_icon" style="color:#e53c0e;"></i>
-				</view>
-				<view wx:if="clickIndex == 0 || clickIndex % 2 == 0" class="sheng">
-					<i class="iconfont icon-paixujiantoushang1 paixujiantoushang1_icon"></i>
+				<view wx:if="clickIndex != 0" class="sheng">
+					<i class="iconfont icon-paixujiantoushang1 paixujiantoushang1_icon" style="{{clickIndex % 2 == 0?'color:#e53c0e;':''}}"></i>
 				</view>
 			</span>
-			<span class="filter" class="{{sel_sort==4&&'filter_active'}}" bindtap="selSort" data-index="4">佣金</span>
+			<span class="filter" class="{{sel_sort==4&&'filter_active'}}" bindtap="selSort" data-index="4">只看有货</span>
 		</view>
 	</view>
 	<view class="class_box">
 		<block wx:for="{{goodsClassList}}" wx:key="index">
 			<view class="goods_class_list" hover-class="hover-style" bindtap="viewDetailFunc" data-id="{{item._id}}">
-				<image src="{{item._shareList[0].fileID}}" mode="aspectFit" class="goods_img"/>
+				<image src="{{item._shareList[0].fileID}}" mode="aspectFit" class="goods_img" />
 				<view class="right">
 					<view class="title zx-warp-2">{{item.goods_name}}</view>
 					<view class="feature">
-					 <span wx:for="{{item._type}}" wx:for-item="bas">{{bas}}</span>
+						<span wx:for="{{item._type}}" wx:for-item="bas">{{bas}}</span>
 					</view>
 					<view class="money">¥ <span>{{item.price}}</span></view>
-					<view class="type">已售：{{item.amount}}瓶  库存：{{item.stock}}瓶</view>
+					<view class="type">已售：{{item.amount}}瓶 库存：{{item.stock}}瓶</view>
 				</view>
 			</view>
 		</block>
 	</view>
+	<view class="has-no-more" wx:if="{{goodsClassList.length}}">
+              <view class="line"></view>
+              <view class="name">没有更多</view>
+              <view class="line"></view>
+            </view>
 </view>

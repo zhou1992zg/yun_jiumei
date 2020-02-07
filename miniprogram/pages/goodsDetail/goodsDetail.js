@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    carGoodsNum:0,
+    carGoodsNum: 0,
     currentNum: 0,
     moveImg: false
   },
@@ -15,11 +15,20 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    options.id = "d68532785e3c21420b4eb12f60ba28c1";
     this.setData({
       goods_id: options.id,
+      hideShareBox: wx.getStorageSync("SHAREBOX")
     })
     this.getGoodsDate(options.id);
-    this.getCarGoodsNum(wx.getStorageSync("GOODSCAR"),false)
+    this.getCarGoodsNum(wx.getStorageSync("GOODSCAR"), false)
+  },
+
+  closeBtn(){
+    wx.setStorageSync("SHAREBOX",true)
+    this.setData({
+      hideShareBox: wx.getStorageSync("SHAREBOX")
+    })
   },
 
   getGoodsDate(goods_id) {
@@ -29,8 +38,9 @@ Page({
       _id: goods_id
     }).get({
       success: res => {
-        console.log(res.data[0])
         let data = res.data[0];
+        data._type = data._type.split('，');
+        console.log(data)
         _this.setData({
           goodsDate: data
         })
@@ -65,7 +75,7 @@ Page({
       duration: 2000
     })
     wx.setStorageSync("GOODSCAR", goodsCard);
-    this.getCarGoodsNum(goodsCard,true)
+    this.getCarGoodsNum(goodsCard, true)
   },
 
   callPhone() {
@@ -74,7 +84,7 @@ Page({
     })
   },
 
-  getCarGoodsNum(goodsCard,b) {
+  getCarGoodsNum(goodsCard, b) {
     const _this = this;
     let carGoodsNum = 0;
     if (goodsCard.length > 0) {
@@ -86,7 +96,7 @@ Page({
       moveImg: b,
       carGoodsNum
     })
-    if(b){
+    if (b) {
       setTimeout(function () {
         _this.setData({
           moveImg: false,
@@ -95,10 +105,10 @@ Page({
     }
   },
 
-  toBuy(){
+  toBuy() {
     const _this = this;
     wx.navigateTo({
-      url: '/pages/order/order?id='+_this.data.goods_id,
+      url: '/pages/order/order?id=' + _this.data.goods_id,
     })
   },
 
@@ -115,51 +125,19 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    const _this = this;
 
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: _this.data.goodsDate.goods_name,
+      path: `/pages/goodsDetail/goodsDetail?id=${_this.data.goods_id}`,
+      imageUrl: _this.data.goodsDate._shareList[0].fileID
+    }
   }
 })

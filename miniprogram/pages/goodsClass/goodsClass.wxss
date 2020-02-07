@@ -149,3 +149,22 @@ view {
   background-color: rgba(102, 99, 99, 0.1);
   border-radius: 20rpx;
 }
+
+.has-no-more {
+  display: flex;
+  justify-content: center;
+  padding: 30rpx 0;
+  color: #ccc;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.has-no-more .line {
+  width: 40rpx;
+  height: 2rpx;
+  border-bottom: solid 1rpx #ddd;
+}
+
+.has-no-more .name {
+  margin: 0 16rpx;
+}
