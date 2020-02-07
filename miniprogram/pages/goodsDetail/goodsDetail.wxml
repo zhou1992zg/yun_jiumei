@@ -7,8 +7,8 @@
 	</swiper>
 </view>
 
- <view class="name_fx">
-<view class="goods_name zx-warp-2">{{goodsDate.goods_name}}</view>
+<view class="name_fx">
+	<view class="goods_name zx-warp-2">{{goodsDate.goods_name}}</view>
 </view>
 
 <view class="_type">
@@ -16,7 +16,10 @@
 </view>
 
 <view class="money">
-	￥<span>{{goodsDate.price}}</span>
+	<span>￥{{goodsDate.price}}</span>
+	<span>
+		<i class="iconfont icon-hot1 _icon" wx:for="{{goodsDate.amount_100 - 0}}"></i>
+	</span>
 </view>
 
 <view class="one">

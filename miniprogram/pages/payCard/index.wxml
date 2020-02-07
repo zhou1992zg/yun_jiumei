@@ -38,7 +38,9 @@
 						<view class='position_hasshop_item'>
 							<view class='position_hasshop_img'>
 								<!-- 商品图片 -->
-								<image class='shop_img' src='{{item._shareList[0].fileID}}'></image>
+								<image class='shop_img' src='{{item._shareList[0].fileID}}'>
+									<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+								</image>
 							</view>
 							<view class='menu_right_txt'>
 								<!-- 商品名称和描述 -->
@@ -90,18 +92,26 @@
 	<swiper class="swiper" style="{{carisShow?'margin-bottom: 30rpx;':''}}" indicator-dots="true" indicator-color="#FFFFFF" indicator-active-color="#9c2732">
 		<swiper-item class="swiper-item">
 			<view class="you_box">
-				<image wx:for="{{one_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<2}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
+				<image wx:for="{{one_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<2}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" >
+					<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+				</image>
 			</view>
 			<view class="you_box">
-				<image wx:for="{{one_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<4&&index>1}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
+				<image wx:for="{{one_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<4&&index>1}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" >
+					<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+				</image>
 			</view>
 		</swiper-item>
 		<swiper-item class="swiper-item">
 			<view class="you_box">
-				<image wx:for="{{three_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<2}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
+				<image wx:for="{{three_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<2}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" >
+					<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+				</image>
 			</view>
 			<view class="you_box">
-				<image wx:for="{{three_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<4&&index>1}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" />
+				<image wx:for="{{three_product_list}}" bindtap="gotoBanner" data-id="{{item._id}}" wx:if="{{index<4&&index>1}}" wx:key="index" mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img" >
+					<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+				</image>
 			</view>
 		</swiper-item>
 	</swiper>

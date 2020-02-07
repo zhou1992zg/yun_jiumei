@@ -118,9 +118,20 @@ view {
     color: #333333;
 }
 
-.pesticide .pesticide-item image {
+.pesticide .pesticide-item .logo_image {
+    position: relative;
     width: 180rpx;
     height: 180rpx;
+    border-radius: 16rpx;
+    margin-right: 24rpx;
+}
+
+.pesticide .pesticide-item .logo_image .hot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80rpx;
+    height: 80rpx;
     border-radius: 16rpx;
     margin-right: 24rpx;
 }

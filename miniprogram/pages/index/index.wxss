@@ -217,6 +217,14 @@ view {
   height: 100%;
 }
 
+.new-product-plate .goods-img .img .hot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100rpx;
+  height: 100rpx;
+}
+
 .pay_style{
   width: 680rpx;
   height: 110rpx;

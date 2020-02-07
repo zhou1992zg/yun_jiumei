@@ -40,7 +40,9 @@
 				<view class='position_hasshop_item'>
 					<view class='position_hasshop_img'>
 						<!-- 商品图片 -->
-						<image class='shop_img' src='{{item._shareList[0].fileID}}'></image>
+						<image class='shop_img' src='{{item._shareList[0].fileID}}'>
+							<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+						</image>
 					</view>
 					<view class='menu_right_txt'>
 						<!-- 商品名称和描述 -->

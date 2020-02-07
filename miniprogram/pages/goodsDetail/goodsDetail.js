@@ -39,6 +39,7 @@ Page({
       success: res => {
         let data = res.data[0];
         data._type = data._type.split('，');
+        data.amount_100 = parseInt(data.amount/100)
         console.log(data)
         _this.setData({
           goodsDate: data

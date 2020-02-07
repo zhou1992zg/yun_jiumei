@@ -30,6 +30,9 @@ view {
 }
 
 .money {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0 20rpx;
   padding: 20rpx 0;
   font-weight: bold;

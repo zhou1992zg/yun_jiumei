@@ -18,7 +18,9 @@
 	<view class="class_box">
 		<block wx:for="{{goodsClassList}}" wx:key="index">
 			<view class="goods_class_list" hover-class="hover-style" bindtap="viewDetailFunc" data-id="{{item._id}}">
-				<image src="{{item._shareList[0].fileID}}" lazy-load mode="aspectFit" class="goods_img" />
+				<image src="{{item._shareList[0].fileID}}" lazy-load mode="aspectFit" class="goods_img">
+					<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+				</image>
 				<view class="right">
 					<view class="title zx-warp-2">{{item.goods_name}}</view>
 					<view class="feature">

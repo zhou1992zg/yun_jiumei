@@ -25,7 +25,9 @@
                     <view class="pesticide-container">
                         <view class="pesticide-item goods-class" hover-class="hover-style"  wx:for="{{twoItem.goods}}" data-itemid="{{pes._id}}" wx:for-item="pes" wx:key="{{goodsIndex}}"
                             catchtap="tapHandle" wx:for-index="goodsIndex">
-                            <image src="{{pes._shareList[0].fileID || defaultImg}}" lazy-load mode="aspectFill"></image>
+                            <image src="{{pes._shareList[0].fileID || defaultImg}}" class="logo_image" lazy-load mode="aspectFill">
+                                <image wx:if="{{pes.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
+                            </image>
                             <view class="pesticide-item-content {{management ? 'management-item-content' : ''}}">
                                 <view class="describe zx-warp-2">
                                     <text class="zx-warp-2">{{pes.goods_name}}</text>
