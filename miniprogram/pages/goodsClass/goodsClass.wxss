@@ -13,6 +13,7 @@ view {
 .sort_mode_box {
   height: 70rpx;
   margin-bottom: 28rpx;
+  z-index: 9999999;
 }
 
 .sort_mode_box_fixd {
@@ -25,6 +26,7 @@ view {
   background-color: #ffffff;
   width: 100%;
   padding-bottom: 6rpx;
+  z-index: 999999;
 }
 
 .jiang {
@@ -92,6 +94,7 @@ view {
 .goods_class_list {
   overflow: hidden;
   padding: 0 22rpx;
+  z-index: 999;
 }
 
 .goods_img {
@@ -101,6 +104,7 @@ view {
   margin: 12rpx 0;
   border-radius: 20rpx;
   float: left;
+  z-index: 999;
 }
 
 .goods_img .hot{
