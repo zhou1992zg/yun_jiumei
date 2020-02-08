@@ -56,6 +56,18 @@ Page({
           goodsClassList: data
         })
         wx.hideLoading();
+        if (!_this.data.goodsClassList.length || _this.data.goodsClassList.length == 0) {
+          wx.showToast({
+            title: '暂无商品，敬请期待',
+            icon: 'none',
+            duration: 2000
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 2000)
+        }
       },
       fail: err => {
         console.log(`获取${{index}}失败`);

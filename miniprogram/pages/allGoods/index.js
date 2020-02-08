@@ -31,6 +31,7 @@ Page({
         console.log('goodsList0==>', data);
         let goodsList = {
           goods_category_one_id: "221310651891449856",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG219.jpeg",
           goods_category_one_name: "红葡萄酒",
           goods_category_two: [{
@@ -53,6 +54,7 @@ Page({
         console.log('goodsList1==>', data);
         let goodsList = {
           goods_category_one_id: "221310651891449858",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG221.jpeg",
           goods_category_one_name: "白葡萄酒",
           goods_category_two: [{
@@ -75,6 +77,7 @@ Page({
         console.log('goodsList2==>', data);
         let goodsList = {
           goods_category_one_id: "221310651896449858",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG223.jpeg",
           goods_category_one_name: "甜葡萄酒",
           goods_category_two: [{
@@ -97,6 +100,7 @@ Page({
         console.log('goodsList3==>', data);
         let goodsList = {
           goods_category_one_id: "221310651896449860",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG226.jpeg",
           goods_category_one_name: "起泡酒",
           goods_category_two: [{
@@ -119,6 +123,7 @@ Page({
         console.log('goodsList4==>', data);
         let goodsList = {
           goods_category_one_id: "221310651896449862",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG228.jpeg",
           goods_category_one_name: "百元畅饮",
           goods_category_two: [{
@@ -141,6 +146,7 @@ Page({
         console.log('goodsList5==>', data);
         let goodsList = {
           goods_category_one_id: "221310651896449864",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG230.jpeg",
           goods_category_one_name: "人气爆款",
           goods_category_two: [{
@@ -163,6 +169,7 @@ Page({
         console.log('goodsList6==>', data);
         let goodsList = {
           goods_category_one_id: "221310651896449866",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG232.jpeg",
           goods_category_one_name: "精品酒具",
           goods_category_two: [{
@@ -185,6 +192,7 @@ Page({
         console.log('goodsList7==>', data);
         let goodsList = {
           goods_category_one_id: "221310651896449868",
+          goods_category_two_length: data.length,
           goods_class_image:"cloud://jiumei-yz5qq.6a69-jiumei-yz5qq-1301137644/WechatIMG234.jpeg",
           goods_category_one_name: "店主优选",
           goods_category_two: [{

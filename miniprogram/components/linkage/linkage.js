@@ -88,6 +88,14 @@ Component({
       let myEventDetail = e.detail;
       if(myEventDetail.action === 'blur') return
       this.triggerEvent('ContentEvent', myEventDetail)
+    },
+    toGoodsClass(e){
+      const classid = e.currentTarget.dataset.index;
+      const title = e.currentTarget.dataset.title;
+      console.log(title);
+      wx.navigateTo({
+        url: '/pages/goodsClass/goodsClass?classid=' + classid + "&title=" + title,
+      })
     }
   }
 });

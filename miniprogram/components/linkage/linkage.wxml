@@ -4,7 +4,7 @@
     <view class="nav">
         <scroll-view scroll-y="true" style="height: 100%;" class="nav-scroll">
             <view wx:for="{{data}}" class="nav-item {{index === navActive ? 'active' : ''}}" wx:key="{{index}}"
-                data-id="tty{{item.goods_category_one_id}}" data-index="{{index}}" catchtap="chooseType">
+                data-id="tty{{item.goods_category_one_id}}" data-index="{{index}}" catchtap="chooseType" wx:if="{{item.goods_category_two_length!=0}}">
                 <span></span>
                 {{item.goods_category_one_name}}
             </view>
@@ -14,8 +14,8 @@
         <scroll-view scroll-y="true" style="height: 100%;" scroll-into-view="{{contentActive}}" scroll-with-animation="true"
                      bindscroll="onScroll" class="content-scroll">
             <view class="pesticide" id="tty{{item.goods_category_one_id}}" wx:for="{{data}}" wx:for-index="typeOneIndex"
-                  wx:key="{{typeOneIndex}}">
-                    <image src="{{item.goods_class_image}}" lazy-load class="pesticide_img"/>
+                  wx:key="{{typeOneIndex}}" wx:if="{{item.goods_category_two_length!=0}}">
+                    <image src="{{item.goods_class_image}}" lazy-load class="pesticide_img" bindtap="toGoodsClass" data-index="{{typeOneIndex}}" data-title="{{item.goods_category_one_name}}"/>
                 <view wx:if="{{twoItem.goods.length}}" wx:for="{{item.goods_category_two}}" wx:for-item="twoItem"
                       wx:for-index="typeTwoIndex" wx:key="{{typeTwoIndex}}">
                     <view class="type-name">
@@ -36,16 +36,16 @@
                                     <text>{{filter.currencyFormat(pes.price)}}</text>
                                 </view>
                                 <view class="inventory">
-                                    <text>已售：{{pes.stock}}瓶 · 库存：{{pes.amount}} {{pes.base_unit_name}}</text>
+                                    <text>已售：{{pes.amount}}瓶 · 库存：{{pes.stock}} {{pes.base_unit_name}}</text>
                                 </view>
                             </view>
                         </view>
-                    </view>   
+                    </view>
                 </view>
             </view>
             <view class="has-no-more" wx:if="{{data.length}}">
               <view class="line"></view>
-              <view class="name">没有更多</view>
+              <view class="name">没有更多</view>    
               <view class="line"></view>
             </view>
         </scroll-view>
