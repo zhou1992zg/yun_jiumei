@@ -32,7 +32,7 @@
 			</view>
 		</block>
 	</view>
-	<view class="has-no-more" wx:if="{{goodsClassList.length}}">
+	<view class="has-no-more" wx:if="{{!hasMore}}">
 		<view class="line"></view>
 		<view class="name">没有更多</view>
 		<view class="line"></view>

@@ -8,7 +8,10 @@ Page({
     classid: 0,
     sel_sort: 1,
     clickIndex: 0,
-    type: ''
+    type: '',
+    hasMore: true,
+    pageIndex: 1,
+    goodsClassList: [],
   },
 
   /**
@@ -31,48 +34,71 @@ Page({
       title: '加载中',
       mask: true
     })
-    const db = wx.cloud.database();
     let index = _this.data.classid;
-    let type = _this.data.type;
+    let type = _this.data.fieldName;
     console.log(type)
     let clickIndex = _this.data.clickIndex;
-    db.collection("goods").where({
-      _payTypeIndex: String(index)
-    }).get({
-      success: res => {
-        let data = res.data;
-        data.forEach((item, index) => {
-          item._type = item._type.split('，');
-        })
-        console.log(data)
-        if (clickIndex == 0) {
-          data.sort(_this.compareBTS(type))
-        } else if (clickIndex % 2 != 0) {
-          data.sort(_this.compareBTS(type))
-        } else if (clickIndex % 2 == 0) {
-          data.sort(_this.compareSTB(type))
-        }
-        _this.setData({
-          goodsClassList: data
-        })
-        wx.hideLoading();
-        if (!_this.data.goodsClassList.length || _this.data.goodsClassList.length == 0) {
-          wx.showToast({
-            title: '暂无商品，敬请期待',
-            icon: 'none',
-            duration: 2000
-          })
-          setTimeout(function () {
-            wx.navigateBack({
-              delta: 1
-            })
-          }, 2000)
-        }
-      },
-      fail: err => {
-        console.log(`获取${{index}}失败`);
+    let order = '';
+    if (clickIndex == 0) {
+      order = 'desc';
+    } else if (clickIndex % 2 != 0) {
+      order = 'desc'
+    } else if (clickIndex % 2 == 0) {
+      order = 'asc'
+    }
+
+    console.log('data==>', {
+      dbName: 'goods',
+      pageIndex: _this.data.pageIndex,
+      pageSize: 10,
+      fieldName: type,
+      order: order,
+      filter: {
+        _payTypeIndex: String(index)
       }
-    });
+    })
+    wx.cloud.callFunction({
+      name: 'paginationFn',
+      data: {
+        dbName: 'goods',
+        pageIndex: _this.data.pageIndex,
+        pageSize: 0,
+        fieldName: type,
+        order: order,
+        filter: {
+          _payTypeIndex: String(index)
+        }
+      }
+    }).then(res => {
+      console.log(res);
+      let data = res.result.data;
+      console.log(data)
+      data.forEach((item, index) => {
+        console.log(item)
+        item._type = item._type.split('，');
+      })
+      let goodsClassList = _this.data.goodsClassList.concat(data);
+      console.log(goodsClassList)
+      console.log(data)
+
+      _this.setData({
+        goodsClassList: goodsClassList,
+        hasMore: res.result.hasMore
+      })
+      wx.hideLoading();
+      if (!_this.data.goodsClassList.length || _this.data.goodsClassList.length == 0) {
+        wx.showToast({
+          title: '暂无商品，敬请期待',
+          icon: 'none',
+          duration: 2000
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000)
+      }
+    })
   },
 
   viewDetailFunc(e) {
@@ -91,7 +117,7 @@ Page({
     let type = "";
     let clickIndex = this.data.clickIndex;
     if (index == 1) {
-      type = "";
+      type = undefined;
       clickIndex = 0;
     } else if (index == 2) {
       type = "amount";
@@ -100,14 +126,16 @@ Page({
       type = "price";
       clickIndex = clickIndex + 1;
     } else if (index == 4) {
-      type = "";
+      type = undefined;
       clickIndex = 0;
     }
     console.log(clickIndex)
     this.setData({
       sel_sort: index,
-      type,
+      fieldName: type,
       clickIndex,
+      pageIndex: 1,
+      goodsClassList: []
     })
     this.getGoodsClassList(type)
   },
@@ -116,23 +144,36 @@ Page({
    * 从大到小
    * @param {} property 
    */
-  compareBTS(property) {
-    return function (a, b) {
-      var value1 = a[property];
-      var value2 = b[property];
-      return value2 - value1;
-    }
-  },
+  // compareBTS(property) {
+  //   return function (a, b) {
+  //     var value1 = a[property];
+  //     var value2 = b[property];
+  //     return value2 - value1;
+  //   }
+  // },
 
   /**
    * 从小到大
    * @param {} property
    */
-  compareSTB(property) {
-    return function (a, b) {
-      var value1 = a[property];
-      var value2 = b[property];
-      return value1 - value2;
+  // compareSTB(property) {
+  //   return function (a, b) {
+  //     var value1 = a[property];
+  //     var value2 = b[property];
+  //     return value1 - value2;
+  //   }
+  // },
+
+  onReachBottom() {
+    const _this = this;
+    if (!_this.data.hasMore) {
+      return;
     }
+    console.log('继续加载》');
+    _this.setData({
+      pageIndex: _this.data.pageIndex + 1
+    });
+    console.log(_this.data.pageIndex);
+    _this.getGoodsClassList();
   }
 })

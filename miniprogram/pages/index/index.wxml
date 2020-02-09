@@ -85,4 +85,4 @@
 		<cover-image class="cover-view" src="../../assets/images/dinwei.png" bindtap="moveToLocation"></cover-image>
 	</map>
 </view>
-<view></view>
+<view class=""></view>
