@@ -62,7 +62,7 @@ Page({
       data: {
         dbName: 'goods',
         pageIndex: _this.data.pageIndex,
-        pageSize: 0,
+        pageSize: 10,
         fieldName: type,
         order: order,
         filter: {
