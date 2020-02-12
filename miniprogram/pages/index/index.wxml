@@ -81,7 +81,7 @@
 		<i class="iconfont icon-daohang i_two"></i>
 		<view class='has_shop_smalltxt zx-no-warp'>酒槑：四川省德阳市文杰莱茵广场1层3号</view>
 	</view>
-	<map id="myMap" class="my_map" longitude="104.392375" latitude="31.107237" enable-traffic="true" scale="17" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location="true" style="border-radius:30rpx;margin:0 auto;box-shadow: 0 0 16rpx rgba(0, 0, 0, .4);overflow: hidden;">
+	<map id="myMap" class="my_map" longitude="104.392375" latitude="31.107237" enable-traffic="true" scale="17" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location="true" style="border-radius:30rpx;margin:0 auto;overflow: hidden;">
 		<cover-image class="cover-view" src="../../assets/images/dinwei.png" bindtap="moveToLocation"></cover-image>
 	</map>
 </view>

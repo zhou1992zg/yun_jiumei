@@ -107,6 +107,17 @@ Page({
 
   toBuy() {
     const _this = this;
+    if (!wx.getStorageSync("PHONE_NUMBER")) {
+      var pages = getCurrentPages(); //获取加载的页面
+      var currentPage = pages[pages.length - 1]; //获取当前页面的对象
+      var url = currentPage.route; //当前页面url
+      let urlId = encodeURIComponent(url+'?id='+_this.data.goods_id);
+      console.log(urlId)
+      wx.navigateTo({
+        url: '../login/login' + "?url="+urlId,
+      });
+      return;
+    }
     wx.navigateTo({
       url: '/pages/order/order?id=' + _this.data.goods_id,
     })

@@ -68,43 +68,43 @@ view {
 }
 
 .category_list .sprite_box .sprite {
-  background-image: url("https://6a69-jiumei-yz5qq-1301137644.tcb.qcloud.la/WechatIMG173.jpeg?sign=e93617f22a9a5793b986436bba7f9a46&t=1580884211");
+  background-image: url("https://6a69-jiumei-yz5qq-1301137644.tcb.qcloud.la/WechatIMG134.jpeg?sign=e05969d6e2adc7116e6ca0a67ede14bf&t=1581494552");
   background-repeat: no-repeat;
-  background-size: 600px 129px;
+  background-size: 620px 140px;
   width: 54px;
   height: 54px;
 }
 
 .sprite0 {
-  background-position: -30px -14px;
+  background-position: -26px -12px;
 }
 
 .sprite1 {
-  background-position: -100px -14px;
+  background-position: -96px -12px;
 }
 
 .sprite2 {
-  background-position: -170px -14px;
+  background-position: -166px -12px;
 }
 
 .sprite3 {
-  background-position: -238px -14px;
+  background-position: -238px -12px;
 }
 
 .sprite4 {
-  background-position: -309px -14px;
+  background-position: -315px -12px;
 }
 
 .sprite5 {
-  background-position: -383px -14px;
+  background-position: -388px -12px;
 }
 
 .sprite6 {
-  background-position: -456px -14px;
+  background-position: -456px -12px;
 }
 
 .sprite7 {
-  background-position: -526px -14px;
+  background-position: -530px -12px;
 }
 
 .sprite8 {
@@ -206,7 +206,7 @@ view {
   position: relative;
   border-radius: 16rpx;
   overflow: hidden;
-  box-shadow: 0 0 16rpx rgba(0, 0, 0, .4);
+  /* box-shadow: 0 0 16rpx rgba(0, 0, 0, .4); */
 }
 
 .new-product-plate .goods-img .img {

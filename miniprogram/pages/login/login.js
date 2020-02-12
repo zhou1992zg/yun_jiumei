@@ -46,9 +46,11 @@ Page({
             title: ' 登陆成功',
             icon: 'none'
           })
-          wx.hideLoading()
+          wx.hideLoading();
+          let urlId = decodeURIComponent(that.option.url);
+          console.log(urlId);
           wx.reLaunch({
-            url: '/' + that.option.url
+            url: '/' + urlId
           });
         }, function () {
           wx.hideLoading()
