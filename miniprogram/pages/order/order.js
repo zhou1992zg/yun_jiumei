@@ -147,12 +147,6 @@ Page({
     })
   },
 
-  toAddAddressPage() {
-    wx.navigateTo({
-      url: '/pages/add_address/add_address',
-    })
-  },
-
   bindPickerChange(e) {
     console.log(e)
     this.setData({

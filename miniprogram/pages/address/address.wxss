@@ -205,3 +205,32 @@ view{
   background-color: rgba(102, 99, 99, 0.1);
   border-radius: 20rpx;
 }
+
+
+.empty_big_box {
+  display: flex;
+  align-items: center;
+  width: 750rpx;
+  /* height: 750rpx; */
+}
+
+.empty_big_box .empty_box {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 20rpx;
+}
+
+.empty_big_box .empty_box .i {
+  margin: 0 auto;
+  margin-top: 80rpx;
+  color: rgba(153, 153, 153, 1);
+  font-size: 250rpx;
+}
+
+.empty_big_box .empty_box .empty_text {
+  width: 610rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: rgba(153, 153, 153, 1);
+}

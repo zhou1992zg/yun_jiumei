@@ -27,6 +27,12 @@
 			</view>
 		</block>
 	</view>
+	<view class='empty_big_box' wx:else>
+		<view class='empty_box'>
+			<i class="iconfont icon-kong2 i"></i>
+			<view class='empty_text'>查无地址</view>
+		</view>
+	</view>
 	<!-- 新增地址 -->
 	<navigator class='fiexd-adds' style="{{isIphoneX?'bottom:68rpx;':''}}" open-type="navigate" hover-class="none" url='/pages/add_address/add_address'>
 		<view class="adds-btn" hover-class="none" hover-stop-propagation="false">新增地址</view>
