@@ -9,7 +9,7 @@
 <view class="super_box">
 <view class="address" wx:if="{{addressDeta}}">
 	<view class="name_phone"><i class="iconfont icon-shouhuodizhi i"></i>{{addressDeta.realname}} {{addressDeta.mobile}}</view>
-	<view class="address_list">地址：{{addressDeta.info}}</view>
+	<view class="address_list">地址：{{addressDeta.info}} {{addressDeta.adds}}</view>
 </view>
 <view class="merchant_goods">
 	<view class='has_shop_smalltxt' bindtap="getLocation">
