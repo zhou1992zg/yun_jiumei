@@ -1,7 +1,7 @@
 /* pages/my/address/address.wxss */
-@import '../../style/YouYuan.wxss'; 
+@import '../../style/YouYuan.wxss';
 
-view{
+view {
   font-family: "YouYuan";
 }
 
@@ -154,8 +154,18 @@ view{
 }
 
 .address-list .address-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 34rpx;
   font-weight: 700;
+}
+
+.address-list .address-name .shanchu-img {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #9c2732;
+  margin-right: 44rpx;
 }
 
 .address-list .address-city {
@@ -183,7 +193,7 @@ view{
 }
 
 .address-list .address-btn .gou-img {
-  font-size: 38rpx;
+  font-size: 32rpx;
   margin-right: 10rpx;
   font-weight: 600;
   color: #9c2732;
@@ -199,9 +209,11 @@ view{
   width: 40rpx;
   height: 40rpx;
   margin-right: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
 }
 
-.hover-style{
+.hover-style {
   background-color: rgba(102, 99, 99, 0.1);
   border-radius: 20rpx;
 }

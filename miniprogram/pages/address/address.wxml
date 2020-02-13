@@ -6,10 +6,11 @@
 			<!-- 地址列表 -->
 			<view class="address-list" bindtap="toChangeAddress" data-id="{{item.id}}" data-mobile="{{item.mobile}}" data-info="{{item.province+item.city+item.area+item.address}}" data-realname="{{item.realname}}">
 				<view class="address-name" hover-class="none" hover-stop-propagation="false">
-					{{item.realname}} {{item.mobile}}
+					<text>{{item.realname}} {{item.mobile}}</text>
+					<i class="iconfont icon-shanchu shanchu-img" data-id="{{item._id}}" data-isdefault="{{item.isdefault==1}}" catchtap="removeAddress"></i>
 				</view>
 				<view class="address-city" hover-class="none" hover-stop-propagation="false">
-					{{item.info}}
+					{{item.info}} {{item.adds}}
 				</view>
 				<view class="address-btn" hover-class="none" hover-stop-propagation="false">
 					<view wx:if="{{upUrl=='pages/order/order'}}" class="btn-default" hover-class="hover-style" catchtap="useAddress" data-id="{{item._id}}" hover-stop-propagation="false">
@@ -18,10 +19,10 @@
 					</view>
 					<view class="btn-default" hover-class="none" data-id="{{item._id}}" hover-class="hover-style" catchtap="changeDAddress">
 						<i style="{{item.isdefault==1?'':'color:#ccc;'}}" class="iconfont {{item.isdefault==1?'icon-gou':'icon-xuanze'}} gou-img"></i>
-						{{item.isdefault==1?'':'设置为'}}默认地址
+						{{item.isdefault==1?'':'设为'}}默认地址
 					</view>
-					<view class="modify" data-id="{{item._id}}" catchtap="removeAddress">
-						<i class="iconfont icon-shanchu gou-img"></i>
+					<view class="modify" data-id="{{item._id}}" catchtap="changeAddress">
+						<i class="iconfont icon-xiugai gou-img"></i>
 					</view>
 				</view>
 			</view>

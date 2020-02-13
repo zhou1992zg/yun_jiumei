@@ -4,7 +4,7 @@
 	<i class="iconfont icon-dizhi address-icon"></i>
 	<view class='address-right'>
 		<view class='name'>{{addressData.realname||'联系人姓名'}} · {{addressData.mobile||'电话'}}</view>
-		<view class='addess-detail'>{{addressData.info||'请选择详细的地址'}}</view>
+		<view class='addess-detail'>{{addressData.info}}{{addressData.adds||'请选择详细的地址'}}</view>
 	</view>
 	<i class="iconfont icon-jiantou-copy address-icon"></i>
 </view>

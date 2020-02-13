@@ -15,28 +15,9 @@ Page({
   onLoad: function (o) {
     console.log('onLoad==>');
     const _this = this;
-    const db = wx.cloud.database();
     _this.setData({
       buyGoodsId: o.id || ''
     })
-    db.collection("address-list").where({
-      _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
-    }).get({
-      success: res => {
-        _this.setData({
-          addressData:res.data[0]
-        })
-        wx.setStorageSync("ADDRESS_DATA", res.data[0]);
-        _this.getAddressJY(res.data[0]);
-        wx.getStorageSync(res.data[0])
-      },
-      fail: err => {
-        wx.showToast({
-          icon: "none",
-          title: '获取地址失败',
-        })
-      }
-    });
   },
 
   /**
@@ -44,21 +25,66 @@ Page({
    */
   getAddressJY(addressData) {
     const _this = this;
-    console.log(addressData?addressData.info.indexOf("旌阳区") != -1?'同城客人':'外地客人':false);
+    console.log(addressData ? addressData.info.indexOf("旌阳区") != -1 ? '同城客人' : '外地客人' : false);
     _this.setData({
-      addressJyq: addressData?addressData.info.indexOf("旌阳区") != -1:false
+      addressJyq: addressData ? addressData.info.indexOf("旌阳区") != -1 : false
     })
+  },
+
+  onHide: function(){
+    console.log('onHide');
+    wx.removeStorageSync('ADDRESS_DATA')
   },
 
   onShow: function () {
     const _this = this;
+    const db = wx.cloud.database();
     let addressData = wx.getStorageSync("ADDRESS_DATA");
-    if(!addressData||addressData=={}||addressData==""||addressData==null||addressData==undefined){
-      addressData = _this.data.addressData;
+    if (!addressData || addressData == {} || addressData == "" || addressData == null || addressData == undefined) {
+      console.log('hahah')
+      db.collection("address-list").where({
+        _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
+      }).get({
+        success: res => {
+          //显示默认的地址
+          const addressList = res.data;
+          let chooseAddress = {};
+          console.log(addressList);
+          addressList.forEach((item, index) => {
+            if (item.isdefault == 1) {
+              chooseAddress = item;
+            }
+          });
+          wx.setStorageSync("ADDRESS_DATA", chooseAddress);
+          wx.showToast({
+            title: '使用默认地址',
+            icon: 'success',
+          })
+          _this.setData({
+            addressData: chooseAddress
+          });
+          addressData = chooseAddress;
+          _this.getAddressJY(chooseAddress);
+        },
+        fail: err => {
+          wx.showToast({
+            icon: "none",
+            title: '获取地址失败',
+          })
+        }
+      });
+    }else{
+      wx.showToast({
+        title: '指定使用该地址',
+        icon: 'success',
+      })
+      _this.setData({
+        addressData
+      });
+      _this.getAddressJY(addressData);
     }
     _this.getPageLu(function (url) {
       if (url == "pages/goodsDetail/goodsDetail") {
-        const db = wx.cloud.database();
         db.collection("goods").where({
           _id: _this.data.buyGoodsId,
         }).get({
@@ -68,12 +94,10 @@ Page({
             goodsCar[0].count = 1;
             goodsCar[0].selected = true;
             _this.setData({
-              addressData,
               goodsData: wx.getStorageSync("ORDERINFO"),
               goodsCar
             })
             _this.totalPrice();
-            _this.getAddressJY(addressData);
           },
           fail: err => {
             wx.showToast({
@@ -84,12 +108,10 @@ Page({
         });
       } else {
         _this.setData({
-          addressData,
           goodsData: wx.getStorageSync("ORDERINFO"),
           goodsCar: wx.getStorageSync("GOODSCAR")
         })
         _this.totalPrice();
-        _this.getAddressJY(addressData);
       }
     });
   },
@@ -266,13 +288,13 @@ Page({
       }
       goods_data.push(goods_list);
     });
-    
+
     let buyData = {
-      address_id: _this.data.payTypeIndex == 1 ? "" : wx.getStorageSync("ADDRESS_DATA")._id,
+      address_id: _this.data.payTypeIndex == 1 ? "" : _this.data.addressData._id,
       distribution_way: _this.data.payTypeIndex,
       goods_data: goods_data,
       _price: orderPrice,
-      _freeBPostage: _this.data.addressJyq&&orderPrice>=100, // 判断是否是同城 订单是否满100
+      _freeBPostage: _this.data.addressJyq && orderPrice >= 100, // 判断是否是同城 订单是否满100
     };
     _this.addOrder(buyData);
   },

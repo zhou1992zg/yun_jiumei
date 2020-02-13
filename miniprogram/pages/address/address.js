@@ -52,21 +52,28 @@ Page({
     let _this = this;
     const _id = e.currentTarget.dataset.id;
     let addressList = _this.data.addressList;
-    let DAddress = {};
-    addressList.forEach(function (element) {
+    addressList.forEach((element) => {
       if (element._id == _id) {
-        DAddress = element
+        wx.setStorageSync("ADDRESS_DATA", element);
+        wx.navigateBack({
+          delta: 1
+        });
       }
-    });
-    wx.setStorageSync("ADDRESS_DATA", DAddress);
-    wx.navigateBack({
-      delta: 1
     });
   },
 
   removeAddress: function (e) {
     let _this = this;
     let id = e.currentTarget.dataset.id;
+    let isDefault = e.currentTarget.dataset.isdefault;
+    if (isDefault) {
+      wx.showToast({
+        title: '默认地址不能删除',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
     wx.showModal({
       title: '提示',
       content: '确认删除此收货地址?',
@@ -90,6 +97,13 @@ Page({
           })
         }
       }
+    })
+  },
+
+  changeAddress: function (e) {
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/add_address/add_address?id=' + id,
     })
   },
 
@@ -127,6 +141,7 @@ Page({
     } else {
       _this.delDefault(addressList[0]._id, function () {
         _this.addIsDefault(DAddress._id, function (addressList) {
+
           wx.showToast({
             title: '修改成功',
           });
@@ -169,15 +184,33 @@ Page({
 
   //添加默认地址
   addIsDefault: function (_id, fn, errFn) {
+    wx.showLoading({
+      title: '修改中'
+    });
     const db = wx.cloud.database();
+    // 先设置将地址全部改为不是默认
     db.collection("address-list").where({
-      _id: _id
+      _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
     }).update({
       data: {
-        isdefault: 1,
+        isdefault: 0,
       },
       success: res => {
-        fn && fn()
+        // 再将对应地址改为默认
+        db.collection("address-list").where({
+          _id: _id,
+        }).update({
+          data: {
+            isdefault: 1,
+          },
+          success: res => {
+            wx.hideLoading();
+            fn && fn()
+          },
+          fail: err => {
+            errFn && errFn()
+          }
+        });
       },
       fail: err => {
         errFn && errFn()

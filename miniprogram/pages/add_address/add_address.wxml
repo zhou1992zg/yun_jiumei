@@ -33,7 +33,7 @@
   			设为默认地址
   		</view>
   	</view>
-  	<button class='btn-save' bindtap='save'>保存</button>
+  	<button class='btn-save' bindtap="save">{{_id?'确认修改':'保存'}}</button>
   	<!-- 城市选择控件 -->
   	<picker isShowPicker="{{isShowCity}}" value="{{adress_index}}" keyWordsOfShow="name" bindsure="sureCallBack" bindcancle="{{cancleCallBack}}" scrollType="link" listData="{{citysLists}}" titleText="选择省市区" sureStyle='color: #8E1BFF' cancelStyle='color: #B2B2B2' titleStyle='color: #B2B2B2;font-size: 36rpx'></picker>
   </view>
