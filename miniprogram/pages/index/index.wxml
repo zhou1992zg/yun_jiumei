@@ -28,7 +28,7 @@
 			<view class="scroll_box">
 				<block wx:for="{{one_product_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
 					<view class="new-product-plate" bindtap="getId">
-						<view class="goods-img" style="width:152px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
+						<view class="goods-img" style="width:130px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
 							<image mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img">
 								<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
 							</image>
@@ -46,7 +46,7 @@
 			<view class="scroll_box">
 				<block wx:for="{{two_product_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
 					<view class="new-product-plate" bindtap="getId">
-						<view class="goods-img" style="width:152px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
+						<view class="goods-img" style="width:130px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
 							<image mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img">
 								<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
 							</image>
@@ -64,7 +64,7 @@
 			<view class="scroll_box">
 				<block wx:for="{{three_product_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
 					<view class="new-product-plate" bindtap="getId">
-						<view class="goods-img" style="width:152px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
+						<view class="goods-img" style="width:130px;height:152px" bindtap="gotoBanner" data-id="{{item._id}}">
 							<image mode="aspectFill" src="{{item._shareList[0].fileID}}" lazy-load="true" class="img">
 								<image wx:if="{{item.amount>=200}}" class="hot" src="../../assets/images/hot.png"></image>
 							</image>
