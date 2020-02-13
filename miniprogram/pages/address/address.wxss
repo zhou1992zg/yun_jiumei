@@ -164,7 +164,7 @@ view {
 .address-list .address-name .shanchu-img {
   font-size: 30rpx;
   font-weight: bold;
-  color: #9c2732;
+  color: #ccc;
   margin-right: 44rpx;
 }
 

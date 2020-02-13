@@ -403,6 +403,7 @@ page {
   font-size: 50rpx;
   color: #9c2732;
   font-weight: 600;
+  line-height: 42rpx;
 }
 
 .list-box .list-list {

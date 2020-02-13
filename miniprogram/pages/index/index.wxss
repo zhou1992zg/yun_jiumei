@@ -220,9 +220,9 @@ view {
 .new-product-plate .goods-img .img .hot {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100rpx;
-  height: 100rpx;
+  right: 0;
+  width: 80rpx;
+  height: 80rpx;
 }
 
 .pay_style{
