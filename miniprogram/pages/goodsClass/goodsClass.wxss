@@ -99,7 +99,7 @@ view {
 
 .goods_img {
   position: relative;
-  width: 270rpx;
+  width: 210rpx;
   height: 270rpx;
   margin: 12rpx 0;
   border-radius: 20rpx;
@@ -108,16 +108,16 @@ view {
 }
 
 .goods_img .hot{
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
 }
 
 .right {
   float: right;
-  width: 418rpx;
+  width: 460rpx;
   font-size: 28rpx;
   padding-top: 12rpx;
   padding-bottom: 20rpx;

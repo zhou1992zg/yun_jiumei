@@ -129,11 +129,10 @@ view {
 .pesticide .pesticide-item .logo_image .hot {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 80rpx;
-    height: 80rpx;
+    right: 0;
+    width: 60rpx;
+    height: 60rpx;
     border-radius: 16rpx;
-    margin-right: 24rpx;
 }
 
 .pesticide .pesticide-item .pesticide-item-content {
