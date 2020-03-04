@@ -16,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     let order_id = options.orderid;
+    console.log(order_id)
     this.setData({
       order_id: order_id
     })
@@ -76,7 +77,7 @@ Page({
                 _payType: 3
               },
               d: {
-                _id: _this.data.order_id
+                _orderId: _this.data.order_id
               },
               c: 'order'
             },
@@ -118,6 +119,8 @@ Page({
   deleteOrder() {
     const _this = this;
     const order_id = _this.data.order_id;
+    console.log(wx.getStorageSync("PHONE_NUMBER"));
+    console.log(order_id);
     wx.showModal({
       title: '提示',
       content: '确认删除此订单？',
@@ -125,9 +128,11 @@ Page({
         if (res.confirm) {
           const db = wx.cloud.database();
           db.collection("order").where({
-            _id: order_id
+            _orderId: order_id,
+            _openid: wx.getStorageSync("PHONE_NUMBER")._openid
           }).remove({
             success: res => {
+              console.log(res)
               wx.showToast({
                 title: '删除成功',
                 duration: 1000
@@ -154,17 +159,21 @@ Page({
     const _this = this;
     let orderId = this.data.order_id;
     let _price = this.data.orderDeta._price;
+    console.log(_price)
+    console.log(orderId)
     wx.showLoading({
       title: '支付中'
     });
     wx.cloud.callFunction({
       name: 'pay', // 调用pay函数
       data: {
+        userinfo: wx.getStorageSync("PHONE_NUMBER"),
         _id: orderId,
-        _price: _price
+        _price: _price,
       }, // 支付金额
       success: (res) => {
         wx.hideLoading();
+        console.log(res)
         const {
           result
         } = res;
@@ -230,7 +239,7 @@ Page({
       name: 'changeOrder',
       // 传给云函数的参数
       data: {
-        order_id: order_id,
+        _orderId: order_id,
         type: 1
       },
       success: function (res) {
@@ -246,7 +255,7 @@ Page({
     const _this = this;
     const db = wx.cloud.database()
     db.collection("order").where({
-      _id: orderid,
+      _orderId: orderid,
     }).get({
       success: res => {
         console.log(res.data[0])

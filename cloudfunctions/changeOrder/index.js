@@ -10,7 +10,7 @@ const _ = db.command
 exports.main = async (event, context) => {
   try {
     return await db.collection('order').where({
-      _id: event.order_id
+      _orderId: event._orderId
     }).update({
       // data 传入需要局部更新的数据
       data: {

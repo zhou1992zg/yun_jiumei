@@ -20,7 +20,33 @@ Page({
       hideShareBox: wx.getStorageSync("SHAREBOX")
     })
     this.getGoodsDate(options.id);
-    this.getCarGoodsNum(wx.getStorageSync("GOODSCAR"), false)
+    this.getCarGoodsNum(wx.getStorageSync("GOODSCAR"), false);
+    this.getPageStyle();
+  },
+
+  getPageStyle: function(){
+    const _this = this;
+    const db = wx.cloud.database()
+    db.collection("page-style").where({
+      _id: "Z9ddEpXv8y6W3H1Wy3hocbOHDOy79f0Wcuna2fENKI4yQuXT"
+    }).get({
+      success: res => {
+        const pageStyle = res.data[0].pageStyle;
+        console.log(pageStyle)
+        _this.setData({
+          content: pageStyle.content,
+          fontColor: pageStyle.fontColor,
+          bgColor: pageStyle.bgColor,
+          radioChecked: pageStyle.radioChecked
+        });
+      },
+      fail: err => {
+        wx.showToast({
+          icon: "none",
+          title: '获取banner失败',
+        })
+      }
+    });
   },
 
   closeBtn(){

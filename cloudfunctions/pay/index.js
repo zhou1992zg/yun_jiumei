@@ -6,13 +6,9 @@ const {
 
 cloud.init();
 
-const db = cloud.database();
-
-const orderCollection = db.collection("order");
-
 const appId = 'wx954b3b0e52f62cdd'; // 小程序appid
 const mchId = '1574957461'; // 商户号
-const key = 'JiuMeiChenDaAndDan20200125234688'; // 商户密钥
+const key = 'ChengsiyaoAA12548585ojushyAhsuSS'; // 商户密钥
 const timeout = 10000; // 超时时间
 
 let wxpay = new WXPay({
@@ -25,6 +21,7 @@ let wxpay = new WXPay({
 });
 
 exports.main = async (event, context) => {
+  console.log(event._id)
   const price = event._price;
   const tradeNo = event._id; // 生成订单号
   const body = '酒槑'; // 订单商品名称
@@ -32,14 +29,14 @@ exports.main = async (event, context) => {
   const notify_url = 'http://www.qq.com'; // 回调地址
   const total_fee = price * 100; // 支付金额，单位为分
   const time_stamp = '' + Math.ceil(Date.now() / 1000);
-  const out_trade_no = `${tradeNo}`;
+  const out_trade_no = tradeNo;
   let orderParam = {
     body,
     spbill_create_ip,
     notify_url,
     out_trade_no,
     total_fee,
-    openid: event.userInfo.openId,
+    openid: event.userinfo._openid,
     trade_type: 'JSAPI',
     timeStamp: time_stamp,
   };
@@ -48,6 +45,9 @@ exports.main = async (event, context) => {
     result_code,
     ...restData
   } = await wxpay.unifiedOrder(orderParam); // 统一下单
+  console.log(result_code)
+  console.log(return_code)
+  console.log(restData)
   if (return_code === 'SUCCESS' && result_code === 'SUCCESS') {
     const {
       prepay_id,

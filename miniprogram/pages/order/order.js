@@ -31,16 +31,25 @@ Page({
     })
   },
 
-  onHide: function(){
+  onHide: function () {
     console.log('onHide');
     wx.removeStorageSync('ADDRESS_DATA')
+  },
+
+  isKong: function (data) {
+    if (Object.keys(data).length === 0) {
+      return true; //如果为空，返回false
+    }
+    return false;
   },
 
   onShow: function () {
     const _this = this;
     const db = wx.cloud.database();
     let addressData = wx.getStorageSync("ADDRESS_DATA");
-    if (!addressData || addressData == {} || addressData == "" || addressData == null || addressData == undefined) {
+    console.log(_this.isKong(addressData))
+    console.log(wx.getStorageSync("ADDRESS_DATA"))
+    if (_this.isKong(addressData)) {
       console.log('hahah')
       db.collection("address-list").where({
         _openid: wx.getStorageSync("PHONE_NUMBER")._openid,
@@ -48,6 +57,9 @@ Page({
         success: res => {
           //显示默认的地址
           const addressList = res.data;
+          if (addressList.length == 0) {
+            return;
+          }
           let chooseAddress = {};
           console.log(addressList);
           addressList.forEach((item, index) => {
@@ -55,6 +67,14 @@ Page({
               chooseAddress = item;
             }
           });
+          console.log(addressList);
+          if(_this.isKong(chooseAddress)){
+            wx.showToast({
+              title: '没有默认地址可用',
+              icon: 'none',
+            })
+            return;
+          }
           wx.setStorageSync("ADDRESS_DATA", chooseAddress);
           wx.showToast({
             title: '使用默认地址',
@@ -73,7 +93,7 @@ Page({
           })
         }
       });
-    }else{
+    } else {
       wx.showToast({
         title: '指定使用该地址',
         icon: 'success',
@@ -267,7 +287,7 @@ Page({
     let orderPrice = 0;
     // 如果是同城配送和快递配送 必须选择地址
     if (_this.data.payTypeIndex == 0 || _this.data.payTypeIndex == 2) {
-      if (wx.getStorageSync("ADDRESS_DATA") == {} || !wx.getStorageSync("ADDRESS_DATA") || wx.getStorageSync("ADDRESS_DATA") == "") {
+      if (_this.isKong(wx.getStorageSync("ADDRESS_DATA"))) {
         wx.showToast({
           title: '您还未填写收货地址',
           icon: 'none',
@@ -311,10 +331,10 @@ Page({
         buyData
       },
       complete: res => {
-        console.log(res.result._id)
+        console.log(res)
         wx.setStorageSync("GOODSCAR", []);
         wx.hideLoading();
-        _this.pay(res.result._id, buyData._price);
+        _this.pay(res.result._orderId, buyData._price);
       }
     })
   },
@@ -328,8 +348,9 @@ Page({
     wx.cloud.callFunction({
       name: 'pay', // 调用pay函数
       data: {
+        userinfo: wx.getStorageSync("PHONE_NUMBER"),
         _id: orderId,
-        _price: _price
+        _price: _price,
       }, // 支付金额
       success: (res) => {
         wx.hideLoading();
@@ -404,7 +425,7 @@ Page({
       name: 'changeOrder',
       // 传给云函数的参数
       data: {
-        order_id: order_id,
+        _orderId: order_id,
         type: 1
       },
       success: function (res) {

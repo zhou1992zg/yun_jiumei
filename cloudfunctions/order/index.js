@@ -19,5 +19,10 @@ exports.main = async (event, context) => {
   orderData['_createtime'] = curTime; //0=待付款，1=已付款，2=已发货，3=待评价
   return await orderCollection.add({
     data: orderData,
+  }).then(res=>{
+    console.log(res);
+    return {
+      _orderId:orderId,
+    }
   });
 }

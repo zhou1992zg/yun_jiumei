@@ -462,7 +462,7 @@ view {
 }
 
 .swiper .you_box{
-  width: 690rpx;
+  width: 650rpx;
   height: 330rpx;
   margin: 20rpx auto;
   display: flex;
@@ -472,7 +472,7 @@ view {
 
 .swiper .you_box .img{
   position: relative;
-  width: 330rpx;
+  width: 300rpx;
   height: 330rpx;
   border-radius: 30rpx;
 }

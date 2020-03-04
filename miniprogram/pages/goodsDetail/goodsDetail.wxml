@@ -2,13 +2,13 @@
 <view class="swiper_box">
 	<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000">
 		<swiper-item wx:for="{{goodsDate._bannerList}}" wx:key="index">
-			<image src="{{item.fileID}}" mode="aspectFit" class="slide-image" lazy-load="true" />
+			<image src="{{item.fileID}}" mode="aspectFill" class="slide-image" lazy-load="true" />
 		</swiper-item>
 	</swiper>
 </view>
 
 <view class="name_fx">
-	<view class="goods_name zx-warp-2">{{goodsDate.goods_name}}</view>
+	<view class="goods_name zx-warp-2"><text wx:if="{{radioChecked}}" style="background:{{bgColor}};color:{{fontColor}};">{{content}}</text>{{goodsDate.goods_name}}</view>
 </view>
 
 <view class="_type">
@@ -16,14 +16,14 @@
 </view>
 
 <view class="money">
-	<span>￥{{goodsDate.price}}</span>
+	<span>￥{{goodsDate.price}} <text class="price_oll" wx:if="{{goodsDate.old_price}}">¥{{goodsDate.old_price}}</text></span>
 	<span>
 		<i class="iconfont icon-hot1 _icon" wx:for="{{goodsDate.amount_100 - 0}}"></i>
 	</span>
 </view>
 
 <view class="one">
-	<span class="left">运费：运费到付</span><span class="right">已售：{{goodsDate.amount}}瓶 · 库存：{{goodsDate.stock}}瓶</span>
+	<span class="left">运费：满300包邮</span><span class="right">已售：{{goodsDate.amount}}瓶 · 库存：{{goodsDate.stock}}瓶</span>
 </view>
 <view class="name_fx">
 	<view class="goods_name">商品详情</view>
