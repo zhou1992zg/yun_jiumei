@@ -15,6 +15,7 @@ Page({
   onLoad: function (o) {
     console.log('onLoad==>');
     const _this = this;
+    console.log(wx.getStorageSync("PHONE_NUMBER"))
     _this.setData({
       buyGoodsId: o.id || ''
     })
@@ -68,7 +69,7 @@ Page({
             }
           });
           console.log(addressList);
-          if(_this.isKong(chooseAddress)){
+          if (_this.isKong(chooseAddress)) {
             wx.showToast({
               title: '没有默认地址可用',
               icon: 'none',
@@ -342,6 +343,7 @@ Page({
   // 订单支付
   pay(orderId, _price) {
     const _this = this;
+    const address = wx.getStorageSync("ADDRESS_DATA");
     wx.showLoading({
       title: '下单成功，支付'
     });
@@ -361,7 +363,8 @@ Page({
           code,
           data
         } = result;
-        if (code !== 0) {
+        console.log(code != 200);
+        if (code != 200) {
           wx.showModal({
             title: '提示',
             content: '支付失败',
@@ -369,7 +372,23 @@ Page({
           });
           return;
         }
-        console.log(data);
+        let fahuoData = {
+          "character_string1": {
+            "value": orderId
+          },
+          "thing2": {
+            "value": "酒槑-全球甄选酒庄直供"
+          },
+          "phrase4": {
+            "value": "已发货"
+          },
+          "amount3": {
+            "value": _price
+          },
+          "thing5": {
+            "value": address.adds
+          }
+        }
         wx.requestPayment({
           timeStamp: data.time_stamp,
           nonceStr: data.nonce_str,
@@ -378,23 +397,60 @@ Page({
           paySign: data.sign,
           success: (res) => {
             console.log(res)
-            _this.changeOrderType(orderId, function () {
-              wx.showToast({
-                title: '支付成功',
-                icon: 'success',
-                duration: 1000
-              });
-              setTimeout(function () {
-                wx.redirectTo({
-                  url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
-                })
-              }, 1000)
-            }, function () {
-              wx.showToast({
-                title: '支付失败，稍后重试',
-                icon: 'success',
-                duration: 1000
-              });
+            wx.requestSubscribeMessage({
+              tmplIds: ["kUDs8SHJje4imR-6BDn0Zn2NYfEpr8eBRxv1_SA4wvE", "gnHBhNtSkzWjQJ5frFsgWALQmOqGaCFExXTkXk7kKmY", "2SyIdAvJIk85fuTfdGhwnYGm9yuGEZFruexbM-9uO7k"],
+              success: res => {
+                if (res.errMsg = "requestSubscribeMessage:ok") {
+                  wx.cloud.callFunction({
+                    name: "subscribe",
+                    data: {
+                      templateId: "kUDs8SHJje4imR-6BDn0Zn2NYfEpr8eBRxv1_SA4wvE",
+                      openId: wx.getStorageSync("PHONE_NUMBER")._openid,
+                      data: {
+                        order_num: orderId,
+                        goods_name: "酒槑-全球甄选酒庄直供",
+                        price: '¥' + _price,
+                        message: "您的订单将在1-3个工作日邮寄",
+                        pay_time: _this.getCurrentDate()
+                      }
+                    }
+                  }).then(res => {
+                    console.log(res);
+                    _this.changeOrderType(orderId, function () {
+                      _this.addSubsribe(orderId, fahuoData)
+                      wx.showToast({
+                        title: '支付成功',
+                        icon: 'success',
+                        duration: 1000
+                      });
+                      wx.redirectTo({
+                        url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
+                      })
+                    }, function () {
+                      console.log('修改订单状态失败了')
+                    })
+
+                  }).catch(err => {
+                    console.log("订阅消息发送失败")
+                    _this.changeOrderType(orderId, function () {
+                      _this.addSubsribe(orderId, fahuoData)
+                      wx.showToast({
+                        title: '支付成功',
+                        icon: 'success',
+                        duration: 1000
+                      });
+                      wx.redirectTo({
+                        url: '/pages/orderDetail/orderDetail?orderid=' + orderId,
+                      })
+                    }, function () {
+                      console.log('修改订单状态失败了')
+                    })
+                  })
+                }
+              },
+              fail: err => {
+                console.log(err);
+              }
             })
           },
           fail: (res) => {
@@ -417,6 +473,42 @@ Page({
         console.log(res);
       }
     });
+  },
+
+  addSubsribe: function (orderId, data) {
+    wx.cloud.callFunction({
+      name: 'addSubsribe',
+      data: {
+        orderId,
+        templateId: 'gnHBhNtSkzWjQJ5frFsgWALQmOqGaCFExXTkXk7kKmY',
+        data
+      },
+      complete: res => {
+        wx.showToast({
+          title: '已订阅发货提醒',
+          icon: 'none'
+        });
+      }
+    })
+  },
+
+  getCurrentDate: function () {
+    var now = new Date();
+    var year = now.getFullYear(); //得到年份
+    var month = now.getMonth(); //得到月份
+    var date = now.getDate(); //得到日期
+    var hour = now.getHours(); //得到小时
+    var minu = now.getMinutes(); //得到分钟
+    var sec = now.getSeconds(); //得到秒
+    month = month + 1;
+    if (month < 10) month = "0" + month;
+    if (date < 10) date = "0" + date;
+    if (hour < 10) hour = "0" + hour;
+    if (minu < 10) minu = "0" + minu;
+    if (sec < 10) sec = "0" + sec;
+    var time = "";
+    time = year + "-" + month + "-" + date + " " + hour + ":" + minu + ":" + sec;
+    return time;
   },
 
   changeOrderType(order_id, fn, errFn) {

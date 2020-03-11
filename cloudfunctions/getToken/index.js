@@ -17,9 +17,8 @@ exports.main = async (event, context) => {
     url: 'https://api.weixin.qq.com/sns/jscode2session',
     qs: {
       appid: wxContext.APPID,
-      secret: 'f60004f1c4bd538650d80d2e8f8f369f', // 微信开发后台可生成，唯有微信认证过的国内主体才可有
+      secret: '5d8619befe13bf921c608a6232a82769', // 微信开发后台可生成，唯有微信认证过的国内主体才可有
       grant_type: 'authorization_code',
-
       js_code: event.sessionCode // 小程序中获取过来的
     },
     json: true

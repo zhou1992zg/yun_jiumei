@@ -1,5 +1,5 @@
 <!-- 地址填写/选择 -->
-
+<button bindtap="subscribe">授权金叶医生推送消息</button>
 <view class='address noAddress' wx:if="{{payTypeIndex!=1}}" data-addressid="{{addressData.address_id||''}}" bindtap="toaddressPage">
 	<i class="iconfont icon-dizhi address-icon"></i>
 	<view class='address-right'>

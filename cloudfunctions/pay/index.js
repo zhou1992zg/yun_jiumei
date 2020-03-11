@@ -48,7 +48,7 @@ exports.main = async (event, context) => {
   console.log(result_code)
   console.log(return_code)
   console.log(restData)
-  if (return_code === 'SUCCESS' && result_code === 'SUCCESS') {
+  if (return_code == 'SUCCESS' && result_code == 'SUCCESS') {
     const {
       prepay_id,
       nonce_str
@@ -60,14 +60,15 @@ exports.main = async (event, context) => {
       signType: 'MD5',
       timeStamp: time_stamp
     }, key); // 签名
+
     return {
-      code: 0,
+      code: 200,
       data: {
         out_trade_no,
         time_stamp,
         ...restData,
         sign
-      }
+      },
     }
   }
   return {

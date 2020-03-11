@@ -7,6 +7,31 @@
 
 .swiper_box {
   height: 700rpx;
+  position: relative;
+}
+
+.swiper_box .time_box{
+  position: absolute;
+  bottom: -30rpx;
+  left: 50%;
+  margin-left: -260rpx;
+  background-color: #fff;
+  width: 520rpx;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 34rpx;
+  color: #000;
+  border-radius: 10rpx;
+  box-shadow:0 0 9rpx 3rpx #999;
+}
+
+.swiper_box .time_box text{
+  padding: 0 10rpx;
+  border-radius: 10rpx;
+  margin: 0 8rpx;
+  background-color: #000;
+  color: #fff;
 }
 
 .swiper {
@@ -19,6 +44,14 @@
 .slide-image {
   width: 750rpx;
   height: 700rpx;
+}
+
+.goods_time {
+  font-size: 28rpx;
+  line-height: 60rpx;
+  padding: 8rpx 0;
+  margin: 0 20rpx;
+  border-bottom: 2rpx solid #eee;
 }
 
 .goods_name {
@@ -69,12 +102,10 @@
 }
 
 .one .left {
-  margin-left: 20rpx;
   float: left;
 }
 
 .one .right {
-  margin-right: 20rpx;
   float: right;
 }
 

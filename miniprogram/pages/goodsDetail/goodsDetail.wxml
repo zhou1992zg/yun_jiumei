@@ -1,10 +1,12 @@
 <!-- 商品轮播图 -->
-<view class="swiper_box">
+<view class="swiper_box" style="margin-bottom:{{goodsDate.isPreSale_goods?'50':'0'}}rpx;">
 	<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true" indicator-color="#FFF" indicator-active-color="#000">
 		<swiper-item wx:for="{{goodsDate._bannerList}}" wx:key="index">
 			<image src="{{item.fileID}}" mode="aspectFill" class="slide-image" lazy-load="true" />
 		</swiper-item>
 	</swiper>
+	<view wx:if="{{goodsDate.isPreSale_goods&&!isOver}}" class="time_box">距预售{{countdownText}}{{countdown.dd}}天<text>{{countdown.hh}}</text>:<text>{{countdown.mm}}</text>:<text>{{countdown.ss}}</text></view>
+	<view wx:elif="{{goodsDate.isPreSale_goods&&isOver}}" class="time_box" style="color:#9c2732;">预售活动已结束</view>
 </view>
 
 <view class="name_fx">
@@ -21,10 +23,13 @@
 		<i class="iconfont icon-hot1 _icon" wx:for="{{goodsDate.amount_100 - 0}}"></i>
 	</span>
 </view>
-
+<view class="name_fx" wx:if="{{goodsDate.delivery_time}}">
+	<view class="goods_time">预计发货时间：{{goodsDate.delivery_time}}</view>
+</view>
 <view class="one">
 	<span class="left">运费：满300包邮</span><span class="right">已售：{{goodsDate.amount}}瓶 · 库存：{{goodsDate.stock}}瓶</span>
 </view>
+
 <view class="name_fx">
 	<view class="goods_name">商品详情</view>
 </view>

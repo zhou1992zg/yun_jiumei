@@ -1,13 +1,21 @@
 // pages/goodsDetail/goodsDetail.js
+let myTimer;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     carGoodsNum: 0,
     currentNum: 0,
-    moveImg: false
+    moveImg: false,
+    countdownText: "结束",
+    isOver: false,
+    countdown: {
+      dd: "0",
+      hh: "00",
+      mm: "00",
+      ss: "00"
+    }
   },
 
   /**
@@ -24,7 +32,21 @@ Page({
     this.getPageStyle();
   },
 
-  getPageStyle: function(){
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    clearInterval(myTimer);
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    clearInterval(myTimer);
+  },
+
+  getPageStyle: function () {
     const _this = this;
     const db = wx.cloud.database()
     db.collection("page-style").where({
@@ -49,8 +71,8 @@ Page({
     });
   },
 
-  closeBtn(){
-    wx.setStorageSync("SHAREBOX",true)
+  closeBtn() {
+    wx.setStorageSync("SHAREBOX", true)
     this.setData({
       hideShareBox: wx.getStorageSync("SHAREBOX")
     })
@@ -65,17 +87,86 @@ Page({
       success: res => {
         let data = res.data[0];
         data._type = data._type.split('，');
-        data.amount_100 = parseInt(data.amount/100)
+        data.amount_100 = parseInt(data.amount / 100);
+        if (data.delivery_time) {
+          data.delivery_time = _this.getDateTime(data.delivery_time / 1000, "Y年MM月dd日")
+        }
         console.log(data)
         _this.setData({
           goodsDate: data
-        })
+        });
+        _this.countDown(data.countdown_KS, data.countdown_JS);
       },
       fail: err => {
         console.log(err)
         console.log("获取商品详情失败");
       }
     });
+  },
+
+  countDown(countdown_KS, countdown_JS) {
+    const _this = this;
+    var timestamp = Date.parse(new Date());
+    let countdownText = "";
+    myTimer = setInterval(function () {
+      timestamp = timestamp + 1000;
+      let millisecond = 0;
+      let isOver = false;
+      if (timestamp < countdown_KS) {
+        console.log("距开始")
+        countdownText = "开始";
+        isOver = false;
+        millisecond = countdown_KS - timestamp;
+      } else if (countdown_KS <= timestamp && timestamp < countdown_JS) {
+        console.log("距结束")
+        countdownText = "结束";
+        isOver = false;
+        millisecond = countdown_JS - timestamp;
+      } else if (timestamp >= countdown_JS) {
+        isOver = true;
+        clearInterval(myTimer);
+      }
+      let dd = Math.floor(millisecond / 86400000);
+      let hh = Math.floor((millisecond / 3600000) % 24);
+      let mm = Math.floor((millisecond / 60000) % 60);
+      let ss = Math.floor((millisecond / 1000) % 60);
+      hh = hh < 10 ? "0" + hh : hh;
+      mm = mm < 10 ? "0" + mm : mm;
+      ss = ss < 10 ? "0" + ss : ss;
+      _this.setData({
+        countdownText,
+        isOver,
+        countdown: {
+          dd: dd,
+          hh: hh,
+          mm: mm,
+          ss: ss
+        }
+      })
+    }, 1000)
+  },
+
+  getDateTime(timestamp, format) {
+    const date = new Date(timestamp * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    const o = {
+      'Y+': date.getFullYear(),
+      'M+': date.getMonth() + 1, // 月份
+      'd+': date.getDate(), // 日
+      'h+': date.getHours(), // 小时
+      'm+': date.getMinutes(), // 分
+      's+': date.getSeconds(), // 秒
+      'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
+      S: date.getMilliseconds(), // 毫秒
+    };
+    if (/(y+)/.test(format)) {
+      format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+      if (new RegExp("(" + k + ")").test(format)) {
+        format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length))
+      }
+    }
+    return format;
   },
 
   toBuyCard() {
@@ -137,10 +228,10 @@ Page({
       var pages = getCurrentPages(); //获取加载的页面
       var currentPage = pages[pages.length - 1]; //获取当前页面的对象
       var url = currentPage.route; //当前页面url
-      let urlId = encodeURIComponent(url+'?id='+_this.data.goods_id);
+      let urlId = encodeURIComponent(url + '?id=' + _this.data.goods_id);
       console.log(urlId)
       wx.navigateTo({
-        url: '../login/login' + "?url="+urlId,
+        url: '../login/login' + "?url=" + urlId,
       });
       return;
     }
